@@ -8,10 +8,15 @@
 @media (prefers-color-scheme: dark) {
   :root {
   }
+
+  
 }
 
-body {
+body::-webkit-scrollbar {
+  display: none; /* Hides scrollbar */
 }
+
+
 
 @layer utilities {
   .text-balance {

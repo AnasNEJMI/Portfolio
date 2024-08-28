@@ -6,14 +6,15 @@ import { useGSAP } from '@gsap/react';
 import { useTransitionContext } from '@/contexts/transition_context';
 import { useFirstLoadContext } from "@/contexts/first_load_context";
 import { useOverlayTitleContext } from "@/contexts/overlay_title_context";
+import useLocomotiveScroll from "@/components/locomotive_scroll";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const containerRef = React.useRef(null);
   let {exitTimeline } = useTransitionContext();
   let {isOnFirstLoad, setIsOnFirstLoad} = useFirstLoadContext();
   let {overlayTitle} = useOverlayTitleContext();
+  let {scrollContainerRef} = useLocomotiveScroll();
 
   function map(value, min1, max1, min2, max2) {
     return Math.round(min2 + (max2 - min2) * ((value - min1) / (max1 - min1)));
@@ -30,10 +31,12 @@ export default function Home() {
     //calculating the curve of the overlay path when entering/exiting the page
     let enterAnimationCurve = 50;
     let exitAnimationCurve = -15;
+    let enterAnimationCurve2 = 60;
     const updatePathCurve = contextSafe(() => {
       let width = window.innerWidth;
       enterAnimationCurve = map(width, 0, 1600, 10, 50);
       exitAnimationCurve = map(width, 0, 1600, 25, -25);
+      enterAnimationCurve2 = map(width, 0, 1600, 15, 60);
     });
 
     window.addEventListener("resize",updatePathCurve);
@@ -115,6 +118,9 @@ export default function Home() {
         }
     ),"path-overlay-exit-start");
 
+    const initial = "M 0 0 V 100 Q 50 100 100 100 V 0 z";
+    const middle = `M 0 0 V 20 Q 50 ${enterAnimationCurve2} 100 20 V 0 z`;
+    const end = "M 0 0 V 0 Q 50 0 100 0 V 0 z"
     // ---- ENTER ANIMATION ---- //
     //add the animation for the overlay, then stick the animation for the rest of the page at the end
     //1 - enter animation for the overlay
@@ -129,12 +135,12 @@ export default function Home() {
     enterTimeline.fromTo(overlayPathElement,
       //first part of the animation
       {
-        attr : {d : pathEnterAnimationStart},
+        attr : {d : initial},
         ease : "power3.in",
         duration : 0.8,
       },
       {
-          attr : {d : pathEnterAnimationMiddle},
+          attr : {d : middle},
           ease : "power3.in",
           duration : 0.8,
       }
@@ -144,7 +150,7 @@ export default function Home() {
     //second part of the animation
     enterTimeline.to(overlayPathElement,
       {
-          attr : {d : pathEnterAnimationEnd},
+          attr : {d : end},
           ease : "power3.out",
           duration : 0.4,
       }
@@ -216,13 +222,11 @@ export default function Home() {
     return () => {
       window.removeEventListener("resize",updatePathCurve);
     }
-  }, {scope: containerRef});
-
+  }, {scope: scrollContainerRef});
   
-
   return ( 
-    <main ref = {containerRef}
-      className={`flex min-h-screen flex-col items-center justify-center p-24 relative ${inter.className}`}
+    <main ref = {scrollContainerRef}
+      className={`min-h-screen relative ${inter.className}`}
     >
 
       <div id = "overlay-container" className='fixed top-0 left-0 z-50 right-0 w-full h-screen flex justify-center items-center pointer-events-none'>
@@ -233,10 +237,22 @@ export default function Home() {
         </svg>
       </div>
 
+      <section className = "h-screen w-full flex flex-col items-center justify-center">
+        <h1 className="section text-center text-4xl font-bold">Home</h1>
+        <p className="section text-center text-md font-regular text-zinc-800 mt-1">This page is still under construction</p>
+        <Link scroll = {false} href = "/about" className="section text-center text-white bg-slate-900  hover:bg-slate-700 p-6 mt-6 rounded-full">Go back to about</Link>
+      </section>
 
-      <h1 className="section text-center text-4xl font-bold">Home</h1>
-      <p className="section text-center text-md font-regular text-zinc-800 mt-1">This page is still under construction</p>
-      <Link scroll = {false} href = "/about" className="section text-center text-white bg-slate-900  hover:bg-slate-700 p-6 mt-6 rounded-full">Go back to about</Link>
+      <section className = "h-screen w-full flex flex-col items-center justify-center">
+        <h1 className="section text-center text-4xl font-bold">Section 2</h1>
+        <p className="section text-center text-md font-regular text-zinc-800 mt-1">This page is still under construction</p>
+      </section>
+
+      <section className = "h-screen w-full flex flex-col items-center justify-center">
+        <h1 className="section text-center text-4xl font-bold">Section 3</h1>
+        <p className="section text-center text-md font-regular text-zinc-800 mt-1">This page is still under construction</p>
+      </section>
+      
     </main>
   );
 }
