@@ -4,10 +4,10 @@ import gsap from 'gsap';
 const TransitionContext = React.createContext(undefined)
 
 const TransitionContextProvider = ({ children }) => {
-  const [timeline, setTimeline] = React.useState(() => gsap.timeline({ paused: true }));
+  const [exitTimeline, setExitTimeline] = React.useState(() => gsap.timeline({ paused: true }));
 
   return (
-    <TransitionContext.Provider value = {{ timeline, setTimeline }}>
+    <TransitionContext.Provider value = {{exitTimeline,setExitTimeline }}>
         {children}
     </TransitionContext.Provider>
   )

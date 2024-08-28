@@ -1,17 +1,23 @@
 import React, {useState } from 'react'
-import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { useTransitionContext } from '@/contexts/transition_context';
+import { useOverlayTitleContext } from '@/contexts/overlay_title_context';
+import { useRouter } from 'next/router';
 
 const PageTransitionHandler = ({ children }) => {
     const [displayedChildren, setDisplayedChildren] = useState(children);
-    let { timeline } = useTransitionContext();
+    let {exitTimeline } = useTransitionContext();
+    let {overlayTitle, setOverlayTitle } = useOverlayTitleContext();
+    let router = useRouter();
 
     useGSAP(() => {
       //only play the exit animation if the next page is different from the current one
-        if(displayedChildren.key !== children.key){
-          timeline.play().then(() => {
-
+      const currentRoute = router.pathname.slice(1) === ""? "Bienvenue !" : router.pathname.slice(1);
+      setOverlayTitle(currentRoute);
+      console.log(currentRoute);
+      if(displayedChildren.key !== children.key){
+        if(exitTimeline.getChildren().length > 0){
+          exitTimeline.play().then(() => {
             //once the exit animation is done, change the displayed page
             setDisplayedChildren(children);
 
@@ -21,9 +27,13 @@ const PageTransitionHandler = ({ children }) => {
             window.scrollTo(0, 0);
 
             //to avoid any weird behavior, we pause the timeline and clear it
-            timeline.pause().clear();
+            exitTimeline.pause().clear();
           })
+        }else{
+          setDisplayedChildren(children);
+          window.scrollTo(0, 0);
         }
+      }
     }, [children])
     
   return (
