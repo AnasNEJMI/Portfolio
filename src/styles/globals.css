@@ -3,6 +3,35 @@
 @tailwind utilities;
 
 :root {
+  --primary-color-regular: theme('colors.green.500');
+  --primary-color-dark: theme('colors.green.700');
+  --primary-color-light: theme('colors.green.300');
+
+  --secondary-color-regular: theme('colors.stone.500');
+  --secondary-color-dark: theme('colors.stone.700');
+  --secondary-color-light: theme('colors.stone.300');
+
+  --tertiary-color-regular: theme('colors.amber.500');
+  --tertiary-color-dark: theme('colors.amber.700');
+  --tertiary-color-light: theme('colors.amber.300');
+
+  --white-color : theme('colors.zinc.100');
+  --black-color : theme('colors.zinc.900');
+
+
+  /* font sizes */
+  --h1-font-size: clamp(2.986rem, 6.5vw, 5.61rem);
+  --h2-font-size: clamp(2.488rem, 5.25vw, 4.209rem);
+  --h3-font-size: clamp(2.074rem, 3.95vw, 3.157rem);
+  --h4-font-size: clamp(1.728rem, 3vw, 2.369rem);
+  --h5-font-size: clamp(1.44rem, 2.3vw, 1.777rem);
+  --h6-font-size: clamp(1.2rem, 1.7vw, 1.333rem);
+  --body-font-size: 1rem;
+  --caption-font-size: 0.833rem;
+  --tiny-font-size: 0.694rem;
+  /* --caption-font-size: clamp(0.75rem, 10vw, 0.833rem);
+  --tiny-font-size: clamp(0.563rem, 10vw, 0.694rem); */
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,5 +50,41 @@ body::-webkit-scrollbar {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .text-tiny{
+    font-size: var(--tiny-font-size);
+  }
+
+  .text-caption{
+    font-size: var(--caption-font-size);
+  }
+
+  .text-body{
+    font-size: var(--body-font-size);
+  }
+
+  .text-h-6{
+    font-size: var(--h6-font-size);
+  }
+
+  .text-h-5{
+    font-size: var(--h5-font-size);
+  }
+
+  .text-h-4{
+    font-size: var(--h4-font-size);
+  }
+
+  .text-h-3{
+    font-size: var(--h3-font-size);
+  }
+
+  .text-h-2{
+    font-size: var(--h2-font-size);
+  }
+  
+  .text-h-1{
+    font-size: var(--h1-font-size);
   }
 }
