@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import gsap from 'gsap';
@@ -7,6 +7,8 @@ import { useTransitionContext } from '@/contexts/transition_context';
 import { useFirstLoadContext } from "@/contexts/first_load_context";
 import { useOverlayTitleContext } from "@/contexts/overlay_title_context";
 import useLocomotiveScroll from "@/components/locomotive_scroll";
+import LogoAnimation from "@/components/logo_animation";
+import Image from "next/image";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,12 +17,14 @@ export default function Home() {
   let {isOnFirstLoad, setIsOnFirstLoad} = useFirstLoadContext();
   let {overlayTitle} = useOverlayTitleContext();
   let {scrollContainerRef} = useLocomotiveScroll();
+  let timeline = useRef(gsap.timeline({paused : true}));
 
   function map(value, min1, max1, min2, max2) {
     return Math.round(min2 + (max2 - min2) * ((value - min1) / (max1 - min1)));
   }
-  useGSAP((context, contextSafe) => {
-    let enterTimeline = gsap.timeline({paused : true});
+  const {contextSafe} = useGSAP((context, contextSafe) => {
+    let enterTimeline = timeline.current;
+    // let enterTimeline = gsap.timeline({paused : true});
 
     let overlayPathElement = document.getElementById("overlay-path");
     let overlayTitleElement = document.getElementById("overlay-title");
@@ -112,7 +116,6 @@ export default function Home() {
         {
             y : -100,
             opacity : 0,
-            stagger : 0.05,
             ease : "power1.in",
             duration : 0.8,
         }
@@ -126,12 +129,15 @@ export default function Home() {
     //1 - enter animation for the overlay
     if(isOnFirstLoad){
       //play the logo animation first
+      const logoAnimationDuration = 2.5;
       enterTimeline.set(overlayTitleElement, {display : 'none'});
-      enterTimeline.fromTo(overlayLogoElement,{color : "#000", scale : 1},{color : "#166534", scale : 1.4, duration : 3}, 0);
+      enterTimeline.fromTo(overlayLogoElement,{},{duration : logoAnimationDuration}, 0);
     }else{
       //delay the overlay enter animation by 1 second
       enterTimeline.set(overlayLogoElement, {display : 'none'});
     }
+
+    //1- part 1 animation the path
     enterTimeline.fromTo(overlayPathElement,
       //first part of the animation
       {
@@ -147,7 +153,8 @@ export default function Home() {
     , ">");
 
     enterTimeline.addLabel("path-overlay-enter-start", "<")
-    //second part of the animation
+
+    //2- part 2 animation the path
     enterTimeline.to(overlayPathElement,
       {
           attr : {d : end},
@@ -183,9 +190,9 @@ export default function Home() {
           opacity : 1
         },
         {
-            y : -550,
+            y : -600,
             opacity : 0,
-            ease : "power3.in",
+            ease : "back.in",
             duration : 0.8,
         }, "path-overlay-enter-start");
     }
@@ -214,7 +221,7 @@ export default function Home() {
       if(isOnFirstLoad){
         console.log("hello");
         enterTimeline.to(overlayTitleElement, {display : 'block'});
-        enterTimeline.to(overlayLogoElement, {display : 'none'});
+        enterTimeline.set(overlayLogoElement, {display : 'none'});
         setIsOnFirstLoad(false);
       }
     });
@@ -223,19 +230,30 @@ export default function Home() {
       window.removeEventListener("resize",updatePathCurve);
     }
   }, {scope: scrollContainerRef});
-  
+
   return ( 
     <main ref = {scrollContainerRef}
       className={`min-h-screen relative ${inter.className}`}
     >
 
       <div id = "overlay-container" className='fixed top-0 left-0 z-50 right-0 w-full h-screen flex justify-center items-center pointer-events-none'>
-        <h2 id = "overlay-logo" className = " will-change-transform">LOGO</h2>
+        <LogoAnimation id = "overlay-logo"/>
+        {/* <h2 id = "overlay-logo" className = " will-change-transform">LOGO</h2> */}
         <h2 id = "overlay-title" className = " will-change-transform">{overlayTitle}</h2>
         <svg viewBox="0 0 100 100" preserveAspectRatio="none" className = "w-full h-full absolute top-0 left-0 -z-10 flex justify-center items-center">
-            <path id = "overlay-path" d = "M 0 0 H 100 V 100 q -50 0 -100 0 Z" className = "fill-green-500 z-50"></path>
+            <path id = "overlay-path" d = "M 0 0 H 100 V 100 q -50 0 -100 0 Z" className = "fill-black-color z-50"></path>
         </svg>
       </div>
+
+      <header className = "section p-nav bg-white-color flex items-center justify-between">
+        <Link href = "/" className = "">
+          <Image src = "/images/logo.svg" alt = "Logo" width = {80} height = {80} className="h-auto"/>
+        </Link >
+
+        <button class = "rounded-full h-16 w-16 bg-primary-regular">
+
+        </button>
+      </header>
 
       <section className = "section h-screen w-full flex flex-col items-center justify-center">
         <h1 className="text-center text-4xl font-bold">Home</h1>
