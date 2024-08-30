@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 
 const FirstLoadContext = React.createContext(undefined)
 
-const FirstLoadContextProvider = ({ children }) => {
+const FirstLoadProvider = ({ children }) => {
   const [isOnFirstLoad, setIsOnFirstLoad] = React.useState(true);
 
   return (
@@ -12,14 +12,14 @@ const FirstLoadContextProvider = ({ children }) => {
   )
 }
 
-export function useFirstLoadContext(){
+export function useFirstLoad(){
   let context = useContext(FirstLoadContext);
 
   if(context === undefined){
-      throw new Error('useFirstLoadContext must be used inside FirstLoadContextProvider');
+      throw new Error('useFirstLoad must be used inside FirstLoadProvider');
   }else{  
       return context;
   }
 }
 
-export default FirstLoadContextProvider
+export default FirstLoadProvider

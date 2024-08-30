@@ -3,17 +3,17 @@ import { Inter } from "next/font/google";
 import Link from "next/link";
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { useTransitionContext } from '@/contexts/transition_context';
-import { useFirstLoadContext } from "@/contexts/first_load_context";
-import { useOverlayTitleContext } from "@/contexts/overlay_title_context";
+import { usePageTransition } from '@/contexts/transition_context';
+import { useFirstLoad } from "@/contexts/first_load_context";
+import { useOverlayTitle } from "@/contexts/overlay_title_context";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function About() {
   const containerRef = React.useRef(null);
-  let {exitTimeline } = useTransitionContext();
-  let {isOnFirstLoad, setIsOnFirstLoad} = useFirstLoadContext();
-  let {overlayTitle} = useOverlayTitleContext();
+  let {exitTimeline } = usePageTransition();
+  let {isOnFirstLoad, setIsOnFirstLoad} = useFirstLoad();
+  let {overlayTitle} = useOverlayTitle();
 
   function map(value, min1, max1, min2, max2) {
     return Math.round(min2 + (max2 - min2) * ((value - min1) / (max1 - min1)));

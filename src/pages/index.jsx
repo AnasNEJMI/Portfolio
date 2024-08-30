@@ -3,19 +3,23 @@ import { Inter } from "next/font/google";
 import Link from "next/link";
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { useTransitionContext } from '@/contexts/transition_context';
-import { useFirstLoadContext } from "@/contexts/first_load_context";
-import { useOverlayTitleContext } from "@/contexts/overlay_title_context";
+import { usePageTransition } from '@/contexts/transition_context';
+import { useFirstLoad } from "@/contexts/first_load_context";
+import { useOverlayTitle } from "@/contexts/overlay_title_context";
 import useLocomotiveScroll from "@/components/locomotive_scroll";
 import LogoAnimation from "@/components/logo_animation";
 import Image from "next/image";
+import MagneticMenuIcon from "@/components/magnetic-menu-icon";
+import MagneticFilterIcon from "@/components/magnetic-filter-icon";
+import HorizontalNav from "@/components/horizontal_nav";
+import VerticalNav from "@/components/vertical_nav";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  let {exitTimeline } = useTransitionContext();
-  let {isOnFirstLoad, setIsOnFirstLoad} = useFirstLoadContext();
-  let {overlayTitle} = useOverlayTitleContext();
+  let {exitTimeline } = usePageTransition();
+  let {isOnFirstLoad, setIsOnFirstLoad} = useFirstLoad();
+  let {overlayTitle} = useOverlayTitle();
   let {scrollContainerRef} = useLocomotiveScroll();
   let timeline = useRef(gsap.timeline({paused : true}));
 
@@ -235,8 +239,8 @@ export default function Home() {
     <main ref = {scrollContainerRef}
       className={`min-h-screen relative ${inter.className}`}
     >
-
-      <div id = "overlay-container" className='fixed top-0 left-0 z-50 right-0 w-full h-screen flex justify-center items-center pointer-events-none'>
+      
+      <div id = "overlay-container" className='fixed top-0 left-0 z-[60] right-0 w-full h-screen flex justify-center items-center pointer-events-none'>
         <LogoAnimation id = "overlay-logo"/>
         {/* <h2 id = "overlay-logo" className = " will-change-transform">LOGO</h2> */}
         <h2 id = "overlay-title" className = " will-change-transform">{overlayTitle}</h2>
@@ -245,14 +249,19 @@ export default function Home() {
         </svg>
       </div>
 
-      <header className = "section p-nav bg-white-color flex items-center justify-between">
-        <Link href = "/" className = "">
-          <Image src = "/images/logo.svg" alt = "Logo" width = {80} height = {80} className="h-auto"/>
-        </Link >
+      <MagneticMenuIcon/>
+      <VerticalNav/>
+      
+      <header className = "section w-full p-nav  flex items-center justify-between relative top-0 left-0 z-30">
 
-        <button class = "rounded-full h-16 w-16 bg-primary-regular">
+        <HorizontalNav/>
 
-        </button>
+        {/* <MagneticFilterIcon>
+          <svg className = "w-6 h-6 overflow-visible " strokeWidth={5} viewBox="0 0 100 100" preserveAspectRatio="none">
+              <path d = "M0 0 L40 0 L40 40 L0 40 L0 0" className = ""></path>
+          </svg>
+        </MagneticFilterIcon> */}
+
       </header>
 
       <section className = "section h-screen w-full flex flex-col items-center justify-center">

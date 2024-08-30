@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 
 const OverlayTitleContext = React.createContext(undefined)
 
-const OverlayTitleContextProvider = ({ children }) => {
+const OverlayTitleProvider = ({ children }) => {
   const [overlayTitle, setOverlayTitle] = React.useState("");
 
   return (
@@ -12,14 +12,14 @@ const OverlayTitleContextProvider = ({ children }) => {
   )
 }
 
-export function useOverlayTitleContext(){
+export function useOverlayTitle(){
   let context = useContext(OverlayTitleContext);
 
   if(context === undefined){
-      throw new Error('useOverlayTitleContext must be used inside OverlayTitleContextProvider');
+      throw new Error('useOverlayTitle must be used inside OverlayTitleProvider');
   }else{  
       return context;
   }
 }
 
-export default OverlayTitleContextProvider
+export default OverlayTitleProvider

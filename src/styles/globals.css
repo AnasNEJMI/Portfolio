@@ -333,4 +333,18 @@ body::-webkit-scrollbar {
   .p-nav{
     padding: var(--padding-nav);
   }
+
+  .pl-nav{
+    padding-left: var(--padding-nav);
+  }
+
+  .pr-nav{
+    padding-right: var(--padding-nav);
+  }
+
+  /* easing */
+
+  .ease-in-out-custom{
+    transition-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+  }
 }

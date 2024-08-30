@@ -1,26 +1,26 @@
 import React, { useContext } from 'react'
 import gsap from 'gsap';
 
-const TransitionContext = React.createContext(undefined)
+const PageTransitionContext = React.createContext(undefined)
 
-const TransitionContextProvider = ({ children }) => {
+const PageTransitionProvider = ({ children }) => {
   const [exitTimeline, setExitTimeline] = React.useState(() => gsap.timeline({ paused: true }));
 
   return (
-    <TransitionContext.Provider value = {{exitTimeline,setExitTimeline }}>
+    <PageTransitionContext.Provider value = {{exitTimeline,setExitTimeline }}>
         {children}
-    </TransitionContext.Provider>
+    </PageTransitionContext.Provider>
   )
 }
 
-export function useTransitionContext(){
-  let context = useContext(TransitionContext);
+export function usePageTransition(){
+  let context = useContext(PageTransitionContext);
 
   if(context === undefined){
-      throw new Error('useTransitionContext must be used inside TransitionContextProvider');
+      throw new Error('usePageTransition must be used inside PageTransitionProvider');
   }else{  
       return context;
   }
 }
 
-export default TransitionContextProvider
+export default PageTransitionProvider
