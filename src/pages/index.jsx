@@ -13,6 +13,7 @@ import MagneticMenuIcon from "@/components/magnetic-menu-icon";
 import MagneticFilterIcon from "@/components/magnetic-filter-icon";
 import HorizontalNav from "@/components/horizontal_nav";
 import VerticalNav from "@/components/vertical_nav";
+import HeroSection from "@/components/hero_section";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,12 +22,13 @@ export default function Home() {
   let {isOnFirstLoad, setIsOnFirstLoad} = useFirstLoad();
   let {overlayTitle} = useOverlayTitle();
   let {scrollContainerRef} = useLocomotiveScroll();
-  let timeline = useRef(gsap.timeline({paused : true}));
+  let timeline = useRef(null);
 
   function map(value, min1, max1, min2, max2) {
     return Math.round(min2 + (max2 - min2) * ((value - min1) / (max1 - min1)));
   }
   const {contextSafe} = useGSAP((context, contextSafe) => {
+    timeline.current = gsap.timeline({paused : true});
     let enterTimeline = timeline.current;
     // let enterTimeline = gsap.timeline({paused : true});
 
@@ -263,6 +265,8 @@ export default function Home() {
         </MagneticFilterIcon> */}
 
       </header>
+
+      <HeroSection/>
 
       <section className = "section h-screen w-full flex flex-col items-center justify-center">
         <h1 className="text-center text-4xl font-bold">Home</h1>
