@@ -8,25 +8,53 @@ const VerticalNav = () => {
     let {isVerticalNavOpen} = useVerticalNavState();
 
   return (
-    <div ref = {containerRef} className = {`h-screen w-full fixed top-0 bottom-0 left-0 z-40 ${isVerticalNavOpen? 'pointer-events-auto' : 'pointer-events-none'}`}>
+    <div ref = {containerRef} className = {`h-screen font-primary w-full fixed top-0 bottom-0 left-0 z-40 ${isVerticalNavOpen? 'pointer-events-auto' : 'pointer-events-none'}`}>
         <div className={`h-screen w-full fixed top-0 left-0 z-10 transition-all duration-700 ease-out bg-zinc-500 ${isVerticalNavOpen? 'opacity-40' : 'opacity-0'}`}></div>
-        <div className = {`vartical-nav absolute top-0 left-full z-20 w-full h-full max-w-3xl flex items-stretch justify-center ease-in-out-custom transition-all duration-700 will-change-transform ${isVerticalNavOpen? '-translate-x-full' : ' translate-x-0'}`}>
-            <svg className = {`vertical-nav-curve w-20 md:w-40 h-full overflow-visible translate-x-px origin-right ease-in-out-custom transition-all duration-1000 will-change-transform ${isVerticalNavOpen? 'scale-x-0' : 'scale-x-100'}`} viewBox="0 0 100 100" preserveAspectRatio="none">
-                <path d = "M 100 0 V 100 Q 0 50 100 0 z" className = "fill-black-color z-50"></path>
+        <div className = {`absolute top-0 left-full z-20 w-full max-w-[700px] h-full flex items-stretch justify-center ease-in-out-custom transition-all duration-700 will-change-transform ${isVerticalNavOpen? '-translate-x-full' : ' translate-x-[160px]'}`}>
+            <svg className = {`w-40 absolute top-0 right-full h-full overflow-visible translate-x-px origin-right ease-in-out-custom transition-all duration-1000 will-change-transform ${isVerticalNavOpen? 'scale-x-0' : 'scale-x-100'}`} viewBox="0 0 100 100" preserveAspectRatio="none">
+                <path d = "M 100 0 V 100 Q 0 50 100 0 z" className = "fill-black z-50"></path>
             </svg>
-            <div className = "bg-black-color w-full">
-                <div className = {`p-nav transition-all ease-in-out-custom duration-700 will-change-transform ${isVerticalNavOpen? 'translate-x-0 opacity-1 delay-75' : 'translate-x-1/4 delay-0 opacity-0'}`}>
-                    <Link href = "/" className = "h-16 flex items-center justify-start">
+            <div className = "bg-black w-full">
+                <div className = {`mt-16 w-full p-nav`}>
+                    {/* <Link href = "/" className = "h-16 flex items-center justify-start">
                         <Image src = "/images/logo.svg" alt = "Logo" width = {80} height = {80} className="h-auto invert"/>
-                    </Link >
+                    </Link > */}
                 </div>
                 
-                <div className = "w-full h-px pl-nav pr-nav"><div className = "w-full bg-white h-full opacity-50"></div></div>
-                <ul  className = "p-nav flex flex-col items-start justify-start">
-                    <li className = {`transition-all ease-in-out-custom duration-700 will-change-transform ${isVerticalNavOpen? 'translate-x-0 delay-75' : 'translate-x-1/4 delay-0'}`}><Link href = "/about" className = {`py-4 px-6 rounded-full text-h6 text-white`}>À Propos</Link></li>
-                    <li className = {`mt-6 transition-all ease-in-out-custom duration-700 will-change-transform ${isVerticalNavOpen? 'translate-x-0 delay-100' : 'translate-x-1/4 delay-0'}`}><Link href = "/projets" className = "py-4 px-6 rounded-full text-h6 text-white mt-6">Projets</Link></li>
-                    <li className = {`mt-6 transition-all ease-in-out-custom duration-700 will-change-transform ${isVerticalNavOpen? 'translate-x-0 delay-150' : 'translate-x-1/4 delay-0'}`}><Link href = "/contac" className = "py-4 px-6 text-h6 text-white mt-6">Me Contacter</Link></li>
-                </ul>
+                <div className ={`w-full pl-nav pr-nav mt-nav transition-all ease-in-out-custom duration-700 will-change-transform ${isVerticalNavOpen? 'translate-x-0 delay-100' : 'translate-x-1/4 delay-0'}`}>
+                    <div class = "text-body text-white w-min  opacity-70">
+                        <span className = "font-light">Navigation</span>
+                        <div className = "w-full h-px bg-white"></div>
+                    </div>
+                    <ul  className = {`flex flex-col items-start justify-start mt-4`}>
+                        <li><Link href = "/about" className = {`rounded-full text-h4 text-white`}>À Propos</Link></li>
+                        <li className = {`mt-2`}><Link href = "/projets" className = "rounded-full text-h4 text-white mt-6">Projets</Link></li>
+                        <li className = {`mt-2`}><Link href = "/contact" className = "text-h4 text-white mt-6">Me Contacter</Link></li>
+                    </ul>
+                </div>
+
+                <div className ={`w-full pl-nav pr-nav mt-12 transition-all ease-in-out-custom duration-700 will-change-transform ${isVerticalNavOpen? 'translate-x-0 delay-150' : 'translate-x-1/4 delay-0'}`}>
+                    <div class = "text-hbody text-white w-min  opacity-70">
+                        <span className = "text-nowrap font-light">Réseaux Sociaux</span>
+                        <div className = "w-full h-px bg-white"></div>
+                    </div>
+                    <ul  className = "flex flex-col items-start justify-start mt-4">
+                        <li><Link href = "/" className = {`text-h5 text-white`}>LinkedIn</Link></li>
+                        <li className = {`mt-2`}><Link href = "/" className = "text-h5 text-white mt-6">Github</Link></li>
+                        <li className = {`mt-2`}><Link href = "/" className = "text-h5 text-white mt-6">Dribbble</Link></li>
+                    </ul>
+                </div>
+
+                <div className ={`w-full pl-nav pr-nav mt-12 transition-all ease-in-out-custom duration-700 will-change-transform ${isVerticalNavOpen? 'translate-x-0 delay-200' : 'translate-x-1/4 delay-0'}`}>
+                    <div class = "text-body text-white w-min  opacity-70">
+                        <span className = "text-nowrap font-light">Coordonnées</span>
+                        <div className = "w-full h-px bg-white"></div>
+                    </div>
+                    <ul  className = "flex flex-col items-start justify-start mt-4">
+                        <li><Link href = "/" className = {`rounded-full text-h6 text-white`}>anasnejmi@gmail.com</Link></li>
+                        <li className = {`mt-2`}><Link href = "/" className = "rounded-full text-h6 text-white mt-6">0780126077</Link></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

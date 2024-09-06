@@ -20,7 +20,8 @@
 
 
   /* font sizes */
-  --h1-font-size: clamp(2.986rem, 6.5vw, 5.61rem);
+  /* --h1-font-size: clamp(3.2rem, 6.5vw, 5.61rem); */
+  --h1-font-size: clamp(3.2rem, 13.5vw, 8rem);
   --h2-font-size: clamp(2.488rem, 5.25vw, 4.209rem);
   --h3-font-size: clamp(2.074rem, 3.95vw, 3.157rem);
   --h4-font-size: clamp(1.728rem, 3vw, 2.369rem);
@@ -329,9 +330,14 @@ body::-webkit-scrollbar {
   }
 
 
-  /* padding */
+  /* padding & margin */
   .p-nav{
     padding: var(--padding-nav);
+  }
+
+  .px-nav{
+    padding-left: var(--padding-nav);
+    padding-right: var(--padding-nav);
   }
 
   .pl-nav{
@@ -342,9 +348,125 @@ body::-webkit-scrollbar {
     padding-right: var(--padding-nav);
   }
 
+  .mt-nav{
+    margin-top: var(--padding-nav);
+  }
+
+  .ml-nav{
+    margin-left: var(--padding-nav);
+  }
+  
+
   /* easing */
 
   .ease-in-out-custom{
     transition-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+  }
+
+  /* stroke */
+  .text-stroke-black{
+    -webkit-text-stroke: 1px var(--black-color);
+  }
+
+  .h-svh-screen{
+    height: 100svh;
+  }
+
+  .masked-hero{
+    --mh-x: 50%;
+    --mh-y:50%;
+    --mh-size: 4px;
+    --mh-size-fade-start : 4px;
+    --mh-size-fade-end : 4px;
+    --mask: radial-gradient(circle at var(--mh-x) var(--mh-y), rgba(0,0,0,1) 0%, rgba(0,0,0,1) var(--mh-size, 150px), rgba(0,0,0,0.1) var(--mh-size-fade-start), rgba(0,0,0,0) var(--mh-size-fade-end), rgba(0,0,0,0) 100%);
+    background: #00000050, url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    box-shadow : 'inset 0px 0px 10px 100px black';
+    -webkit-mask-image: var(--mask);
+	  mask-image: var(--mask);
+    /* box-shadow : 'inset 0px 0px 10px 100px black'; */
+    /* background : radial-gradient(circle at 50% 50%, black 0%, black 29%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0) 58%, rgba(0, 0, 0, 1) 65%), url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); */
+  }
+
+  .masked-hero-grainy-circle{
+    --x: 50%;
+    --y: 50%;
+    --size: 50%;
+    width: 400px;
+    height: 400px;
+    top:-200px;
+    left:-200px;
+    transform: translate(525px, 352px);
+    background : radial-gradient(circle at 50% 50%, black 0%, black 29%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0) 58%, rgba(0, 0, 0, .5) 65%), url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    /* box-shadow : 'inset 0px 0px 10px 100px black'; */
+    mix-blend-mode:luminosity;
+    opacity: 0.5;
+  }
+
+
+  .-animate-delay-500{
+    animation-delay: -0.5s;
+  }
+  .-animate-delay-1000{
+    animation-delay: -1s;
+  }
+
+  .animate-duration-4000{
+    animation-duration: 4s;
+  }
+
+  .animate-duration-3000{
+    animation-duration: 3s;
+  }
+
+  .animate-duration-2000{
+    animation-duration: 2s;
+  }
+
+
+  @keyframes left-to-right {
+    0% {
+        transform: translateZ(0) translateX(0%);
+    }
+    50% {
+        transform: translateZ(0) translateX(10%);
+    }
+    100% {
+        transform: translateZ(0) translateX(0%);
+    }
+  }
+  .animate-left-to-right {
+    animation-name: left-to-right;
+    animation-timing-function: cubic-bezier(0.26, 0, 0.74, 1);
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes squish-squash {
+    from {
+        transform: translateZ(0) scaleY(100%);
+    }
+    to {
+        transform: translateZ(0) scaleY(90%);
+    }
+  }
+  .animate-squish-squash {
+    animation-name: squish-squash;
+    animation-timing-function: cubic-bezier(0.26, 0, 0.74, 1);
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes rotate {
+    from {
+        transform : rotate(0deg);
+    }
+    to {
+        transform : rotate(360deg);
+    }
+  }
+  .animate-rotate {
+    animation-name: rotate;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
   }
 }

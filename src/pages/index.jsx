@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Inter } from "next/font/google";
+import {Inter} from "next/font/google";
 import Link from "next/link";
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -8,13 +8,24 @@ import { useFirstLoad } from "@/contexts/first_load_context";
 import { useOverlayTitle } from "@/contexts/overlay_title_context";
 import useLocomotiveScroll from "@/components/locomotive_scroll";
 import LogoAnimation from "@/components/logo_animation";
-import Image from "next/image";
 import MagneticMenuIcon from "@/components/magnetic-menu-icon";
-import MagneticFilterIcon from "@/components/magnetic-filter-icon";
-import HorizontalNav from "@/components/horizontal_nav";
 import VerticalNav from "@/components/vertical_nav";
+import Hero from "@/components/hero";
+import Image from "next/image";
+import HorizontalNavMagneticLink from "@/components/horizontal_nav_magnetic_link";
+import localFont from 'next/font/local';
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
+
+const fontPrimary = localFont({
+  src: '../assets/fonts/font-primary.ttf',
+  variable : '--font-primary'
+});
+
+const fontSecondary = localFont({
+  src: '../assets/fonts/font-secondary.woff2',
+  variable : '--font-secondary'
+});
 
 export default function Home() {
   let {exitTimeline } = usePageTransition();
@@ -42,9 +53,12 @@ export default function Home() {
     let enterAnimationCurve2 = 60;
     const updatePathCurve = contextSafe(() => {
       let width = window.innerWidth;
-      enterAnimationCurve = map(width, 0, 1600, 10, 50);
-      exitAnimationCurve = map(width, 0, 1600, 25, -25);
+      enterAnimationCurve = map(width, 300, 2000, 10, 30);
+      exitAnimationCurve = map(width, 300, 2000, 10, -10);
       enterAnimationCurve2 = map(width, 0, 1600, 15, 60);
+
+      // console.log("enterAnimationCurve", enterAnimationCurve);
+      console.log("exitAnimationCurve", exitAnimationCurve);
     });
 
     window.addEventListener("resize",updatePathCurve);
@@ -52,12 +66,12 @@ export default function Home() {
 
     //overlay path progress for  enter animation
     const pathEnterAnimationStart = "m 0 0 h 100 v 100 q -50 0 -100 0 Z";
-    const pathEnterAnimationMiddle = `m 0 0 h 100 v 30 q -50 -${enterAnimationCurve} -100 0 Z`
+    const pathEnterAnimationMiddle = `m 0 0 h 100 v 20 q -50 -${enterAnimationCurve} -100 0 Z`
     const pathEnterAnimationEnd = `m 0 0 h 100 v 0 q -50 0 -100 0 Z`;
     
     //overlay path progress for  enter animation
     const pathExitAnimationStart = "M 0 100 V 100 Q 50 100 100 100 V 100 z";
-    const pathExitAnimationMiddle = `M 0 100 V 30 Q 50 ${exitAnimationCurve} 100 30 V 100 z`
+    const pathExitAnimationMiddle = `M 0 100 V 20 Q 50 ${exitAnimationCurve} 100 20 V 100 z`
     const pathExitAnimationEnd = `M 0 100 V 0 Q 50 0 100 0 V 100 z`;
 
    
@@ -79,6 +93,8 @@ export default function Home() {
     , 0);
 
     exitTimeline.addLabel("path-overlay-exit-start", "<")
+
+    // exitTimeline.add(gsap.to(null, {duration : 50}), ">");
 
     exitTimeline.add(gsap
       //second part of the animation
@@ -135,7 +151,7 @@ export default function Home() {
       //play the logo animation first
       const logoAnimationDuration = 2.5;
       enterTimeline.set(overlayTitleElement, {display : 'none'});
-      enterTimeline.fromTo(overlayLogoElement,{},{duration : logoAnimationDuration}, 0);
+      enterTimeline.to(overlayLogoElement,{duration : logoAnimationDuration}, 0);
     }else{
       //delay the overlay enter animation by 1 second
       enterTimeline.set(overlayLogoElement, {display : 'none'});
@@ -145,23 +161,24 @@ export default function Home() {
     enterTimeline.fromTo(overlayPathElement,
       //first part of the animation
       {
-        attr : {d : initial},
+        attr : {d : pathEnterAnimationStart},
         ease : "power3.in",
         duration : 0.8,
       },
       {
-          attr : {d : middle},
+          attr : {d : pathEnterAnimationMiddle},
           ease : "power3.in",
           duration : 0.8,
       }
     , ">");
+
 
     enterTimeline.addLabel("path-overlay-enter-start", "<")
 
     //2- part 2 animation the path
     enterTimeline.to(overlayPathElement,
       {
-          attr : {d : end},
+          attr : {d : pathEnterAnimationEnd},
           ease : "power3.out",
           duration : 0.4,
       }
@@ -237,32 +254,45 @@ export default function Home() {
 
   return ( 
     <main ref = {scrollContainerRef}
-      className={`min-h-screen relative ${inter.className}`}
+      className={`min-h-screen relative bg-white ${fontPrimary.variable} ${fontSecondary.variable}`}
     >
       
-      <div id = "overlay-container" className='fixed top-0 left-0 z-[60] right-0 w-full h-screen flex justify-center items-center pointer-events-none'>
+      <div id = "overlay-container" className='fixed font-primary top-0 left-0 z-[60] right-0 w-full h-screen flex justify-center items-center pointer-events-none will-change-transform'>
         <LogoAnimation id = "overlay-logo"/>
-        {/* <h2 id = "overlay-logo" className = " will-change-transform">LOGO</h2> */}
         <h2 id = "overlay-title" className = " will-change-transform">{overlayTitle}</h2>
         <svg viewBox="0 0 100 100" preserveAspectRatio="none" className = "w-full h-full absolute top-0 left-0 -z-10 flex justify-center items-center">
             <path id = "overlay-path" d = "M 0 0 H 100 V 100 q -50 0 -100 0 Z" className = "fill-black-color z-50"></path>
         </svg>
       </div>
 
-      <MagneticMenuIcon/>
-      <VerticalNav/>
-      
-      <header className = "section w-full p-nav  flex items-center justify-between relative top-0 left-0 z-30">
+      <header>
+        <MagneticMenuIcon/>
+        <VerticalNav/>
+        
+        <Link href = "/" className = "h-16 flex items-center justify-center fixed top-0 left-0 mt-nav ml-nav mix-blend-difference z-50">
+          <Image src = "/images/logo.svg" alt = "Logo" width = {80} height = {37} className = "invert"/>
+        </Link >
 
-        <HorizontalNav/>
+        <nav className="flex absolute top-0 right-0 z-20 h-16 justify-start md:justify-end p-nav">
+          <ul  className = "hidden h-16 md:flex items-center gap-6 bg-white">
+            <HorizontalNavMagneticLink href = "/about" text = "À Propos"/>
+            <HorizontalNavMagneticLink href = "/projects" text = "Projets"/>
+          </ul>
+        </nav>
+        <Hero/>
+      </header>
+      {/* <header className = "section w-full h-svh-screen flex items-center flex-col relative top-0 left-0 z-30 "> */}
+        {/* <HorizontalNav/> */}
+        {/* <HeroSection/>   */}
 
         {/* <MagneticFilterIcon>
           <svg className = "w-6 h-6 overflow-visible " strokeWidth={5} viewBox="0 0 100 100" preserveAspectRatio="none">
               <path d = "M0 0 L40 0 L40 40 L0 40 L0 0" className = ""></path>
           </svg>
         </MagneticFilterIcon> */}
-
-      </header>
+      {/* </header> */}
+          
+      
 
       <section className = "section h-screen w-full flex flex-col items-center justify-center">
         <h1 className="text-center text-4xl font-bold">Home</h1>

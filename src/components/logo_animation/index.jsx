@@ -67,7 +67,7 @@ const LogoAnimation = ({id}) => {
         // // letterATimeline.pause();
     }, {scope : letterARef})
   return (
-    <div id = {id} ref = {containerRef} className='flex items-center justify-center relative w-full h-full'>
+    <div id = {id} ref = {containerRef} className='flex items-center justify-center relative w-full h-full will-change-transform'>
             <div ref = {letterARef} className='lg:w-80 lg:h-80 sm:w-64 sm:h-64 w-40 h-40 flex items-center justify-center'>
                 <div className='relative a-diag-slash will-change-transform'>
                     <div className=' absolute z-30 w-full h-full bg-white outline-[12px] outline outline-black-color  rounded-full will-change-transform'>

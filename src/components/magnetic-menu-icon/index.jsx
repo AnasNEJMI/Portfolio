@@ -117,9 +117,9 @@ const MagneticMenuIcon = () => {
 
   return (
     <div ref = {containerRef} className='fixed top-0 right-0 p-nav z-50'>
-        <button onClick={() => {setIsVerticalNavOpen(!isVerticalNavOpen)}} className = {`container rounded-full h-16 transition-all ease-out duration-300 ${isVerticalNavOpen? 'w-32' : 'w-16'} overflow-hidden flex items-center justify-end bg-primary-regular hover:opacity-90 origin-right`}>
+        <button onClick={() => {setIsVerticalNavOpen(!isVerticalNavOpen)}} className = {`container rounded-full h-16 transition-all ease-out duration-300 ${isVerticalNavOpen? 'w-32' : 'w-16'} overflow-hidden flex items-center justify-end bg-primary-regular opacity-100 hover:opacity-90 origin-right`}>
             <div className='relative flex items-center justify-start'>
-                <div className={`title transition-all ease-out duration-300 font-bold text-white ${isVerticalNavOpen? 'mr-4' : 'mr-12'}`}>Menu</div>
+                <div className={`title font-primary font-light transition-all ease-out duration-300 text-white ${isVerticalNavOpen? 'mr-4' : 'mr-12'}`}>Menu</div>
                 <div className = "icon">
                     <div className={`block h-[1px] w-8 mr-4 relative bg-white transition ease-out duration-300 ${isVerticalNavOpen? ' -rotate-45 top-[calc(50% - 1px)]' : 'top-[5px]'}`}></div>
                     <div className={`block h-[1px] w-8 mr-4 relative bg-white transition ease-out duration-300 ${isVerticalNavOpen? ' rotate-45 top-[-1px]' : 'top-[-5px]'}`}></div>

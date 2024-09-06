@@ -31,8 +31,11 @@ export default function About() {
     let exitAnimationCurve = -15;
     const updatePathCurve = contextSafe(() => {
       let width = window.innerWidth;
-      enterAnimationCurve = map(width, 0, 1600, 10, 50);
-      exitAnimationCurve = map(width, 0, 1600, 25, -25);
+      // enterAnimationCurve = map(width, 0, 1600, 10, 50);
+      // exitAnimationCurve = map(width, 0, 1600, 25, -25);
+
+      enterAnimationCurve = map(width, 300, 2000, 10, 30);
+      exitAnimationCurve = map(width, 300, 2000, 10, -10);
     });
 
     window.addEventListener("resize",updatePathCurve);
@@ -40,12 +43,12 @@ export default function About() {
 
     //overlay path progress for  enter animation
     const pathEnterAnimationStart = "m 0 0 h 100 v 100 q -50 0 -100 0 Z";
-    const pathEnterAnimationMiddle = `m 0 0 h 100 v 30 q -50 -${enterAnimationCurve} -100 0 Z`
+    const pathEnterAnimationMiddle = `m 0 0 h 100 v 20 q -50 -${enterAnimationCurve} -100 0 Z`
     const pathEnterAnimationEnd = `m 0 0 h 100 v 0 q -50 0 -100 0 Z`;
     
     //overlay path progress for  enter animation
     const pathExitAnimationStart = "M 0 100 V 100 Q 50 100 100 100 V 100 z";
-    const pathExitAnimationMiddle = `M 0 100 V 30 Q 50 ${exitAnimationCurve} 100 30 V 100 z`
+    const pathExitAnimationMiddle = `M 0 100 V 20 Q 50 ${exitAnimationCurve} 100 20 V 100 z`
     const pathExitAnimationEnd = `M 0 100 V 0 Q 50 0 100 0 V 100 z`;
 
    
