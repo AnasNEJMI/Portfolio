@@ -270,7 +270,7 @@ export default function Home() {
         <VerticalNav/>
         
         <Link href = "/" className = "h-16 flex items-center justify-center fixed top-0 left-0 mt-nav ml-nav mix-blend-difference z-50">
-          <Image src = "/images/logo.svg" alt = "Logo" width = {80} height = {37} className = "invert"/>
+          <Image src = "/images/logo.svg" alt = "Logo" width = {80} height = {37} className="invert"/>
         </Link >
 
         <nav className="flex absolute top-0 right-0 z-20 h-16 justify-start md:justify-end p-nav">
@@ -281,19 +281,7 @@ export default function Home() {
         </nav>
         <Hero/>
       </header>
-      {/* <header className = "section w-full h-svh-screen flex items-center flex-col relative top-0 left-0 z-30 "> */}
-        {/* <HorizontalNav/> */}
-        {/* <HeroSection/>   */}
-
-        {/* <MagneticFilterIcon>
-          <svg className = "w-6 h-6 overflow-visible " strokeWidth={5} viewBox="0 0 100 100" preserveAspectRatio="none">
-              <path d = "M0 0 L40 0 L40 40 L0 40 L0 0" className = ""></path>
-          </svg>
-        </MagneticFilterIcon> */}
-      {/* </header> */}
           
-      
-
       <section className = "section h-screen w-full flex flex-col items-center justify-center">
         <h1 className="text-center text-4xl font-bold">Home</h1>
         <p className="text-center text-md font-regular text-zinc-800 mt-1">This page is still under construction</p>
