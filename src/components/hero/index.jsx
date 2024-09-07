@@ -110,10 +110,9 @@ const Hero = () => {
                 console.log(self.progress);
                 designerTranslateX(self.progress * 150);
                 developerTranslateX(-self.progress * 100);
-            }
+            }   
         });
-
-
+        
         return () => {
             mm.revert();
         }
@@ -128,7 +127,7 @@ const Hero = () => {
                 <div className='salutations flex absolute bottom-0 left-0 z-0 items-center md:items-start justify-start flex-col  px-4 md:px-0'>
                     {
                         salutations.map((salutation, index) => (
-                        <p key={`salutation-${index}`} className='h-10  font-primary font-normal w-28 text-center md:text-start'>{salutation}</p>
+                        <p key={`salutation-${index}`} className='h-10 font-primary font-normal w-28 text-center md:text-start'>{salutation}</p>
                         ))
                     }
                 </div>
@@ -291,7 +290,7 @@ const Hero = () => {
                 <div className='origin-bottom relative overflow-hidden h-full px-4 md:px-0 text-h6 font-medium'>
                     <p className='opacity-0 pointer-events-none h-8 w-28'>こんにちは</p>
                 </div>
-                <p className aria-hidden="true"><span>Je suis</span> <span className = "ml-2 font-bold text-h6 px-4 py-1 rounded-xl border border-zinc-800 border-opacity-50 bg-white relative">Anas NEJMI <span className ="absolute -z-10 rounded-xl top-0 left-0 -translate-x-1 translate-y-1 w-full h-full bg-black"></span></span></p>
+                <p aria-hidden="true"><span>Je suis</span> <span className = "ml-2 font-bold text-h6 px-4 py-1 rounded-xl border border-zinc-800 border-opacity-50 bg-white relative">Anas NEJMI <span className ="absolute -z-10 rounded-xl top-0 left-0 -translate-x-1 translate-y-1 w-full h-full bg-black"></span></span></p>
             </div>
 
             <div className= "font-secondary flex flex-col h-full items-center justify-center text-h1 font-black leading-tight z-20 text-white pointer-events-none">

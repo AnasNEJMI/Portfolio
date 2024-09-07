@@ -14,6 +14,10 @@ import Hero from "@/components/hero";
 import Image from "next/image";
 import HorizontalNavMagneticLink from "@/components/horizontal_nav_magnetic_link";
 import localFont from 'next/font/local';
+import About from "@/components/about";
+import Services from "@/components/services";
+import Contact from "@/components/contact";
+import Realisations from "@/components/realisations";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -281,8 +285,13 @@ export default function Home() {
         </nav>
         <Hero/>
       </header>
+
+      <About/>
+      <Services/>
+      <Realisations/>
+      <Contact/>
           
-      <section className = "section h-screen w-full flex flex-col items-center justify-center">
+      {/* <section className = "section h-screen w-full flex flex-col items-center justify-center relative z-30 bg-black">
         <h1 className="text-center text-4xl font-bold">Home</h1>
         <p className="text-center text-md font-regular text-zinc-800 mt-1">This page is still under construction</p>
         <h1 className = "text-h1 font-bold">Designer and developer</h1>
@@ -296,9 +305,10 @@ export default function Home() {
         <p className = "text-tiny">Designer and developer</p>
 
         <Link scroll = {false} href = "/about" className=" text-center text-white bg-slate-900  hover:bg-slate-700 p-6 mt-6 rounded-full">Go back to about</Link>
-      </section>
+      </section> */}
 
-      <section className = "section h-screen w-full flex flex-col items-center justify-center">
+
+      {/* <section className = "section h-screen w-full flex flex-col items-center justify-center">
         <h1 className="text-center text-4xl font-bold">Section 2</h1>
         <p className="text-center text-md font-regular text-zinc-800 mt-1">This page is still under construction</p>
       </section>
@@ -306,7 +316,7 @@ export default function Home() {
       <section className = "section h-screen w-full flex flex-col items-center justify-center">
         <h1 className="text-center text-4xl font-bold">Section 3</h1>
         <p className="text-center text-md font-regular text-zinc-800 mt-1">This page is still under construction</p>
-      </section>
+      </section> */}
       
     </main>
   );

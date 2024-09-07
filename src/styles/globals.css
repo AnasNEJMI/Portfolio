@@ -365,7 +365,7 @@ body::-webkit-scrollbar {
 
   /* stroke */
   .text-stroke-black{
-    -webkit-text-stroke: 1px var(--black-color);
+    -webkit-text-stroke: 3px var(--black-color);
   }
 
   .h-svh-screen{
@@ -468,5 +468,32 @@ body::-webkit-scrollbar {
     animation-name: rotate;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
+  }
+
+  /* section */
+  .py-section{
+    padding-top: calc(var(--padding-nav)*5);
+    padding-bottom: calc(var(--padding-nav)*5);
+
+    @media (max-width: 768px) {
+      padding-top: calc(var(--padding-nav)*3);
+      padding-bottom: calc(var(--padding-nav)*3);
+    }
+  }
+
+  .pt-section{
+    padding-top: calc(var(--padding-nav)*5);
+
+    @media (max-width: 768px) {
+      padding-top: calc(var(--padding-nav)*3);
+    }
+  }
+
+  .pb-section{
+    padding-bottom: calc(var(--padding-nav)*5);
+
+    @media (max-width: 768px) {
+      padding-bottom: calc(var(--padding-nav)*3);
+    }
   }
 }

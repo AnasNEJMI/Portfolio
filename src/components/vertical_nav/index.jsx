@@ -22,7 +22,7 @@ const VerticalNav = () => {
                 </div>
                 
                 <div className ={`w-full pl-nav pr-nav mt-nav transition-all ease-in-out-custom duration-700 will-change-transform ${isVerticalNavOpen? 'translate-x-0 delay-100' : 'translate-x-1/4 delay-0'}`}>
-                    <div class = "text-body text-white w-min  opacity-70">
+                    <div className = "text-body text-white w-min  opacity-70">
                         <span className = "font-light">Navigation</span>
                         <div className = "w-full h-px bg-white"></div>
                     </div>
@@ -34,7 +34,7 @@ const VerticalNav = () => {
                 </div>
 
                 <div className ={`w-full pl-nav pr-nav mt-12 transition-all ease-in-out-custom duration-700 will-change-transform ${isVerticalNavOpen? 'translate-x-0 delay-150' : 'translate-x-1/4 delay-0'}`}>
-                    <div class = "text-hbody text-white w-min  opacity-70">
+                    <div className = "text-hbody text-white w-min  opacity-70">
                         <span className = "text-nowrap font-light">Réseaux Sociaux</span>
                         <div className = "w-full h-px bg-white"></div>
                     </div>
@@ -46,7 +46,7 @@ const VerticalNav = () => {
                 </div>
 
                 <div className ={`w-full pl-nav pr-nav mt-12 transition-all ease-in-out-custom duration-700 will-change-transform ${isVerticalNavOpen? 'translate-x-0 delay-200' : 'translate-x-1/4 delay-0'}`}>
-                    <div class = "text-body text-white w-min  opacity-70">
+                    <div className = "text-body text-white w-min  opacity-70">
                         <span className = "text-nowrap font-light">Coordonnées</span>
                         <div className = "w-full h-px bg-white"></div>
                     </div>
