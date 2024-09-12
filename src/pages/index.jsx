@@ -18,6 +18,7 @@ import About from "@/components/about";
 import Services from "@/components/services";
 import Contact from "@/components/contact";
 import Realisations from "@/components/realisations";
+import { mapRounded } from "@/utils/helper_functions";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -38,9 +39,6 @@ export default function Home() {
   let {scrollContainerRef} = useLocomotiveScroll();
   let timeline = useRef(gsap.timeline({paused : true}));
 
-  function map(value, min1, max1, min2, max2) {
-    return Math.round(min2 + (max2 - min2) * ((value - min1) / (max1 - min1)));
-  }
   const {contextSafe} = useGSAP((context, contextSafe) => {
     let enterTimeline = timeline.current;
     // let enterTimeline = gsap.timeline({paused : true});
@@ -57,9 +55,9 @@ export default function Home() {
     let enterAnimationCurve2 = 60;
     const updatePathCurve = contextSafe(() => {
       let width = window.innerWidth;
-      enterAnimationCurve = map(width, 300, 2000, 10, 30);
-      exitAnimationCurve = map(width, 300, 2000, 10, -10);
-      enterAnimationCurve2 = map(width, 0, 1600, 15, 60);
+      enterAnimationCurve = mapRounded(width, 300, 2000, 10, 30);
+      exitAnimationCurve = mapRounded(width, 300, 2000, 10, -10);
+      enterAnimationCurve2 = mapRounded(width, 0, 1600, 15, 60);
 
       // console.log("enterAnimationCurve", enterAnimationCurve);
       console.log("exitAnimationCurve", exitAnimationCurve);

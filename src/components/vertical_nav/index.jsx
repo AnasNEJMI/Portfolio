@@ -27,9 +27,9 @@ const VerticalNav = () => {
                         <div className = "w-full h-px bg-white"></div>
                     </div>
                     <ul  className = {`flex flex-col items-start justify-start mt-4`}>
-                        <li><Link href = "/about" className = {`rounded-full text-h4 text-white`}>À Propos</Link></li>
-                        <li className = {`mt-2`}><Link href = "/projets" className = "rounded-full text-h4 text-white mt-6">Projets</Link></li>
-                        <li className = {`mt-2`}><Link href = "/contact" className = "text-h4 text-white mt-6">Me Contacter</Link></li>
+                        <li><Link href = "/about" scroll = {false} className = {`rounded-full text-h4 text-white`}>À Propos</Link></li>
+                        <li className = {`mt-2`}><Link href = "/projets" scroll = {false} className = "rounded-full text-h4 text-white mt-6">Projets</Link></li>
+                        <li className = {`mt-2`}><Link href = "/contact" scroll = {false} className = "text-h4 text-white mt-6">Me Contacter</Link></li>
                     </ul>
                 </div>
 
