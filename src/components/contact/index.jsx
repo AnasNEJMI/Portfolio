@@ -16,7 +16,7 @@ const Contact = () => {
             scrub : true
           }});
 
-        gsap.from('.title-2', {xPercent : 80, scrollTrigger : {
+        gsap.from('.title-2', {xPercent : 50, scrollTrigger : {
           trigger : containerRef.current,
           start : "top bottom",
           end : "top top",
@@ -271,11 +271,11 @@ const Contact = () => {
   return (
     <footer ref = {containerRef} className = "section h-screen pb-[calc(var(--padding-nav))] pt-[calc(var(--padding-nav)*4)] pl-nav pr-nav md:pt-[calc(var(--padding-nav)*3)] lg:pt-[calc(var(--padding-nav)*2)] text-white w-full relative z-30  flex flex-col items-center justify-start bg-black overflow-hidden">
       <svg className='curve w-full aspect-[3/2] absolute top-0 left-0 z-10 origin-top drop-shadow-2xl' viewBox="0 0 100 100" preserveAspectRatio="none">
-            <path d = "m0 0h100v100Q50 0 0 100Z" className = "fill-zinc-100 z-50"></path>
+            <path d = "m0 0h100v100Q50 0 0 100Z" className = "fill-white z-50"></path>
       </svg>
       <div className=' flex flex-col items-end justify-start w-full max-w-5xl'>
-        <h2 className = "title font-secondary font-black text-start text-white text-h1 drop-shadow-md w-min text-nowrap px-5 leading-tight">Collaborons<span className='clipped-title absolute top-0 left-0 w-full h-full text-black opacity-90 px-5'>Collaborons</span></h2>
-        <h2 className = "title-2 font-secondary font-black text-start text-white text-h1 drop-shadow-md w-min text-nowrap px-5 leading-tight">Ensemble !<span className='clipped-title absolute top-0 left-0 w-full h-full text-black opacity-90 px-5'>Ensemble !</span></h2>
+        <h2 className = "title font-secondary font-black text-start text-white text-h1 drop-shadow-md w-min text-nowrap px-5 leading-tight">Mes<span className='clipped-title absolute top-0 left-0 w-full h-full text-black opacity-90 px-5'>Mes</span></h2>
+        <h2 className = "title-2 font-secondary font-black text-start text-white text-h1 drop-shadow-md w-min text-nowrap px-5 leading-tight">Coordonnées<span className='clipped-title absolute top-0 left-0 w-full h-full text-black opacity-90 px-5'>Coordonnéess</span></h2>
       </div>
       <div className='w-full max-w-5xl mt-nav flex items-center gap-6 sm:items-end justify-start sm:justify-between flex-col sm:flex-row md:justify-between'>
         <div className='w-48 h-48 md:w-60 md:h-60 lg:w-80 lg:h-80 relative'> 

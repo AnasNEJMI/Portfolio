@@ -5,6 +5,7 @@ import PageTransitionProvider from "@/contexts/transition_context";
 import VerticalNavStateProvider from "@/contexts/vertical_nav_state_context";
 import "@/styles/globals.css";
 
+
 export default function App({ Component, pageProps, router }) {
   return <FirstLoadProvider>
           <OverlayTitleProvider>

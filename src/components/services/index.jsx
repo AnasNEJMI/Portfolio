@@ -85,7 +85,7 @@ const Services = () => {
                         <div style={{transformStyle: "preserve-3d", transform : "rotateX(60deg) rotateZ(-45deg) "}} className='w-2/4 aspect-[3/2] border  grid grid-cols-10 relative bg-seasalt-500'>
                             {
                             [...Array(120)].map((item, index) => (
-                                <div key={index} className='w-full aspect-square border border-jet-900 opacity-40 transition-all bg-opacity-0 bg-jet-800 hover:bg-opacity-100 duration-1000 delay-0 hover:duration-100'>
+                                <div key={index} className='w-full aspect-square border border-black-100 bg-zinc-800 transition-all bg-opacity-0 hover:bg-opacity-100 duration-1000 delay-0 hover:duration-100'>
 
                                 </div>
                             ))

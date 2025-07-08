@@ -15,12 +15,9 @@ import Image from "next/image";
 import HorizontalNavMagneticLink from "@/components/horizontal_nav_magnetic_link";
 import localFont from 'next/font/local';
 import About from "@/components/about";
-import Services from "@/components/services";
 import Contact from "@/components/contact";
 import Realisations from "@/components/realisations";
 import { mapRounded } from "@/utils/helper_functions";
-
-// const inter = Inter({ subsets: ["latin"] });
 
 const fontPrimary = localFont({
   src: '../assets/fonts/font-primary.ttf',
@@ -39,7 +36,7 @@ export default function Home() {
   let {scrollContainerRef} = useLocomotiveScroll();
   let timeline = useRef(gsap.timeline({paused : true}));
 
-  const {contextSafe} = useGSAP((context, contextSafe) => {
+  useGSAP((context, contextSafe) => {
     let enterTimeline = timeline.current;
     // let enterTimeline = gsap.timeline({paused : true});
 
@@ -285,36 +282,8 @@ export default function Home() {
       </header>
 
       <About/>
-      <Services/>
       <Realisations/>
       <Contact/>
-          
-      {/* <section className = "section h-screen w-full flex flex-col items-center justify-center relative z-30 bg-black">
-        <h1 className="text-center text-4xl font-bold">Home</h1>
-        <p className="text-center text-md font-regular text-zinc-800 mt-1">This page is still under construction</p>
-        <h1 className = "text-h1 font-bold">Designer and developer</h1>
-        <h2 className = "text-h2">Designer and developer</h2>
-        <h3 className = "text-h3">Designer and developer</h3>
-        <h4 className = "text-h4">Designer and developer</h4>
-        <h5 className = "text-h5">Designer and developer</h5>
-        <h6 className = "text-h6">Designer and developer</h6>
-        <p className = "text-body">Designer and developer</p> 
-        <p className = "text-caption">Designer and developer</p>
-        <p className = "text-tiny">Designer and developer</p>
-
-        <Link scroll = {false} href = "/about" className=" text-center text-white bg-slate-900  hover:bg-slate-700 p-6 mt-6 rounded-full">Go back to about</Link>
-      </section> */}
-
-
-      {/* <section className = "section h-screen w-full flex flex-col items-center justify-center">
-        <h1 className="text-center text-4xl font-bold">Section 2</h1>
-        <p className="text-center text-md font-regular text-zinc-800 mt-1">This page is still under construction</p>
-      </section>
-
-      <section className = "section h-screen w-full flex flex-col items-center justify-center">
-        <h1 className="text-center text-4xl font-bold">Section 3</h1>
-        <p className="text-center text-md font-regular text-zinc-800 mt-1">This page is still under construction</p>
-      </section> */}
       
     </main>
   );
