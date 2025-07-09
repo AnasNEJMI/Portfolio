@@ -98,7 +98,6 @@ const Hero = () => {
                 scrub: 0.5,
                 ease : "power3.out",
                 onUpdate : (self) => {
-                    console.log(self.progress);
                     devTranslateY(self.progress * 120);
                     fullStackTranslateY(self.progress * 120);
                     passionedTranslateY(self.progress * 500);

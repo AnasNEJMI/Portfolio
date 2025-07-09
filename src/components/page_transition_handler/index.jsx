@@ -31,9 +31,6 @@ const PageTransitionHandler = ({ children }) => {
         window.scrollTo(0, 0);
       }
 
-      console.log("displaying children key : ", displayedChildren.key);
-      console.log("children key : ", children.key);
-
       if(displayedChildren.key !== children.key){
         if(exitTimeline.getChildren().length > 0){
           exitTimeline.play().then(() => {

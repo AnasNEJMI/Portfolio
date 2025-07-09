@@ -3,9 +3,12 @@ import Magnetic from '../basic_magnetic_item'
 import Link from 'next/link'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap';
+import ProjectCard from '@/components/project-card/project-card';
+import profile from '../../../public/images/c2.jpg';
 
 const Realisations = () => {
-  const containerRef = useRef(null)
+  const containerRef = useRef(null);
+  const cardsRef = useRef(null);
 
     useGSAP((context, contextSafe) => {
       gsap.from('.title', {yPercent: -200, scrollTrigger : {
@@ -21,6 +24,22 @@ const Realisations = () => {
         end : "center center",
         scrub : true
       }});
+
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 768px)", (self) => {
+          gsap.fromTo('.project-image', {yPercent : 3}, {yPercent : -3, scrollTrigger : {
+            trigger : cardsRef.current,
+            start : 'top bottom',
+            end : 'bottom top',
+            scrub : true,
+          }})
+      });
+
+      return () => {
+        mm.revert();
+        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      }
 
     }, {scope : containerRef});
   return (
@@ -50,27 +69,19 @@ const Realisations = () => {
         </div>
       </div>
       <div className='max-w-7xl w-full mt-16'>
-        <div className='grid grid-cols-1 md:grid-cols-2 w-full gap-4'>
-          <div>
-            <div className='aspect-square bg-black w-full'>
-
-            </div>
-            <h4 className='font-secondary font-bold text-h4 mt-4'>
-              Tandem
-            </h4>
-            <div className='h-px w-full bg-zinc-900 font-primary font-light'></div>
-            <h5>ReactJS, Laravel PHP, MySQL, Docker</h5>
-          </div>
-          <div>
-            <div className='aspect-square bg-black w-full'>
-
-            </div>
-            <h4 className='font-secondary font-bold text-h4 mt-4'>
-              FeetMe
-            </h4>
-            <div className='h-px w-full bg-zinc-900 font-primary font-light'></div>
-            <h5>Android, Java, Xml</h5>
-          </div>
+        <div ref={cardsRef} className='grid grid-cols-1 md:grid-cols-2 w-full gap-4'>
+            <ProjectCard
+              href = {'/'}
+              imgSrc={profile}
+              title='Tandem'
+              description='ReactJS, InertiaJS, Laravel, PHP, MySQL'
+            />
+            <ProjectCard
+              href = {'/'}
+              imgSrc={profile}
+              title='FeetMe'
+              description='Android, Java, SQLite, OKHttp, XML'
+            />
         </div>
         <div className='flex items-center justify-center'>
           <div className=' mt-20'>

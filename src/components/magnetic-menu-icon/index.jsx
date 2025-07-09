@@ -86,14 +86,10 @@ const MagneticMenuIcon = () => {
                 start : 0,
                 end : window.innerHeight/6,
                 onEnterBack: () => {
-                    console.log("enter back");
-                    // gsap.to(containerRef.current, {scale : 0, duration : 0.25, ease : "power1.out"})
                     scaleXContainerTo(0);
                     scaleYContainerTo(0);
                 },
                 onLeave: () => {
-                    console.log("leave");
-                    // gsap.to(containerRef.current, {scale : 1, duration : 0.25, ease : "power1.out"})
                     scaleXContainerTo(1);
                     scaleYContainerTo(1);
                 }

@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import {Inter} from "next/font/google";
 import Link from "next/link";
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -55,9 +54,6 @@ export default function Home() {
       enterAnimationCurve = mapRounded(width, 300, 2000, 10, 30);
       exitAnimationCurve = mapRounded(width, 300, 2000, 10, -10);
       enterAnimationCurve2 = mapRounded(width, 0, 1600, 15, 60);
-
-      // console.log("enterAnimationCurve", enterAnimationCurve);
-      console.log("exitAnimationCurve", exitAnimationCurve);
     });
 
     window.addEventListener("resize",updatePathCurve);
@@ -269,7 +265,7 @@ export default function Home() {
         <VerticalNav/>
         
         <Link href = "/" className = "h-16 flex items-center justify-center fixed top-0 left-0 mt-nav ml-nav mix-blend-difference z-50">
-          <Image src = "/images/logo.svg" alt = "Logo" width = {80} height = {37} className="invert"/>
+          <Image src = "/images/logo.svg" alt = "Logo" width = {80} height = {37} className="invert h-full aspect-[1/2]"/>
         </Link >
 
         <nav className="flex absolute top-0 right-0 z-20 h-16 justify-start md:justify-end p-nav">
