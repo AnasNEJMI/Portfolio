@@ -1,18 +1,41 @@
 import React from "react";
-import { Inter } from "next/font/google";
 import Link from "next/link";
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { usePageTransition } from '@/contexts/transition_context';
 import { useFirstLoad } from "@/contexts/first_load_context";
 import { useOverlayTitle } from "@/contexts/overlay_title_context";
+import localFont from 'next/font/local';
+import MagneticMenuIcon from "@/components/magnetic-menu-icon";
+import VerticalNav from "@/components/vertical_nav";
+import Image from "next/image";
+import HorizontalNavMagneticLink from "@/components/horizontal_nav_magnetic_link";
+import Contact from "@/components/contact";
+import useLocomotiveScroll from "@/components/locomotive_scroll";
+import AboutHero from '../../components/about/hero';
+import AboutBio from '../../components/about/bio';
+import AboutEducation from '../../components/about/education';
+import AboutCompetences from '../../components/about/competences';
 
-const inter = Inter({ subsets: ["latin"] });
+const fontPrimary = localFont({
+  src: '../../assets/fonts/font-primary.ttf',
+  variable : '--font-primary'
+});
+
+const fontSecondary = localFont({
+  src: '../../assets/fonts/font-secondary.woff2',
+  variable : '--font-secondary'
+});
+
+const bioP2 = "Développeur full stack passionné, j\'ai été formé à l\'école d\'ingénieur de Télécom ParisTech, où j\'ai acquis des bases solides en informatique, en algorithmique et en conception de systèmes. Au fil de mon parcours, je me suis spécialisé dans le développement web, en maîtrisant un ensemble de technologies modernes telles que React.js, Next.js, PHP, MySQL, Laravel et Tailwind CSS."
+const bioP3 = "Développeur full stack passionné, j\'ai été formé à l\'école d\'ingénieur de Télécom ParisTech, où j\'ai acquis des bases solides en informatique, en algorithmique et en conception de systèmes. Au fil de mon parcours, je me suis spécialisé dans le développement web, en maîtrisant un ensemble de technologies modernes telles que React.js, Next.js, PHP, MySQL, Laravel et Tailwind CSS."
+
 
 export default function About() {
   const containerRef = React.useRef(null);
   let {exitTimeline } = usePageTransition();
   let {isOnFirstLoad, setIsOnFirstLoad} = useFirstLoad();
+  let {scrollContainerRef} = useLocomotiveScroll();
   let {overlayTitle} = useOverlayTitle();
 
   function map(value, min1, max1, min2, max2) {
@@ -199,20 +222,35 @@ export default function About() {
 
   return ( 
     <main ref = {containerRef}
-      className={`flex min-h-screen flex-col items-center justify-center p-24 relative ${inter.className}`}
+      className={`min-h-screen relative bg-white ${fontPrimary.variable} ${fontSecondary.variable}`}
     >
-
-      <div id = "overlay-container" className='fixed top-0 left-0 z-50 right-0 w-full h-screen flex justify-center items-center pointer-events-none'>
-        <h2 id = "overlay-title" className = " will-change-transform">{overlayTitle}</h2>
+      <div id = "overlay-container" className='fixed font-primary top-0 left-0 z-[60] right-0 w-full h-screen flex justify-center items-center pointer-events-none will-change-transform'>
+        <h2 id = "overlay-title" className = "will-change-transform font-secondary text-h1 text-white">{overlayTitle}</h2>
         <svg viewBox="0 0 100 100" preserveAspectRatio="none" className = "w-full h-full absolute top-0 left-0 -z-10 flex justify-center items-center">
-            <path id = "overlay-path" d = "M 0 0 H 100 V 100 q -50 0 -100 0 Z" className = "fill-green-500 z-50"></path>
+            <path id = "overlay-path" d = "M 0 0 H 100 V 100 q -50 0 -100 0 Z" className = "fill-black-color z-50"></path>
         </svg>
       </div>
+      
+      <header>
+        <MagneticMenuIcon/>
+        <VerticalNav/>
+        
+        <Link href = "/" className = "h-16 flex items-center justify-center fixed top-0 left-0 mt-nav ml-nav mix-blend-difference z-50">
+          <Image src = "/images/logo.svg" alt = "Logo" width = {80} height = {37} className="invert h-full aspect-[1/2]"/>
+        </Link >
 
-
-      <h1 className="section text-center text-4xl font-bold">About</h1>
-      <p className="section text-center text-md font-regular text-zinc-800 mt-1">This page is still under construction</p>
-      <Link scroll = {false} href = "/" className="section text-center text-white bg-slate-900  hover:bg-slate-700 p-6 mt-6 rounded-full">Go back to Home</Link>
+        <nav className="flex absolute top-0 right-0 z-20 h-16 justify-start md:justify-end p-nav">
+          <ul  className = "hidden h-16 md:flex items-center gap-6 bg-white">
+            <HorizontalNavMagneticLink href = "/" text = "Acceuil"/>
+            <HorizontalNavMagneticLink href = "/projects" text = "Projets"/>
+          </ul>
+        </nav>
+      </header>
+      <AboutHero/>
+      <AboutBio/>
+      <AboutEducation/>
+      <AboutCompetences/>
+      <Contact/>
     </main>
   );
 }

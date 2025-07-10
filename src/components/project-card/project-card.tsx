@@ -43,7 +43,7 @@ const ProjectCard = ({className,href, title, description, imgSrc} : ProjectCardP
                     </div>
                 }
             </CardContent>
-            <CardTitle className='font-secondary font-bold text-h4 mt-8'>{title}</CardTitle>
+            <CardTitle className='font-secondary font-bold text-h4 mt-4'>{title}</CardTitle>
             <Separator className='bg-zinc-900 my-1'/>
             <CardDescription className='font-primary font-light text-zinc-900 text-body'>{description}</CardDescription>
         </Card>

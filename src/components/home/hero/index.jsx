@@ -4,14 +4,14 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import {throttle} from 'lodash';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Magnetic from '../basic_magnetic_item';
-import ParisSVG from '../paris-svg/index'
+import Magnetic from '../../basic_magnetic_item';
+import ParisSVG from '../../paris-svg/index'
 
 const salutations = ['Bonjour', 'こんにちは', 'नमस्कार',  '你好', 'أهلاً','Olá', 'Guten Tag','Hola', 'Hello',  "Bonjour"];
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Hero = () => {
+const HomeHero = () => {
     const containerRef = useRef(null);
 
     useGSAP((_, contextSafe) => {
@@ -269,4 +269,4 @@ const Hero = () => {
   )
 }
 
-export default Hero
+export default HomeHero

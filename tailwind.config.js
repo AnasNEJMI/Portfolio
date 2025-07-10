@@ -15,6 +15,17 @@ module.exports = {
 					'var(--font-secondary)'
 				]
 			},
+			fontSize : {
+				tiny: ['var(--tiny-font-size)', {lineHeight : '1'}],
+				caption: ['var(--caption-font-size)', {lineHeight : '1'}],
+				body: ['var(--body-font-size)', {lineHeight : '1.1'}],
+				h6: ['var(--h6-font-size)', {lineHeight : '1'}],
+				h5: ['var(--h5-font-size)', {lineHeight : '1.2'}],
+				h4: ['var(--h4-font-size)', {lineHeight : '1.3'}],
+				h3: ['var(--h3-font-size)', {lineHeight : '1'}],
+				h2: ['var(--h2-font-size)', {lineHeight : '1'}],
+				h1: ['var(--h1-font-size)', {lineHeight : '1'}]
+			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 				'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'

@@ -9,13 +9,13 @@ import useLocomotiveScroll from "@/components/locomotive_scroll";
 import LogoAnimation from "@/components/logo_animation";
 import MagneticMenuIcon from "@/components/magnetic-menu-icon";
 import VerticalNav from "@/components/vertical_nav";
-import Hero from "@/components/hero";
+import HomeHero from "@/components/home/hero";
 import Image from "next/image";
 import HorizontalNavMagneticLink from "@/components/horizontal_nav_magnetic_link";
 import localFont from 'next/font/local';
-import About from "@/components/about";
+import HomeAbout from "@/components/home/about";
 import Contact from "@/components/contact";
-import Realisations from "@/components/realisations";
+import HomeProjects from "@/components/projects/projects";
 import { mapRounded } from "@/utils/helper_functions";
 
 const fontPrimary = localFont({
@@ -254,7 +254,7 @@ export default function Home() {
       
       <div id = "overlay-container" className='fixed font-primary top-0 left-0 z-[60] right-0 w-full h-screen flex justify-center items-center pointer-events-none will-change-transform'>
         <LogoAnimation id = "overlay-logo"/>
-        <h2 id = "overlay-title" className = " will-change-transform">{overlayTitle}</h2>
+        <h2 id = "overlay-title" className = "will-change-transform font-secondary text-h1 text-white">{overlayTitle}</h2>
         <svg viewBox="0 0 100 100" preserveAspectRatio="none" className = "w-full h-full absolute top-0 left-0 -z-10 flex justify-center items-center">
             <path id = "overlay-path" d = "M 0 0 H 100 V 100 q -50 0 -100 0 Z" className = "fill-black-color z-50"></path>
         </svg>
@@ -270,15 +270,15 @@ export default function Home() {
 
         <nav className="flex absolute top-0 right-0 z-20 h-16 justify-start md:justify-end p-nav">
           <ul  className = "hidden h-16 md:flex items-center gap-6 bg-white">
-            <HorizontalNavMagneticLink href = "/about" text = "À Propos"/>
+            <HorizontalNavMagneticLink href = "/about" text = "Parcours"/>
             <HorizontalNavMagneticLink href = "/projects" text = "Projets"/>
           </ul>
         </nav>
-        <Hero/>
+        <HomeHero/>
       </header>
 
-      <About/>
-      <Realisations/>
+      <HomeAbout/>
+      <HomeProjects/>
       <Contact/>
       
     </main>

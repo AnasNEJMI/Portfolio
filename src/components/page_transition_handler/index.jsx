@@ -5,6 +5,7 @@ import { useOverlayTitle } from '@/contexts/overlay_title_context';
 import { useRouter } from 'next/router';
 import { useVerticalNavState } from '@/contexts/vertical_nav_state_context';
 import { useFirstLoad } from '@/contexts/first_load_context';
+import { PathNames } from '@/utils/helper_functions';
 
 const PageTransitionHandler = ({ children }) => {
     const [displayedChildren, setDisplayedChildren] = useState(children);
@@ -16,7 +17,7 @@ const PageTransitionHandler = ({ children }) => {
 
     useGSAP(() => {
       //only play the exit animation if the next page is different from the current one
-      const currentRoute = router.pathname.slice(1) === ""? "Bienvenue !" : router.pathname.slice(1);
+      const currentRoute = PathNames[router.pathname];
 
       //change the title of the overlay depending on the current route
       setOverlayTitle(currentRoute);

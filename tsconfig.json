@@ -27,9 +27,9 @@
     "next-env.d.ts",
     "**/*.js",
     "**/*.jsx",
+    "**/*.jsx",
     "src/contexts/transition_context/index.jsx",
-    "src/components/page_transition_handler/index.jsx"
-, "tailwind.config.backup.2.ts"  ],
+    "src/components/page_transition_handler/index.jsx", ],
   "exclude": [
     "node_modules"
   ]

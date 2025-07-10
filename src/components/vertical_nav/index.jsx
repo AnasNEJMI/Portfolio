@@ -15,11 +15,7 @@ const VerticalNav = () => {
                 <path d = "M 100 0 V 100 Q 0 50 100 0 z" className = "fill-black z-50"></path>
             </svg>
             <div className = "bg-black w-full">
-                <div className = {`mt-16 w-full p-nav`}>
-                    {/* <Link href = "/" className = "h-16 flex items-center justify-start">
-                        <Image src = "/images/logo.svg" alt = "Logo" width = {80} height = {80} className="h-auto invert"/>
-                    </Link > */}
-                </div>
+                <div className = {`mt-16 w-full p-nav`}></div>
                 
                 <div className ={`w-full pl-nav pr-nav mt-nav transition-all ease-in-out-custom duration-700 will-change-transform ${isVerticalNavOpen? 'translate-x-0 delay-100' : 'translate-x-1/4 delay-0'}`}>
                     <div className = "text-body text-white w-min  opacity-70">

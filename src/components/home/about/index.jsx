@@ -3,13 +3,14 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
-import Magnetic from '../basic_magnetic_item';
+import Magnetic from '../../basic_magnetic_item';
+import MagneticButton from '../../magnetic-button/magnetic-button';
 
 
 // const about = "Fort de ma formation de pointe au sein de l'une des la meilleures écoles d'ingénieurs de France, je combine passion et savoir-faire pour vous offrir des solutions sur mesure, qui respectent vos exigences de qualité et votre vision unique."
 const about = "Formé au sein de l'une des meilleures écoles d'ingénieurs de France, j\'ai acquis une solide expertise technique que je mets au service de projets web ambitieux."
 const aboutContd = "Ma passion pour le développement et mon exigence de qualité me poussent à proposer des solutions à la fois robustes , modernes et centrées sur l\'utilisateur."
-const About = () => {
+const HomeAbout = () => {
   let containerRef = useRef(null);
 
   useGSAP((context, contextSafe) => {
@@ -53,10 +54,10 @@ const About = () => {
 
   }, {scope : containerRef});
   return (
-    <section ref = {containerRef} className='relative pl-nav pr-nav flex items-center justify-center z-20'>
+    <section ref = {containerRef} className='section relative pl-nav pr-nav flex items-center justify-center z-20'>
       <div className = "wrapper w-full max-w-7xl rounded-3xl bg-zinc-900 pl-nav pr-nav py-section  overflow-hidden">
         <h2 className = "title font-secondary font-black text-start text-white text-h1 drop-shadow-md w-min text-nowrap pr-5">Qui suis-je?<span className='clipped-title absolute top-0 left-0 w-full h-full text-black opacity-75'>Qui suis-je?</span></h2>
-        <div className='flex items-start justify-start flex-col-reverse lg:flex-row lg:justify-between gap-12  mt-12'>
+        <div className='flex items-start justify-start flex-col-reverse lg:flex-row lg:justify-between gap-12 mt-20 md:mt-32'>
           <div className='flex flex-col gap-8 items-center w-full justify-center grow h-max'>
             <div className = "w-full max-w-2xl flex flex-wrap gap-x-1 md:gap-x-2 gap-y-0">
                 {
@@ -80,15 +81,12 @@ const About = () => {
                   })
                 }
             </div> 
-            <div className='flex items-center justify-center mt-8'>
-              <div className='w-min min-w-40'>
-                <Magnetic>
-                        <Link href='/about' scroll = {false} className='bg-white text-black font-primary font-light text-h5 w-min text-nowrap px-12 rounded-full py-6'>
-                            Mon Parcours
-                        </Link>
-                </Magnetic>
-
-              </div>
+            <div className='flex items-center justify-start mt-8 w-full'>
+              <MagneticButton variant={'secondary'}>
+                <Link scroll = {false} href={'/about'}>
+                  Mon Parcours
+                </Link>
+              </MagneticButton>
             </div>
             
             {/* <div className='w-full flex flex-col justify-end text-white'>
@@ -107,4 +105,4 @@ const About = () => {
   )
 }
 
-export default About
+export default HomeAbout
