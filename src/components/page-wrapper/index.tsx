@@ -1,21 +1,26 @@
-import React from "react";
-import Link from "next/link";
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
+"use client";
+
+import { useFirstLoad } from '@/contexts/first_load_context';
 import { usePageTransition } from '@/contexts/transition_context';
-import { useFirstLoad } from "@/contexts/first_load_context";
-import { useOverlayTitle } from "@/contexts/overlay_title_context";
+import React, { Ref } from 'react'
+import { useOverlayTitle } from '@/contexts/overlay_title_context';
+import { ReactRef, useGSAP } from '@gsap/react';
 import localFont from 'next/font/local';
-import MagneticMenuIcon from "@/components/magnetic-menu-icon";
-import VerticalNav from "@/components/vertical_nav";
-import Image from "next/image";
-import HorizontalNavMagneticLink from "@/components/horizontal_nav_magnetic_link";
-import Contact from "@/components/contact";
-import useLocomotiveScroll from "@/components/locomotive_scroll";
-import AboutHero from '../../components/about/hero';
-import AboutBio from '../../components/about/bio';
-import AboutEducation from '../../components/about/education';
-import AboutCompetences from '../../components/about/competences';
+import MagneticMenuIcon from '../magnetic-menu-icon';
+import VerticalNav from '../vertical_nav';
+import HorizontalNavMagneticLink from '../horizontal_nav_magnetic_link';
+import gsap from 'gsap';
+import logo from '@/../public/images/logo.svg';
+import useLocomotiveScroll from '../locomotive_scroll';
+import Image from 'next/image';
+import Link from 'next/link';
+
+interface PageWrapperProps{
+    className? : string,
+    links : {label: string, href : string}[];
+    children : React.ReactNode,
+    ref : ReactRef
+}
 
 const fontPrimary = localFont({
   src: '../../assets/fonts/font-primary.ttf',
@@ -27,18 +32,14 @@ const fontSecondary = localFont({
   variable : '--font-secondary'
 });
 
-const bioP2 = "Développeur full stack passionné, j\'ai été formé à l\'école d\'ingénieur de Télécom ParisTech, où j\'ai acquis des bases solides en informatique, en algorithmique et en conception de systèmes. Au fil de mon parcours, je me suis spécialisé dans le développement web, en maîtrisant un ensemble de technologies modernes telles que React.js, Next.js, PHP, MySQL, Laravel et Tailwind CSS."
-const bioP3 = "Développeur full stack passionné, j\'ai été formé à l\'école d\'ingénieur de Télécom ParisTech, où j\'ai acquis des bases solides en informatique, en algorithmique et en conception de systèmes. Au fil de mon parcours, je me suis spécialisé dans le développement web, en maîtrisant un ensemble de technologies modernes telles que React.js, Next.js, PHP, MySQL, Laravel et Tailwind CSS."
-
-
-export default function About() {
-  const containerRef = React.useRef(null);
-  let {exitTimeline } = usePageTransition();
+const PageWrapper = ({links, children, ref} : PageWrapperProps) => {
+  // const containerRef = React.useRef(null);
+  let {exitTimeline} = usePageTransition();
   let {isOnFirstLoad, setIsOnFirstLoad} = useFirstLoad();
-  let {scrollContainerRef} = useLocomotiveScroll();
   let {overlayTitle} = useOverlayTitle();
+  const {scrollContainerRef} = useLocomotiveScroll();
 
-  function map(value, min1, max1, min2, max2) {
+  function map(value : number, min1 : number, max1 : number, min2 : number, max2 : number) {
     return Math.round(min2 + (max2 - min2) * ((value - min1) / (max1 - min1)));
   }
   useGSAP((context, contextSafe) => {
@@ -52,11 +53,8 @@ export default function About() {
     //calculating the curve of the overlay path when entering/exiting the page
     let enterAnimationCurve = 50;
     let exitAnimationCurve = -15;
-    const updatePathCurve = contextSafe(() => {
+    const updatePathCurve = contextSafe!(() => {
       let width = window.innerWidth;
-      // enterAnimationCurve = map(width, 0, 1600, 10, 50);
-      // exitAnimationCurve = map(width, 0, 1600, 25, -25);
-
       enterAnimationCurve = map(width, 300, 2000, 10, 30);
       exitAnimationCurve = map(width, 300, 2000, 10, -10);
     });
@@ -74,7 +72,7 @@ export default function About() {
     const pathExitAnimationMiddle = `M 0 100 V 20 Q 50 ${exitAnimationCurve} 100 20 V 100 z`
     const pathExitAnimationEnd = `M 0 100 V 0 Q 50 0 100 0 V 100 z`;
 
-   
+    
     // ---- EXIT ANIMATION ---- //
     //1 - exit animation for the overlay path
     exitTimeline.add(gsap
@@ -166,9 +164,9 @@ export default function About() {
           ease : "power3.out",
           duration : 0.4,
       }
-    ).then(() => {
+    , ">").then(() => {
           onEnterAnimationDone();
-      }, ">")
+      })
 
     //add a label to control when the overlay enter animation starts
     enterTimeline.addLabel("path-overlay-enter-end", ">")
@@ -207,7 +205,7 @@ export default function About() {
     //start the enter animations
     enterTimeline.play();
 
-    const onEnterAnimationDone = contextSafe(() => {
+    const onEnterAnimationDone = contextSafe!(() => {
       if(isOnFirstLoad){
         setIsOnFirstLoad(false);
       }
@@ -216,12 +214,10 @@ export default function About() {
     return () => {
       window.removeEventListener("resize",updatePathCurve);
     }
-  }, {scope: containerRef});
-
-  
-
-  return ( 
-    <main ref = {containerRef}
+  }, {scope: ref});
+  return (
+    <main
+      ref = {ref}
       className={`min-h-screen relative bg-white ${fontPrimary.variable} ${fontSecondary.variable}`}
     >
       <div id = "overlay-container" className='fixed font-primary top-0 left-0 z-[60] right-0 w-full h-screen flex justify-center items-center pointer-events-none will-change-transform'>
@@ -230,28 +226,28 @@ export default function About() {
             <path id = "overlay-path" d = "M 0 0 H 100 V 100 q -50 0 -100 0 Z" className = "fill-black-color z-50"></path>
         </svg>
       </div>
-      
+
       <header>
         <MagneticMenuIcon/>
         <VerticalNav/>
         
         <Link href = "/" className = "h-16 flex items-center justify-center fixed top-0 left-0 mt-nav ml-nav mix-blend-difference z-50">
-          <Image src = "/images/logo.svg" alt = "Logo" width = {80} height = {37} className="invert h-full aspect-[1/2]"/>
+          <Image src = {logo} alt = "Portfolio logo" width = {80} height = {37} className="invert h-16"/>
         </Link >
 
         <nav className="flex absolute top-0 right-0 z-20 h-16 justify-start md:justify-end p-nav">
           <ul  className = "hidden h-16 md:flex items-center gap-6 bg-white">
-            <HorizontalNavMagneticLink href = "/" text = "Acceuil"/>
-            <HorizontalNavMagneticLink href = "/projects" text = "Projets"/>
-            <HorizontalNavMagneticLink href = "/contact" text = "Contact"/>
+            {
+              links.map((link, index) => (
+                <HorizontalNavMagneticLink key={index} href = {link.href} text = {link.label}/>
+              ))
+            }
           </ul>
         </nav>
       </header>
-      <AboutHero/>
-      <AboutBio/>
-      <AboutEducation/>
-      <AboutCompetences/>
-      <Contact/>
+      {children}
     </main>
-  );
+  )
 }
+
+export default PageWrapper

@@ -1,21 +1,21 @@
-import React from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { usePageTransition } from '@/contexts/transition_context';
-import { useFirstLoad } from "@/contexts/first_load_context";
-import { useOverlayTitle } from "@/contexts/overlay_title_context";
+import { usePageTransition } from '../../contexts/transition_context';
+import { useFirstLoad } from "../../contexts/first_load_context";
+import { useOverlayTitle } from "../../contexts/overlay_title_context";
 import localFont from 'next/font/local';
-import MagneticMenuIcon from "@/components/magnetic-menu-icon";
-import VerticalNav from "@/components/vertical_nav";
+import MagneticMenuIcon from "../../components/magnetic-menu-icon";
+import VerticalNav from "../../components/vertical_nav";
 import Image from "next/image";
-import HorizontalNavMagneticLink from "@/components/horizontal_nav_magnetic_link";
-import Contact from "@/components/contact";
-import useLocomotiveScroll from "@/components/locomotive_scroll";
+import HorizontalNavMagneticLink from "../../components/horizontal_nav_magnetic_link";
+import Contact from "../../components/contact";
+import useLocomotiveScroll from "../../components/locomotive_scroll";
 import AboutHero from '../../components/about/hero';
-import AboutBio from '../../components/about/bio';
-import AboutEducation from '../../components/about/education';
-import AboutCompetences from '../../components/about/competences';
+import { Separator } from "@/components/ui/separator";
+import ProjectCard from "@/components/project-card/project-card";
+import { ProjectsData } from "@/utils/helper_functions";
 
 const fontPrimary = localFont({
   src: '../../assets/fonts/font-primary.ttf',
@@ -27,12 +27,9 @@ const fontSecondary = localFont({
   variable : '--font-secondary'
 });
 
-const bioP2 = "Développeur full stack passionné, j\'ai été formé à l\'école d\'ingénieur de Télécom ParisTech, où j\'ai acquis des bases solides en informatique, en algorithmique et en conception de systèmes. Au fil de mon parcours, je me suis spécialisé dans le développement web, en maîtrisant un ensemble de technologies modernes telles que React.js, Next.js, PHP, MySQL, Laravel et Tailwind CSS."
-const bioP3 = "Développeur full stack passionné, j\'ai été formé à l\'école d\'ingénieur de Télécom ParisTech, où j\'ai acquis des bases solides en informatique, en algorithmique et en conception de systèmes. Au fil de mon parcours, je me suis spécialisé dans le développement web, en maîtrisant un ensemble de technologies modernes telles que React.js, Next.js, PHP, MySQL, Laravel et Tailwind CSS."
 
-
-export default function About() {
-  const containerRef = React.useRef(null);
+export default function Projects() {
+  const containerRef = useRef(null);
   let {exitTimeline } = usePageTransition();
   let {isOnFirstLoad, setIsOnFirstLoad} = useFirstLoad();
   let {scrollContainerRef} = useLocomotiveScroll();
@@ -242,15 +239,29 @@ export default function About() {
         <nav className="flex absolute top-0 right-0 z-20 h-16 justify-start md:justify-end p-nav">
           <ul  className = "hidden h-16 md:flex items-center gap-6 bg-white">
             <HorizontalNavMagneticLink href = "/" text = "Acceuil"/>
-            <HorizontalNavMagneticLink href = "/projects" text = "Projets"/>
+            <HorizontalNavMagneticLink href = "/about" text = "Parcours"/>
             <HorizontalNavMagneticLink href = "/contact" text = "Contact"/>
           </ul>
         </nav>
       </header>
-      <AboutHero/>
-      <AboutBio/>
-      <AboutEducation/>
-      <AboutCompetences/>
+      <section className="section min-h-screen w-full flex flex-col items-center bg-white pt-48">
+        <div className="w-full px-nav flex flex-col items-start max-w-7xl">
+          <h1 className="font-secondary font-black text-h1 mt-4">Mes Projects</h1>
+          <Separator className="mt-4 mb-16"/>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 w-full max-w-7xl px-nav">
+          {
+            Object.values(ProjectsData).map((project, index) => (
+              <ProjectCard
+                key={index}
+                href={`/projects/${project.href}`}
+                title={project.title}
+                description={project.stack.join(', ')}
+              />
+            ))
+          }
+        </div>
+      </section>
       <Contact/>
     </main>
   );

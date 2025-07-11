@@ -18,7 +18,7 @@ interface ProjectCardProps{
 const ProjectCard = ({className,href, title, description, imgSrc} : ProjectCardProps) => {
 
   return (
-    <Link href={href}>
+    <Link href={href} scroll ={false}>
         <Card 
             className='shadow-none border-none rounded-none'
         >

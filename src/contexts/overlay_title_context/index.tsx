@@ -1,8 +1,12 @@
 import React, { useContext } from 'react'
 
-const OverlayTitleContext = React.createContext(undefined)
+interface OverlayTitleContextProps{
+  overlayTitle : string,
+  setOverlayTitle : React.Dispatch<React.SetStateAction<string>>
+}
+const OverlayTitleContext = React.createContext<undefined | OverlayTitleContextProps>(undefined)
 
-const OverlayTitleProvider = ({ children }) => {
+const OverlayTitleProvider = ({ children } : {children : React.ReactNode}) => {
   const [overlayTitle, setOverlayTitle] = React.useState("");
 
   return (

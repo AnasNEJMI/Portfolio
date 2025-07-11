@@ -1,8 +1,12 @@
 import React, { useContext } from 'react'
 
-const FirstLoadContext = React.createContext(undefined)
+interface FirstLoadContextProps{
+  isOnFirstLoad : boolean,
+  setIsOnFirstLoad : React.Dispatch<React.SetStateAction<boolean>>
+}
+const FirstLoadContext = React.createContext<undefined | FirstLoadContextProps>(undefined)
 
-const FirstLoadProvider = ({ children }) => {
+const FirstLoadProvider = ({ children } : {children : React.ReactNode}) => {
   const [isOnFirstLoad, setIsOnFirstLoad] = React.useState(true);
 
   return (

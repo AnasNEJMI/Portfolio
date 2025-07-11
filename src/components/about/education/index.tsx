@@ -11,10 +11,9 @@ const AboutEducation = () => {
         
         
         mm.add('(min-width : 768px)', () => {
-            const timeline = gsap.timeline({paused : true, repeat : -1});
             const elements = gsap.utils.toArray<HTMLDivElement>('.ed-element');
             elements.forEach((el, i) => {
-                timeline.fromTo(el, {y : 100}, {y : 0, delay : i*0.15, scrollTrigger : {
+                gsap.fromTo(el, {y : 100}, {y : 0, delay : i*0.15, scrollTrigger : {
                     trigger : el,
                     start : 'top bottom',
                     end : 'top top',

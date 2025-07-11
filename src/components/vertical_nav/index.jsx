@@ -1,14 +1,12 @@
 import React, { useRef } from 'react'
 import { useVerticalNavState } from '@/contexts/vertical_nav_state_context';
 import Link from 'next/link';
-import Image from 'next/image';
 
 const VerticalNav = () => {
-    let containerRef = useRef(null);
     let {isVerticalNavOpen} = useVerticalNavState();
 
   return (
-    <div ref = {containerRef} className = {`h-screen font-primary w-full fixed top-0 bottom-0 left-0 z-40 ${isVerticalNavOpen? 'pointer-events-auto' : 'pointer-events-none'}`}>
+    <div className = {`h-screen font-primary w-full fixed top-0 bottom-0 left-0 z-40 ${isVerticalNavOpen? 'pointer-events-auto' : 'pointer-events-none'}`}>
         <div className={`h-screen w-full fixed top-0 left-0 z-10 transition-all duration-700 ease-out bg-zinc-500 ${isVerticalNavOpen? 'opacity-40' : 'opacity-0'}`}></div>
         <div className = {`absolute top-0 left-full z-20 w-full max-w-[700px] h-full flex items-stretch justify-center ease-in-out-custom transition-all duration-700 will-change-transform ${isVerticalNavOpen? '-translate-x-full' : ' translate-x-[160px]'}`}>
             <svg className = {`w-40 absolute top-0 right-full h-full overflow-visible translate-x-px origin-right ease-in-out-custom transition-all duration-1000 will-change-transform ${isVerticalNavOpen? 'scale-x-0' : 'scale-x-100'}`} viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -23,9 +21,9 @@ const VerticalNav = () => {
                         <div className = "w-full h-px bg-white"></div>
                     </div>
                     <ul  className = {`flex flex-col items-start justify-start mt-4`}>
-                        <li><Link href = "/about" scroll = {false} className = {`rounded-full text-h4 text-white`}>À Propos</Link></li>
-                        <li className = {`mt-2`}><Link href = "/projets" scroll = {false} className = "rounded-full text-h4 text-white mt-6">Projets</Link></li>
-                        <li className = {`mt-2`}><Link href = "/contact" scroll = {false} className = "text-h4 text-white mt-6">Me Contacter</Link></li>
+                        <li><Link href = "/about" scroll = {false} className = {`rounded-full text-h4 text-white`}>Parcours</Link></li>
+                        <li className = {`mt-2`}><Link href = "/projects" scroll = {false} className = "rounded-full text-h4 text-white mt-6">Projets</Link></li>
+                        <li className = {`mt-2`}><Link href = "/contact" scroll = {false} className = "text-h4 text-white mt-6">Contact</Link></li>
                     </ul>
                 </div>
 
