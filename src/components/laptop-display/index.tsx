@@ -4,7 +4,7 @@ import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 interface LaptopDisplayProps{
     className? : string,
     title : string,
-    imgSrc : StaticImageData,
+    imgSrc : string | undefined,
 }
 
 const LaptopDisplay : ForwardRefRenderFunction<HTMLDivElement, LaptopDisplayProps> = ({className, title, imgSrc}, ref) => {
@@ -12,8 +12,10 @@ const LaptopDisplay : ForwardRefRenderFunction<HTMLDivElement, LaptopDisplayProp
     <div ref={ref} className='w-full flex flex-col justify-center items-center px-nav'>
         <div className="relative border-gray-800 dark:border-jet-200 bg-gray-800 border-[6px] rounded-t-xl aspect-[5/3] w-full max-w-4xl">
             <div className="rounded-lg overflow-hidden w-full h-full bg-white dark:bg-gray-800">
-                {/* <Image fill = {true} src={img} className="dark:hidden h-[156px] md:h-[278px] w-full rounded-xl" alt={`Project ${title} - Big Screen Display`}></Image> */}
+            {
+                imgSrc &&
                 <Image width={1024} height={619} src={imgSrc} className="w-full aspect-[5/3]" alt={`Project ${title} - Big Screen Display`}></Image>
+            }
             </div>
         </div>
         <div style={{background : "linear-gradient(to right,rgb(96, 96, 96) 0%, rgb(96, 96, 96) 2%, rgb(215, 215, 215) 10%, rgb(136, 136, 136) 20%, rgb(136, 136, 136) 30%, rgb(136, 136, 136) 70%, rgb(136, 136, 136) 75%, rgb(96, 96, 96) 85%, rgb(215, 215, 215) 90%, rgb(96, 96, 96) 98%, rgb(96, 96, 96) 100%) "}}

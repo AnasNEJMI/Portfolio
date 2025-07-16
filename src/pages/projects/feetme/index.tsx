@@ -159,7 +159,7 @@ const FeetmePage = () => {
 
         <section className='section stack flex flex-col items-center bg-white w-full mt-48'>
             <div className='w-full max-w-7xl px-nav flex flex-col md:flex-row gap-16 md:gap-16'>
-                <PhoneDisplay className='phone-element-1' ref = {phoneDisplayRef1} title = {data.title} imgSrc={phoneImg}/>
+                <PhoneDisplay source='image' className='phone-element-1' ref = {phoneDisplayRef1} title = {data.title} imgSrc={''}/>
                 
                 <div className='flex-1 flex flex-col justify-center'>
                     <h2 className='stack-element font-secondary font-light text-h5'>Stack technique</h2>
@@ -202,7 +202,7 @@ const FeetmePage = () => {
                         ))
                     }
                 </div>
-                <PhoneDisplay className='phone-element-2' ref={phoneDisplayRef2} title = {data.title} imgSrc={phoneImg} />
+                <PhoneDisplay source='image' className='phone-element-2' ref={phoneDisplayRef2} title = {data.title} imgSrc={''} />
             </div>
         </section>
         

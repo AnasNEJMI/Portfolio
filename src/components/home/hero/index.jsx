@@ -4,7 +4,6 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import {throttle} from 'lodash';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Magnetic from '../../basic_magnetic_item';
 import ParisSVG from '../../paris-svg/index'
 
 const salutations = ['Bonjour', 'こんにちは', 'नमस्कार',  '你好', 'أهلاً','Olá', 'Guten Tag','Hola', 'Hello',  "Bonjour"];
@@ -179,70 +178,16 @@ const HomeHero = () => {
                 </div>
             </div>
         </div>
-        <div className = "w-full flex items-center justify-between max-w-7xl p-nav relative mt-[calc(var(--padding-nav)*.8)] lg:mt-[calc(var(--padding-nav)*2)]">
-            <div className='mask-reveal-btn w-20 h-20 md:h-28 md:w-28 rounded-full '>
-                <Magnetic>
-                    <svg width="100" height="100" viewBox="0 0 100 100" className='w-full h-full'>
-                        <defs>
-                            <clipPath id="clipping-circle">
-                                <circle cx="50" cy="50" r="50" className='origin-center scale-50'/>
-                            </clipPath>
-                            <path
-                                id="rotating-circle"
-                                d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
-                                />
-                        </defs>
+        <div className = "w-full flex items-center justify-end max-w-7xl p-nav relative mt-[calc(var(--padding-nav)*.8)] lg:mt-[calc(var(--padding-nav)*2)]">
 
-                        {/* Black circle */}
-                        <circle cx="50" cy="50" r="50" fill="black" className='origin-center scale-50'/>
-
-                        {/* White text outside the circle */}
-                        <text
-                        x="50"
-                        y="50"
-                        textAnchor="middle"
-                        dominantBaseline="middle"
-                        fontSize="12"
-                        fontWeight="bold"
-                        fill="black"
-                        className='animate-rotate animate-duration-4000 origin-center font-primary font-light'
-                        >
-                            <textPath href="#rotating-circle" startOffset="-10%">
-                                Appuyer
-                            </textPath>
-
-                            <textPath href="#rotating-circle" startOffset="36%">
-                                Appuyer
-                            </textPath>
-                            <textPath href="#rotating-circle" startOffset="62%">
-                                Appuyer
-                            </textPath>
-                            <textPath href="#rotating-circle" startOffset="86%">
-                                Appuyer
-                            </textPath>
-                        </text>
-                    </svg>
-                    <svg width="100%" height="100%" viewBox="-32 0 512 512" preserveAspectRatio="none" className='absolute top-0 left-0 origin-center scale-[0.21] w-full aspect-square'>
-                        <path stroke='none' fill='white' d="M448 240v96c0 3.084-.356 6.159-1.063 9.162l-32 136C410.686 499.23 394.562 512 376 512H168a40.004 40.004 0 0 1-32.35-16.473l-127.997-176c-12.993-17.866-9.043-42.883 8.822-55.876 17.867-12.994 42.884-9.043 55.877 8.823L104 315.992V40c0-22.091 17.908-40 40-40s40 17.909 40 40v200h8v-40c0-22.091 17.908-40 40-40s40 17.909 40 40v40h8v-24c0-22.091 17.908-40 40-40s40 17.909 40 40v24h8c0-22.091 17.908-40 40-40s40 17.909 40 40zm-256 80h-8v96h8v-96zm88 0h-8v96h8v-96zm88 0h-8v96h8v-96z">
-                            <animateTransform
-                                attributeName="transform"
-                                attributeType="XML"
-                                type="translate"
-                                values="0 -20;0 0;0 -20"
-                                to="0 0"
-                                dur="1s"
-                                keySplines="0.26 0 0.74 1; 0.26 0 0.74 1"
-                                calcMode="spline"
-                                repeatCount="indefinite" />
-                        </path>
-                    </svg>
-                </Magnetic>
-            </div>
             <ParisSVG/>
         </div>
 
-        <div className = "masked-hero pt-[144px] hidden md:flex absolute top-0 left-0 w-full h-full items-center justfy-stretch flex-col bg-black z-50 pointer-events-none">
-            {/* TODO: fill this section with something cool. */}
+        <div className = "masked-hero pt-[144px] hidden md:flex absolute top-0 left-0 w-full h-full items-center justfy-center flex-col bg-black z-50 pointer-events-none">
+            <h1 className= "heading flex flex-col items-center justify-center leading-tight font-black z-20 select-none text-white pointer-events-none h-full">
+                <span className = "dev font-secondary text-h2">Toujours en recherche</span>
+                <span className = "full-stack font-secondary text-h2 mt-4">de m&apos;améliorer</span>
+            </h1>
 
             <div style={{clipPath : 'polygon(5% 5%, 95% 5%, 95% 95%, 5% 95%, 5% 5%)'}} className='h-[50%] md:h-[70.7%] aspect-square rotate-45 z-[5] absolute grid grid-cols-10 grid-rows-10 pointer-events-none'>
                 {[...Array(100)].map((cell, index) => (

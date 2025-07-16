@@ -5,23 +5,24 @@ import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 interface BigScreenDisplayProps{
     className? : string,
     title : string,
-    imgSrc : StaticImageData,
+    imgSrc : string | undefined,
 }
 
 const BigScreenDisplay : ForwardRefRenderFunction<HTMLDivElement, BigScreenDisplayProps> = ({className, title, imgSrc}, ref) => {
   return (
     <div ref={ref} className={cn('w-full flex items-center justify-center flex-col px-nav', className)}>
-        <div className='w-full max-w-5xl aspect-[5/3] rounded-lg  bg-zinc-600 p-[6px] relative'>
+        <div className='w-full max-w-5xl aspect-[1901/987] rounded-lg  bg-zinc-600 p-[6px] relative'>
             <div className='h-full w-full bg-white relative overflow-hidden'>
-                <Image 
-                    alt={`Project ${title} - Big Screen Display`}
-                    width={1024}
-                    height={615}
-                    src={imgSrc}
-                    className='w-full aspect-[5/3]'
-                >
-                    
-                </Image>
+                {
+                    imgSrc &&
+                    <Image 
+                        alt={`Project ${title} - Big Screen Display`}
+                        width={1901}
+                        height={987}
+                        src={imgSrc}
+                        className='w-full aspect-[1901/987]'
+                    />
+                }
             </div>
         </div>
         <div style={{background : "linear-gradient(to bottom, rgb(56, 56, 56) 0%, rgb(136, 136, 136) 30%, rgb(136, 136, 136) 100%)"}} className='w-1/5 aspect-[2/2] bg-zinc-300'>

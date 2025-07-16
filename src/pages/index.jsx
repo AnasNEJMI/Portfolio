@@ -275,8 +275,8 @@ export default function Home() {
             <HorizontalNavMagneticLink href = "/contact" text = "Contact"/>
           </ul>
         </nav>
-        <HomeHero/>
       </header>
+      <HomeHero/>
 
       <HomeAbout/>
       <HomeProjects/>

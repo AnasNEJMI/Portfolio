@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap';
 import ProjectCard from '@/components/project-card/project-card';
-import profile from '../../../public/images/c2.jpg';
 import MagneticButton from '../magnetic-button/magnetic-button'
 import { ScrollTrigger } from 'gsap/all';
 import { ProjectsData } from '@/utils/helper_functions';

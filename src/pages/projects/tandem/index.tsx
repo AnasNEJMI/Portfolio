@@ -14,6 +14,7 @@ import bigScreenImg from '@/../public/images/c2.jpg'
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
+import Link from 'next/link';
 
 
 const TandemPage = () => {
@@ -144,14 +145,19 @@ const TandemPage = () => {
             </div>
         </section>
         
-        <section className='section flex flex-col items-center bg-transparent w-full my-24'>
-            <div className='github-btn w-full max-w-7xl px-nav flex justify-end'>
-                <MagneticButton className='aspect-square'>
-                    <GithubLogo/>
-                    <span>Répertoire</span>
-                </MagneticButton>
-            </div>
-        </section>
+        {
+            data.githubRepo && 
+            <section className='section flex flex-col items-center bg-transparent w-full my-24'>
+                <div className='github-btn w-full max-w-7xl px-nav flex justify-end'>
+                    <Link scroll = {false} href={data.githubRepo}>
+                        <MagneticButton className='aspect-square'>
+                            <GithubLogo/>
+                            <span>Répertoire</span>
+                        </MagneticButton>
+                    </Link>
+                </div>
+            </section>
+        }
 
         <section className='section desc flex flex-col items-center bg-white w-full my-48 px-nav'>
             <div className='w-full max-w-7xl px-nav py-16 rounded-xl bg-black text-white'>
@@ -162,12 +168,12 @@ const TandemPage = () => {
         </section>
 
         <section className='section flex bg-white flex-col items-center w-full aspect-square md:aspect-video mt-48'>
-            <BigScreenDisplay ref= {BigScreenDisplayRef} title={data.title} imgSrc={bigScreenImg}/>
+            <BigScreenDisplay ref= {BigScreenDisplayRef} title={data.title} imgSrc={data.bigScreenSrc}/>
         </section>
 
-        <section className='section stack flex flex-col items-center bg-white w-full mt-48'>
-            <div className='w-full max-w-7xl px-nav flex flex-col md:flex-row gap-16 md:gap-16'>
-                <PhoneDisplay className='phone-element-1' ref = {phoneDisplayRef1} title = {data.title} imgSrc={phoneImg}/>
+        <section className='section stack flex flex-col items-center bg-white w-full mt-0 lg:mt-48'>
+            <div className='w-full max-w-7xl px-nav flex flex-col md:flex-row gap-28 md:gap-16'>
+                <PhoneDisplay source='video' className='phone-element-1' ref = {phoneDisplayRef1} title = {data.title} imgSrc={data.phoneSrcs? data.phoneSrcs[0] : undefined}/>
                 
                 <div className='flex-1 flex flex-col justify-center'>
                     <h2 className='stack-element font-secondary font-light text-h5'>Stack technique</h2>
@@ -186,10 +192,10 @@ const TandemPage = () => {
                 </div>
             </div>
         </section>
-        <section className='section flex bg-white flex-col items-center justify-center w-full aspect-square md:aspect-video mt-48'>
-           <LaptopDisplay ref={laptopDisplayRef} title={data.title} imgSrc={laptopImg}/>
+        <section className='section flex bg-white flex-col items-center justify-center w-full aspect-square md:aspect-video mt-0 lg:mt-48'>
+           <LaptopDisplay ref={laptopDisplayRef} title={data.title} imgSrc={data.laptopSrc}/>
         </section>
-        <section className='section features flex flex-col items-center justify-start bg-white w-full my-48'>
+        <section className='section features flex flex-col items-center justify-start bg-white w-full mt-0 mb-48 lg:my-48'>
             <div className='w-full max-w-7xl px-nav grid grid-cols-1 lg:grid-cols-2 gap-32'>
                 <div>
                     <h2 className='features-element font-secondary font-light text-h5'>Fonctionnalités</h2>
@@ -212,7 +218,7 @@ const TandemPage = () => {
                         ))
                     }
                 </div>
-                <PhoneDisplay className='phone-element-2' ref={phoneDisplayRef2} title = {data.title} imgSrc={phoneImg} />
+                <PhoneDisplay source='video' className='phone-element-2' ref={phoneDisplayRef2} title = {data.title} imgSrc={data.phoneSrcs? data.phoneSrcs[1] : undefined} />
             </div>
         </section>
         
