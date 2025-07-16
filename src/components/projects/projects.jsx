@@ -1,5 +1,4 @@
 import React, { useRef } from 'react'
-import Magnetic from '../basic_magnetic_item'
 import Link from 'next/link'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap';
@@ -7,6 +6,7 @@ import ProjectCard from '@/components/project-card/project-card';
 import profile from '../../../public/images/c2.jpg';
 import MagneticButton from '../magnetic-button/magnetic-button'
 import { ScrollTrigger } from 'gsap/all';
+import { ProjectsData } from '@/utils/helper_functions';
 
 const HomeProjects = () => {
   const containerRef = useRef(null);
@@ -49,18 +49,17 @@ const HomeProjects = () => {
       <h2 className = "title relative font-secondary font-black text-end text-black text-h1 w-min text-nowrap py-nav">Mes Projets<span className='clipped-title absolute top-0 left-0 w-full h-full text-white opacity-75'>Mes Projets</span></h2>
       <div className='max-w-7xl w-full mt-20 md:mt-32'>
         <div ref={cardsRef} className='grid grid-cols-1 md:grid-cols-2 w-full gap-8'>
-            <ProjectCard
-              href = {'/'}
-              imgSrc={profile}
-              title='Tandem'
-              description='ReactJS, InertiaJS, Laravel, PHP, MySQL'
-            />
-            <ProjectCard
-              href = {'/'}
-              imgSrc={profile}
-              title='FeetMe'
-              description='Android, Java, SQLite, OKHttp, XML'
-            />
+          {
+            Object.values(ProjectsData).map((project, index) => (
+              <ProjectCard
+                key={index}
+                href={`/projects/${project.href}`}
+                title={project.title}
+                description={project.stack.join(', ')}
+                imgSrc={project.imgSrc}
+              />
+            ))
+          }
         </div>
         <div className='flex items-center justify-center'>
           <div className=' mt-16 md:24'>

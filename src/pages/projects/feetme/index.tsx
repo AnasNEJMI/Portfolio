@@ -6,18 +6,15 @@ import { ProjectsData } from '@/utils/helper_functions';
 import MagneticButton from '@/components/magnetic-button/magnetic-button';
 import GithubLogo from '@/components/logos/github/logo'
 import PhoneDisplay from '@/components/phone-display';
-import LaptopDisplay from '@/components/laptop-display';
-import BigScreenDisplay from '@/components/big-screen-display';
 import phoneImg from '@/../public/images/c2.jpg'
-import laptopImg from '@/../public/images/c2.jpg'
-import bigScreenImg from '@/../public/images/c2.jpg'
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
+import Link from 'next/link';
 
 
-const TandemPage = () => {
-    const data = ProjectsData['tandem'];
+const FeetmePage = () => {
+    const data = ProjectsData['feetme'];
     const containerRef = useRef(null)
     const phoneDisplayRef1 = useRef(null);
     const phoneDisplayRef2 = useRef(null);
@@ -35,21 +32,15 @@ const TandemPage = () => {
                 scrub : true,
             }})
 
-            gsap.set('.github-btn', {y : 0});
-            gsap.fromTo('.github-btn', {y : 50}, {y : 10, scrollTrigger : {
-                trigger : '.hero',
-                start : 'top top',
-                end : 'bottom top',
-                scrub : true,
-            }})
-
-            gsap.set('.desc', {y : 50});
-            gsap.fromTo('.github-btn', {y : 50}, {y : 10, scrollTrigger : {
-                trigger : '.hero',
-                start : 'top top',
-                end : 'bottom top',
-                scrub : true,
-            }})
+            if(data.githubRepo){
+                gsap.set('.github-btn', {y : 0});
+                gsap.fromTo('.github-btn', {y : 50}, {y : 10, scrollTrigger : {
+                    trigger : '.hero',
+                    start : 'top top',
+                    end : 'bottom top',
+                    scrub : true,
+                }})
+            }
             
             const stackElements = gsap.utils.toArray<HTMLDivElement>('.stack-element');
             stackElements.forEach((el, i) => {
@@ -144,14 +135,19 @@ const TandemPage = () => {
             </div>
         </section>
         
-        <section className='section flex flex-col items-center bg-transparent w-full my-24'>
-            <div className='github-btn w-full max-w-7xl px-nav flex justify-end'>
-                <MagneticButton className='aspect-square'>
-                    <GithubLogo/>
-                    <span>Répertoire</span>
-                </MagneticButton>
-            </div>
-        </section>
+        {
+            data.githubRepo && 
+            <section className='section flex flex-col items-center bg-transparent w-full my-24'>
+                <div className='github-btn w-full max-w-7xl px-nav flex justify-end'>
+                    <Link scroll = {false} href={data.githubRepo}>
+                        <MagneticButton className='aspect-square'>
+                            <GithubLogo/>
+                            <span>Répertoire</span>
+                        </MagneticButton>
+                    </Link>
+                </div>
+            </section>
+        }
 
         <section className='section desc flex flex-col items-center bg-white w-full my-48 px-nav'>
             <div className='w-full max-w-7xl px-nav py-16 rounded-xl bg-black text-white'>
@@ -159,10 +155,6 @@ const TandemPage = () => {
                 <Separator/>
                 <p className='font-primary font-medium text-h4 mt-4 text-pretty'>{data.description}</p>
             </div>
-        </section>
-
-        <section className='section flex bg-white flex-col items-center w-full aspect-square md:aspect-video mt-48'>
-            <BigScreenDisplay ref= {BigScreenDisplayRef} title={data.title} imgSrc={bigScreenImg}/>
         </section>
 
         <section className='section stack flex flex-col items-center bg-white w-full mt-48'>
@@ -176,7 +168,7 @@ const TandemPage = () => {
                         data.tech.map((t, index) => (
                             <div key={index}>
                                 <div className='stack-element mt-8 font-primary flex items-center justify-center gap-4'>
-                                    <span className='py-2 px-4 w-28 md:w-32 text-center h-min bg-zinc-900 text-white rounded-full font-bold text-h6'>{Object.keys(t)[0]}</span>
+                                    <span className='py-2 w-32 md:w-40 text-center h-min bg-zinc-900 text-white rounded-full font-bold text-body px-4'>{Object.keys(t)[0]}</span>
                                     <span className='flex-1 font-medium'>{Object.values(t)[0]}</span>
                                 </div>
                                 <Separator className='stack-element my-4'/>
@@ -186,9 +178,7 @@ const TandemPage = () => {
                 </div>
             </div>
         </section>
-        <section className='section flex bg-white flex-col items-center justify-center w-full aspect-square md:aspect-video mt-48'>
-           <LaptopDisplay ref={laptopDisplayRef} title={data.title} imgSrc={laptopImg}/>
-        </section>
+
         <section className='section features flex flex-col items-center justify-start bg-white w-full my-48'>
             <div className='w-full max-w-7xl px-nav grid grid-cols-1 lg:grid-cols-2 gap-32'>
                 <div>
@@ -221,4 +211,4 @@ const TandemPage = () => {
   )
 }
 
-export default TandemPage
+export default FeetmePage

@@ -11,7 +11,7 @@ export const PathNames : Record<string, string> = {
     "/about": "Mon Parcours",
     "/projects": "Mes Projets",
     "/contact": "Contact",
-    "/projects/feetme" : "FettMe",
+    "/projects/feetme" : "FeetMe",
     "/projects/tandem" : "Tandem",
 }
 
@@ -19,9 +19,11 @@ interface ProjectsDataType{
     href : string,
     title : string, 
     description : string,
+    imgSrc? : string,
     category : string,
     duration : string,
     startDate : string,
+    githubRepo? : string,
     stack : string[], 
     tech : {[k : string] : string}[], 
     features : {[k : string] : string[]}[]
@@ -31,13 +33,39 @@ export const ProjectsData : Record<string, ProjectsDataType> = {
     "feetme": {
         href : 'feetme',
         title : 'FeetMe',
-        description : "title",
+        description : "Dans le cadre d'une mission de 6 mois chez FeetMe, j'ai développé une application mobile Android en Java et Kotlin, conçue pour interagir avec les semelles intelligentes fabriquées par l'entreprise, destinées aux professionnels de la podologie. Le projet couvrait plusieurs volets techniques",
         category : 'Application Mobile',
         duration:"6 Mois",
         startDate : "11/09/2015",
         stack : ['Android', 'Java', 'SQlite', 'WebGL', 'Multi-Threading', 'OKHttp', 'XML'],
-        tech : [{"h" : "h"}],
-        features : [{"h" : ["h"]}]
+        tech : [
+                    {
+                        "Connexion Bluetooth" : "Implémentation d'un système de connexion stable entre l'application et les semelles intelligentes via Bluetooth, avec gestion des états de connexion et reconnexion automatique en cas de coupure.",
+                    },
+                    {
+                        "Affichage des données" : "Intégration de WebGL pour le rendu en temps réel des données de marche (pression, répartition, mouvement), offrant une visualisation fluide et interactive adaptée à une utilisation médicale.",
+                    },
+                    {
+                        "Recording" : "Mise en place d'un processus de collecte et d'enregistrement des données de marche, structuré autour du multi-threading pour garantir la performance et la fiabilité même en cas de longues sessions de mesure.",
+                    },
+                    {
+                        "Stockage & Sync" : "Enregistrement local des données dans une base de données SQL embarquée, puis synchronisation vers un backend distant via des appels réseau gérés par la librairie OkHttp."
+                    },
+                    {
+                        "UI" : "Création d'interfaces ergonomiques et responsives à l'aide de layouts XML, avec attention portée à la clarté, l'accessibilité et la fluidité des interactions, dans un contexte d'usage médical."
+                    }
+                ],
+        features : [
+                        {
+                            "Suivi précis de la marche" : ["les professionnels peuvent observer instantanément les paramètres biomécaniques du patient pendant la marche, ce qui facilite les ajustements immédiats."],
+                        },
+                        {
+                            "Aide au diagnostic podologique" :["l'analyse détaillée des données collectées permet de détecter des anomalies de posture ou de marche, essentielles pour la prévention et le traitement des troubles locomoteurs."],
+                        },
+                        {    
+                            "Historisation des données patients" : ["chaque session est sauvegardée localement et peut être transmise pour un suivi longitudinal, offrant ainsi un historique des progrès ou des détériorations."],
+                        },
+                    ]
     },
     "tandem": {
         href : 'tandem',
@@ -46,6 +74,7 @@ export const ProjectsData : Record<string, ProjectsDataType> = {
         category : 'Application Web',
         duration : "4 Mois",
         startDate : '06/01/2025',
+        githubRepo : "https://github.com/AnasNEJMI/Tandem",
         stack : ['React', 'Vite', 'InertiaJS', 'Laravel', 'PHP', 'MySQL', 'Shadcn UI', 'TailwindCSS'],
         tech : [
                     {

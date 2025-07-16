@@ -38,7 +38,7 @@ const ProjectCard = ({className,href, title, description, imgSrc} : ProjectCardP
                 }
                 {
                     !imgSrc &&
-                    <div className='relative z-10 w-full aspect-square bg-black'>
+                    <div className='project-image relative z-10 w-full aspect-square bg-black'>
 
                     </div>
                 }
