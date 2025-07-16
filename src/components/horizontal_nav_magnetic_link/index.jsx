@@ -89,7 +89,7 @@ const HorizontalNavMagneticLink = ({href, text}) => {
 
   return (
     <li ref = {containerRef} className='bg-white group w-30 overflow-visible flex justify-center'>
-        <Link href = {href} className = " py-2 px-4 w-full flex justify-center rounded-full text-body font-medium relative">
+        <Link scroll= {false} href = {href} className = " py-2 px-4 w-full flex justify-center rounded-full text-body font-medium relative">
         <div className = "circle rounded-full absolute top-1/2 -translate-y-1/2 left-0 bg-black h-2 aspect-square group-hover:scale-[600%] origin-left transition-all duration-300"></div>
         <span className="text flex relative text-white font-primary font-light mix-blend-difference">{text}</span>
         </Link>

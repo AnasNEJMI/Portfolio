@@ -33,9 +33,8 @@ const VerticalNav = () => {
                         <div className = "w-full h-px bg-white"></div>
                     </div>
                     <ul  className = "flex flex-col items-start justify-start mt-4">
-                        <li><Link href = "/" className = {`text-h5 text-white`}>LinkedIn</Link></li>
-                        <li className = {`mt-2`}><Link href = "/" className = "text-h5 text-white mt-6">Github</Link></li>
-                        <li className = {`mt-2`}><Link href = "/" className = "text-h5 text-white mt-6">Dribbble</Link></li>
+                        <li className = {`mt-2`}><Link href = "https://github.com/AnasNEJMI" className = "text-h5 text-white mt-6">Github</Link></li>
+                        <li className = {`mt-2`}><Link href = "https://dribbble.com/AansNEJMI" className = "text-h5 text-white mt-6">Dribbble</Link></li>
                     </ul>
                 </div>
 

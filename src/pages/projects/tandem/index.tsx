@@ -59,9 +59,6 @@ const TandemPage = () => {
                     start : 'top bottom',
                     end : 'center center',
                     scrub : true,
-                    onUpdate : (self) => {
-                        console.log(self.progress);
-                    }
                 }})
             })
             gsap.set('.stack', {y : 50});
@@ -150,7 +147,7 @@ const TandemPage = () => {
             </div>
         </section>
         
-        <section className='section flex flex-col items-center bg-transparent w-full my-12'>
+        <section className='section flex flex-col items-center bg-transparent w-full my-24'>
             <div className='github-btn w-full max-w-7xl px-nav flex justify-end'>
                 <MagneticButton className='aspect-square'>
                     <GithubLogo/>

@@ -231,7 +231,7 @@ const PageWrapper = ({links, children, ref} : PageWrapperProps) => {
         <MagneticMenuIcon/>
         <VerticalNav/>
         
-        <Link href = "/" className = "h-16 flex items-center justify-center fixed top-0 left-0 mt-nav ml-nav mix-blend-difference z-50">
+        <Link scroll= {false} href = "/" className = "h-16 flex items-center justify-center fixed top-0 left-0 mt-nav ml-nav mix-blend-difference z-50">
           <Image src = {logo} alt = "Portfolio logo" width = {80} height = {37} className="invert h-16"/>
         </Link >
 

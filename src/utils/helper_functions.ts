@@ -10,7 +10,7 @@ export const PathNames : Record<string, string> = {
     "/": "Bienvenue !",
     "/about": "Mon Parcours",
     "/projects": "Mes Projets",
-    "/contact": "Me Contacter",
+    "/contact": "Contact",
     "/projects/feetme" : "FettMe",
     "/projects/tandem" : "Tandem",
 }

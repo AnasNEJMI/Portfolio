@@ -307,9 +307,8 @@ const Contact = () => {
           <div>
             <h2 className = "text-body opacity-70">Réseaux</h2>
             <ul className = "flex justify-start gap-2 md:gap-4">
-              <li><Link href = "/" className = "text-body md:text-h6 text-white">LinkedIn</Link></li>
-              <li><Link href = "/" className = "text-body md:text-h6 text-white mt-6">Github</Link></li>
-              <li><Link href = "/" className = "text-body md:text-h6 text-white mt-6">Dribbble</Link></li>
+              <li><Link href = "https://github.com/AnasNEJMI" className = "text-body md:text-h6 text-white mt-6">Github</Link></li>
+              <li><Link href = "https://dribbble.com/AansNEJMI" className = "text-body md:text-h6 text-white mt-6">Dribbble</Link></li>
             </ul>
           </div>
           <div className='text-h6 text-white flex flex-col items-end'>

@@ -264,7 +264,7 @@ export default function Home() {
         <MagneticMenuIcon/>
         <VerticalNav/>
         
-        <Link href = "/" className = "h-16 flex items-center justify-center fixed top-0 left-0 mt-nav ml-nav mix-blend-difference z-50">
+        <Link scroll= {false} href = "/" className = "h-16 flex items-center justify-center fixed top-0 left-0 mt-nav ml-nav mix-blend-difference z-50">
           <Image src = "/images/logo.svg" alt = "Logo" width = {80} height = {37} className="invert h-full aspect-[1/2]"/>
         </Link >
 
@@ -272,6 +272,7 @@ export default function Home() {
           <ul  className = "hidden h-16 md:flex items-center gap-6 bg-white">
             <HorizontalNavMagneticLink href = "/about" text = "Parcours"/>
             <HorizontalNavMagneticLink href = "/projects" text = "Projets"/>
+            <HorizontalNavMagneticLink href = "/contact" text = "Contact"/>
           </ul>
         </nav>
         <HomeHero/>

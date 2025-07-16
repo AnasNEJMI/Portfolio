@@ -65,7 +65,7 @@ const HomeProjects = () => {
         <div className='flex items-center justify-center'>
           <div className=' mt-16 md:24'>
             <MagneticButton>
-              <Link href={'/projects'}>
+              <Link scroll= {false} href={'/projects'}>
                 Voir Plus
               </Link>
             </MagneticButton>
