@@ -6,14 +6,15 @@ import { ProjectsData } from '@/utils/helper_functions';
 import MagneticButton from '@/components/magnetic-button/magnetic-button';
 import GithubLogo from '@/components/logos/github/logo'
 import PhoneDisplay from '@/components/phone-display';
-import phoneImg from '@/../public/images/c2.jpg'
+import LaptopDisplay from '@/components/laptop-display';
+import BigScreenDisplay from '@/components/big-screen-display';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import Link from 'next/link';
+import Image from 'next/image';
 
-
-const FeetmePage = () => {
+const FeetMePage = () => {
     const data = ProjectsData['feetme'];
     const containerRef = useRef(null)
     const phoneDisplayRef1 = useRef(null);
@@ -43,6 +44,7 @@ const FeetmePage = () => {
             }
             
             const stackElements = gsap.utils.toArray<HTMLDivElement>('.stack-element');
+            console.log(stackElements.length);
             stackElements.forEach((el, i) => {
                 gsap.set(el, {y : 100});
                 gsap.fromTo(el, {y : 100}, {y : 0, delay : i*0.2, scrollTrigger : {
@@ -77,11 +79,14 @@ const FeetmePage = () => {
                 end : 'bottom top',
                 scrub : true,
             }})
+
+            return () => {
+                ScrollTrigger.killAll();
+            }
         })
 
         return () => {
             mm.revert();
-            ScrollTrigger.killAll();
         }
     }, {scope : containerRef})
   return (
@@ -149,7 +154,18 @@ const FeetmePage = () => {
             </section>
         }
 
-        <section className='section desc flex flex-col items-center bg-white w-full my-48 px-nav'>
+        <section className='relative section w-full aspect-square md:aspect-video flex flex-col items-center bg-white mt-24 mb-24 md:mb-0'>
+            <Image
+            src={data.banner.src}
+            alt={`project ${data.title} banner image`}
+            width={data.banner.width}
+            height={data.banner.height}
+            className={`w-full aspect-[${data.banner.width}/${data.banner.height}]`}
+            >
+            </Image>
+        </section>
+
+        <section className='section desc flex flex-col items-center bg-white w-full px-nav mt-0 mb-48 md:mt-48'>
             <div className='w-full max-w-7xl px-nav py-16 rounded-xl bg-black text-white'>
                 <h2 className='font-secondary font-light text-h5'>Description</h2>
                 <Separator/>
@@ -157,9 +173,24 @@ const FeetmePage = () => {
             </div>
         </section>
 
-        <section className='section stack flex flex-col items-center bg-white w-full mt-48'>
-            <div className='w-full max-w-7xl px-nav flex flex-col md:flex-row gap-16 md:gap-16'>
-                <PhoneDisplay source='image' className='phone-element-1' ref = {phoneDisplayRef1} title = {data.title} imgSrc={''}/>
+        {
+            data.bigScreenSrc &&
+            <section className='section flex bg-white flex-col items-center w-full aspect-square md:aspect-video mt-48'>
+                <BigScreenDisplay ref= {BigScreenDisplayRef} title={data.title} imgSrc={data.bigScreenSrc}/>
+            </section>
+        }
+
+        <section className='section stack flex flex-col items-center bg-white w-full mt-0 mb-48 lg:my-48'>
+            <div className='w-full max-w-7xl px-nav flex flex-col items-center lg:flex-row gap-28 md:gap-16'>
+                <PhoneDisplay
+                    className='phone-element-1'
+                    ref = {phoneDisplayRef1}
+                    title = {data.title}
+                    src={data.phoneDisplay1.src}
+                    width={data.phoneDisplay1.width}
+                    height={data.phoneDisplay1.height}
+                    type={data.phoneDisplay1.type}
+                />
                 
                 <div className='flex-1 flex flex-col justify-center'>
                     <h2 className='stack-element font-secondary font-light text-h5'>Stack technique</h2>
@@ -168,7 +199,7 @@ const FeetmePage = () => {
                         data.tech.map((t, index) => (
                             <div key={index}>
                                 <div className='stack-element mt-8 font-primary flex items-center justify-center gap-4'>
-                                    <span className='py-2 w-32 md:w-40 text-center h-min bg-zinc-900 text-white rounded-full font-bold text-body px-4'>{Object.keys(t)[0]}</span>
+                                    <span className='py-2 px-4 w-28 md:w-32 text-center h-min bg-zinc-900 text-white rounded-full font-bold text-h6'>{Object.keys(t)[0]}</span>
                                     <span className='flex-1 font-medium'>{Object.values(t)[0]}</span>
                                 </div>
                                 <Separator className='stack-element my-4'/>
@@ -178,10 +209,15 @@ const FeetmePage = () => {
                 </div>
             </div>
         </section>
-
-        <section className='section features flex flex-col items-center justify-start bg-white w-full my-48'>
-            <div className='w-full max-w-7xl px-nav grid grid-cols-1 lg:grid-cols-2 gap-32'>
-                <div>
+        {
+            data.laptopSrc &&
+            <section className='section flex bg-white flex-col items-center justify-center w-full aspect-square md:aspect-video mt-0 lg:my-48'>
+            <LaptopDisplay ref={laptopDisplayRef} title={data.title} imgSrc={data.laptopSrc}/>
+            </section>
+        }
+        <section className='section features flex flex-col items-center bg-white w-full mt-0 mb-48 lg:my-48'>
+            <div className='w-full max-w-7xl px-nav flex flex-col items-center lg:flex-row gap-28 md:gap-16'>
+                <div className='flex-1 flex flex-col justify-center'>
                     <h2 className='features-element font-secondary font-light text-h5'>Fonctionnalités</h2>
                     <Separator className='features-element'/>
                     {
@@ -202,7 +238,15 @@ const FeetmePage = () => {
                         ))
                     }
                 </div>
-                <PhoneDisplay source='image' className='phone-element-2' ref={phoneDisplayRef2} title = {data.title} imgSrc={''} />
+                <PhoneDisplay
+                    className='phone-element-2'
+                    ref={phoneDisplayRef2}
+                    title = {data.title}
+                    src={data.phoneDisplay2.src}
+                    width={data.phoneDisplay2.width}
+                    height={data.phoneDisplay2.height}
+                    type={data.phoneDisplay2.type}
+                    />
             </div>
         </section>
         
@@ -211,4 +255,4 @@ const FeetmePage = () => {
   )
 }
 
-export default FeetmePage
+export default FeetMePage

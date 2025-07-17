@@ -19,8 +19,9 @@ interface ProjectsDataType{
     href : string,
     title : string, 
     description : string,
-    imgSrc? : string,
-    phoneSrcs? : string[],
+    banner : {src : string, width : number, height : number,  type : 'image' | 'video'},
+    phoneDisplay1 : {src : string, width : number, height : number, type : 'image' | 'video'},
+    phoneDisplay2 : {src : string, width : number, height : number,  type : 'image' | 'video'},
     bigScreenSrc? : string,
     laptopSrc? : string,
     category : string,
@@ -36,9 +37,27 @@ export const ProjectsData : Record<string, ProjectsDataType> = {
     "feetme": {
         href : 'feetme',
         title : 'FeetMe',
-        description : "Dans le cadre d'une mission de 6 mois chez FeetMe, j'ai développé une application mobile Android en Java et Kotlin, conçue pour interagir avec les semelles intelligentes fabriquées par l'entreprise, destinées aux professionnels de la podologie. Le projet couvrait plusieurs volets techniques",
+        description : "Dans le cadre d'une mission de 6 mois chez FeetMe, j'ai développé une application mobile Android en Java et Kotlin, conçue pour intéragir avec les semelles intelligentes fabriquées par l'entreprise, destinées aux professionnels de la podologie et aux athlètes.",
         category : 'Application Mobile',
         duration:"6 Mois",
+        banner : {
+                    src : '/images/feetme/feetme-banner.webp',
+                    width : 900,
+                    height : 1440,
+                    type : 'image'
+                    },
+        phoneDisplay1 : {
+                    src : '/images/feetme/feetme-1.webp',
+                    width : 371,
+                    height : 850,
+                    type : 'image'
+                    },
+        phoneDisplay2 : {
+                    src : '/images/feetme/feetme-2.webp',
+                    width : 373,
+                    height : 845,
+                    type : 'image'
+                    },
         startDate : "11/09/2015",
         stack : ['Android', 'Java', 'SQlite', 'WebGL', 'Multi-Threading', 'OKHttp', 'XML'],
         tech : [
@@ -75,9 +94,26 @@ export const ProjectsData : Record<string, ProjectsDataType> = {
         title : 'Tandem',
         description : "Projet personnel réalisé sur 4 mois, Tandem est une application web conçue pour permettre à des utilisateurs individuels ou des groupes (familles, couples, colocataires, etc.) de mieux gérer leurs finances à travers une interface claire, personnalisable et centrée sur la collaboration.",
         category : 'Application Web',
-        phoneSrcs : ['/videos/tandem-video-1.mp4', '/videos/tandem-video-2.mp4'],
-        bigScreenSrc :'/images/tandem-big-screen.webp',
-        laptopSrc :'/images/tandem-laptop.webp',
+        banner : {
+                    src : '/images/tandem/tandem-banner.webp',
+                    width : 900,
+                    height : 1440,
+                    type : 'image'
+                    },
+        phoneDisplay1 : {
+                    src : '/videos/tandem/tandem-video-1.mp4',
+                    width : 410,
+                    height : 912,
+                    type : 'video'
+                    },
+        phoneDisplay2 : {
+                    src : '/videos/tandem/tandem-video-2.mp4',
+                    width : 410,
+                    height : 912,
+                    type : 'video'
+                    },
+        bigScreenSrc :'/images/tandem/tandem-big-screen.webp',
+        laptopSrc :'/images/tandem/tandem-laptop.webp',
         duration : "4 Mois",
         startDate : '06/01/2025',
         githubRepo : "https://github.com/AnasNEJMI/Tandem",

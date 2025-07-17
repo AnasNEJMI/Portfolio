@@ -55,7 +55,9 @@ const HomeProjects = () => {
                 href={`/projects/${project.href}`}
                 title={project.title}
                 description={project.stack.join(', ')}
-                imgSrc={project.imgSrc}
+                src={project.banner.src}
+                width={project.banner.width}
+                height={project.banner.height}
               />
             ))
           }

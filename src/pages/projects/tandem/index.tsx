@@ -8,13 +8,11 @@ import GithubLogo from '@/components/logos/github/logo'
 import PhoneDisplay from '@/components/phone-display';
 import LaptopDisplay from '@/components/laptop-display';
 import BigScreenDisplay from '@/components/big-screen-display';
-import phoneImg from '@/../public/images/c2.jpg'
-import laptopImg from '@/../public/images/c2.jpg'
-import bigScreenImg from '@/../public/images/c2.jpg'
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import Link from 'next/link';
+import Image from 'next/image';
 
 
 const TandemPage = () => {
@@ -36,21 +34,15 @@ const TandemPage = () => {
                 scrub : true,
             }})
 
-            gsap.set('.github-btn', {y : 0});
-            gsap.fromTo('.github-btn', {y : 50}, {y : 10, scrollTrigger : {
-                trigger : '.hero',
-                start : 'top top',
-                end : 'bottom top',
-                scrub : true,
-            }})
-
-            gsap.set('.desc', {y : 50});
-            gsap.fromTo('.github-btn', {y : 50}, {y : 10, scrollTrigger : {
-                trigger : '.hero',
-                start : 'top top',
-                end : 'bottom top',
-                scrub : true,
-            }})
+            if(data.githubRepo){
+                gsap.set('.github-btn', {y : 0});
+                gsap.fromTo('.github-btn', {y : 50}, {y : 10, scrollTrigger : {
+                    trigger : '.hero',
+                    start : 'top top',
+                    end : 'bottom top',
+                    scrub : true,
+                }})
+            }
             
             const stackElements = gsap.utils.toArray<HTMLDivElement>('.stack-element');
             stackElements.forEach((el, i) => {
@@ -87,11 +79,14 @@ const TandemPage = () => {
                 end : 'bottom top',
                 scrub : true,
             }})
+
+            return () => {
+                ScrollTrigger.killAll();
+            }
         })
 
         return () => {
             mm.revert();
-            ScrollTrigger.killAll();
         }
     }, {scope : containerRef})
   return (
@@ -159,7 +154,18 @@ const TandemPage = () => {
             </section>
         }
 
-        <section className='section desc flex flex-col items-center bg-white w-full my-48 px-nav'>
+        <section className='relative section w-full aspect-square md:aspect-video flex flex-col items-center bg-white'>
+            <Image
+            src={data.banner.src}
+            alt={`project ${data.title} banner image`}
+            width={data.banner.width}
+            height={data.banner.height}
+            className={`w-full aspect-[${data.banner.width}/${data.banner.height}]`}
+            >
+            </Image>
+        </section>
+
+        <section className='section desc flex flex-col items-center bg-white w-full px-nav mt-12 md:mt-48'>
             <div className='w-full max-w-7xl px-nav py-16 rounded-xl bg-black text-white'>
                 <h2 className='font-secondary font-light text-h5'>Description</h2>
                 <Separator/>
@@ -167,13 +173,24 @@ const TandemPage = () => {
             </div>
         </section>
 
-        <section className='section flex bg-white flex-col items-center w-full aspect-square md:aspect-video mt-48'>
-            <BigScreenDisplay ref= {BigScreenDisplayRef} title={data.title} imgSrc={data.bigScreenSrc}/>
-        </section>
+        {
+            data.bigScreenSrc &&
+            <section className='section flex bg-white flex-col items-center w-full aspect-square md:aspect-video mt-48'>
+                <BigScreenDisplay ref= {BigScreenDisplayRef} title={data.title} imgSrc={data.bigScreenSrc}/>
+            </section>
+        }
 
-        <section className='section stack flex flex-col items-center bg-white w-full mt-0 lg:mt-48'>
-            <div className='w-full max-w-7xl px-nav flex flex-col md:flex-row gap-28 md:gap-16'>
-                <PhoneDisplay source='video' className='phone-element-1' ref = {phoneDisplayRef1} title = {data.title} imgSrc={data.phoneSrcs? data.phoneSrcs[0] : undefined}/>
+        <section className='section stack flex flex-col items-center bg-white w-full mt-0 mb-48 lg:my-48'>
+            <div className='w-full max-w-7xl px-nav flex flex-col items-center lg:flex-row gap-28 md:gap-16'>
+                <PhoneDisplay
+                    className='phone-element-1'
+                    ref = {phoneDisplayRef1}
+                    title = {data.title}
+                    src={data.phoneDisplay1.src}
+                    width={data.phoneDisplay1.width}
+                    height={data.phoneDisplay1.height}
+                    type={data.phoneDisplay1.type}
+                />
                 
                 <div className='flex-1 flex flex-col justify-center'>
                     <h2 className='stack-element font-secondary font-light text-h5'>Stack technique</h2>
@@ -192,12 +209,15 @@ const TandemPage = () => {
                 </div>
             </div>
         </section>
-        <section className='section flex bg-white flex-col items-center justify-center w-full aspect-square md:aspect-video mt-0 lg:mt-48'>
-           <LaptopDisplay ref={laptopDisplayRef} title={data.title} imgSrc={data.laptopSrc}/>
-        </section>
-        <section className='section features flex flex-col items-center justify-start bg-white w-full mt-0 mb-48 lg:my-48'>
-            <div className='w-full max-w-7xl px-nav grid grid-cols-1 lg:grid-cols-2 gap-32'>
-                <div>
+        {
+            data.laptopSrc &&
+            <section className='section flex bg-white flex-col items-center justify-center w-full aspect-square md:aspect-video mt-0 lg:my-48'>
+            <LaptopDisplay ref={laptopDisplayRef} title={data.title} imgSrc={data.laptopSrc}/>
+            </section>
+        }
+        <section className='section features flex flex-col items-center bg-white w-full mt-0 my-48 lg:my-48'>
+            <div className='w-full max-w-7xl px-nav flex flex-col items-center lg:flex-row gap-28 md:gap-16'>
+                <div className='flex-1 flex flex-col justify-center'>
                     <h2 className='features-element font-secondary font-light text-h5'>Fonctionnalités</h2>
                     <Separator className='features-element'/>
                     {
@@ -218,7 +238,15 @@ const TandemPage = () => {
                         ))
                     }
                 </div>
-                <PhoneDisplay source='video' className='phone-element-2' ref={phoneDisplayRef2} title = {data.title} imgSrc={data.phoneSrcs? data.phoneSrcs[1] : undefined} />
+                <PhoneDisplay
+                    className='phone-element-2'
+                    ref={phoneDisplayRef2}
+                    title = {data.title}
+                    src={data.phoneDisplay2.src}
+                    width={data.phoneDisplay2.width}
+                    height={data.phoneDisplay2.height}
+                    type={data.phoneDisplay2.type}
+                    />
             </div>
         </section>
         
