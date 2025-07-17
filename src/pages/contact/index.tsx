@@ -8,9 +8,24 @@ const ContactPage = () => {
     const containerRef = useRef(null)
     const localTime = useLocalTime();
 
-    const handleSubmit = (e : FormEvent) =>{
-        e.preventDefault();
-        console.log("submit contact email")
+    async function handleSubmit(event : FormEvent){
+        event.preventDefault();
+        const target = event.currentTarget;
+        if(target instanceof HTMLFormElement){
+            const formData = new FormData(target);
+            const data = Object.fromEntries(formData.entries());
+    
+            const response = await fetch('/api/send', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+    
+            const result = await response.json();
+            console.log(result);
+        }
     }
   return (
     <PageWrapper
