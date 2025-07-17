@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://anasnejmi.com
+
+# Sitemaps
+Sitemap: https://anasnejmi.com/sitemap.xml

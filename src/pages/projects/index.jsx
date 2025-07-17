@@ -11,11 +11,10 @@ import VerticalNav from "../../components/vertical_nav";
 import Image from "next/image";
 import HorizontalNavMagneticLink from "../../components/horizontal_nav_magnetic_link";
 import Contact from "../../components/contact";
-import useLocomotiveScroll from "../../components/locomotive_scroll";
-import AboutHero from '../../components/about/hero';
 import { Separator } from "@/components/ui/separator";
 import ProjectCard from "@/components/project-card/project-card";
-import { ProjectsData } from "@/utils/helper_functions";
+import { ProjectsData } from "@/utils/utils";
+import Head from "next/head";
 
 const fontPrimary = localFont({
   src: '../../assets/fonts/font-primary.ttf',
@@ -32,7 +31,6 @@ export default function Projects() {
   const containerRef = useRef(null);
   let {exitTimeline } = usePageTransition();
   let {isOnFirstLoad, setIsOnFirstLoad} = useFirstLoad();
-  let {scrollContainerRef} = useLocomotiveScroll();
   let {overlayTitle} = useOverlayTitle();
 
   function map(value, min1, max1, min2, max2) {
@@ -221,6 +219,57 @@ export default function Projects() {
     <main ref = {containerRef}
       className={`min-h-screen relative bg-white ${fontPrimary.variable} ${fontSecondary.variable}`}
     >
+      <Head>
+        <title>
+          Anas NEJMI - Développeur Full-Stack
+        </title>
+        <meta
+          name="description"
+          content="Développeur web full-stack passionné, authentique et rigoureux. Je conçois des applications web modernes, performantes et sur-mesure pour répondre aux besoins des entreprises."
+        />
+        <meta
+          name="keywords"
+          content="développeur full-stack, react, vite, nextjs, PHP, Java, Laravel, TailwindCSS"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charSet="utf-8" />
+        <meta property="og:site_name" content="Anas NEJMI" />
+        <meta property="og:locale" content="fr_FR" />
+        <meta
+          property="og:title"
+          content="Anas NEJMI - Développeur Full-Stack"
+        />
+        <meta
+          property="og:description"
+          content="Développeur web full-stack passionné, authentique et rigoureux. Je conçois des applications web modernes, performantes et sur-mesure pour répondre aux besoins des entreprises."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://anasnejmi.com" />
+        <meta
+          property="og:image"
+          content="/images/anasnejmi-og.webp"
+        />
+        <meta property="og:image:alt" content="Anas NEJMI" />
+        <meta property="og:image:type" content="image/webp" />
+        <meta property="og:image:width" content="957" />
+        <meta property="og:image:height" content="700" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Anas NEJMI - Développeur Full-Stack"
+        />
+        <meta
+          name="twitter:description"
+          content="Développeur web full-stack passionné, authentique et rigoureux. Je conçois des applications web modernes, performantes et sur-mesure pour répondre aux besoins des entreprises."
+        />
+        <meta
+          name="twitter:image"
+          content="/images/anasnejmi-og.webp"
+        />
+        <link rel="canonical" href="https://www.anasnejmi.com/about"/>
+      </Head>
       <div id = "overlay-container" className='fixed font-primary top-0 left-0 z-[60] right-0 w-full h-screen flex justify-center items-center pointer-events-none will-change-transform'>
         <h2 id = "overlay-title" className = "will-change-transform font-secondary text-h1 text-white">{overlayTitle}</h2>
         <svg viewBox="0 0 100 100" preserveAspectRatio="none" className = "w-full h-full absolute top-0 left-0 -z-10 flex justify-center items-center">

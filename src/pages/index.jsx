@@ -16,7 +16,8 @@ import localFont from 'next/font/local';
 import HomeAbout from "@/components/home/about";
 import Contact from "@/components/contact";
 import HomeProjects from "@/components/projects/projects";
-import { mapRounded } from "@/utils/helper_functions";
+import { mapRounded } from "@/utils/utils";
+import Head from "next/head";
 
 const fontPrimary = localFont({
   src: '../assets/fonts/font-primary.ttf',
@@ -249,9 +250,60 @@ export default function Home() {
 
   return ( 
     <main ref = {scrollContainerRef}
-      className={`min-h-screen relative bg-white ${fontPrimary.variable} ${fontSecondary.variable}`}
+    className={`min-h-screen relative bg-white ${fontPrimary.variable} ${fontSecondary.variable}`}
     >
-      
+      <Head>
+        <title>
+          Anas NEJMI - Développeur Full-Stack
+        </title>
+        <meta
+          name="description"
+          content="Développeur web full-stack passionné, authentique et rigoureux. Je conçois des applications web modernes, performantes et sur-mesure pour répondre aux besoins des entreprises."
+        />
+        <meta
+          name="keywords"
+          content="développeur full-stack, react, vite, nextjs, PHP, Java, Laravel, TailwindCSS"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charSet="utf-8" />
+        <meta property="og:site_name" content="Anas NEJMI" />
+        <meta property="og:locale" content="fr_FR" />
+        <meta
+          property="og:title"
+          content="Anas NEJMI - Développeur Full-Stack"
+        />
+        <meta
+          property="og:description"
+          content="Développeur web full-stack passionné, authentique et rigoureux. Je conçois des applications web modernes, performantes et sur-mesure pour répondre aux besoins des entreprises."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://anasnejmi.com" />
+        <meta
+          property="og:image"
+          content="/images/anasnejmi-og.webp"
+        />
+        <meta property="og:image:alt" content="Anas NEJMI" />
+        <meta property="og:image:type" content="image/webp" />
+        <meta property="og:image:width" content="957" />
+        <meta property="og:image:height" content="700" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Anas NEJMI - Développeur Full-Stack"
+        />
+        <meta
+          name="twitter:description"
+          content="Développeur web full-stack passionné, authentique et rigoureux. Je conçois des applications web modernes, performantes et sur-mesure pour répondre aux besoins des entreprises."
+        />
+        <meta
+          name="twitter:image"
+          content="/images/anasnejmi-og.webp"
+        />
+        <link rel="canonical" href="https://www.anasnejmi.com/about"/>
+      </Head>
+
       <div id = "overlay-container" className='fixed font-primary top-0 left-0 z-[60] right-0 w-full h-screen flex justify-center items-center pointer-events-none will-change-transform'>
         <LogoAnimation id = "overlay-logo"/>
         <h2 id = "overlay-title" className = "will-change-transform font-secondary text-h1 text-white">{overlayTitle}</h2>
@@ -261,6 +313,7 @@ export default function Home() {
       </div>
 
       <header>
+
         <MagneticMenuIcon/>
         <VerticalNav/>
         

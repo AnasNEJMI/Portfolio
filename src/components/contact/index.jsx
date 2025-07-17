@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import Link from 'next/link';
-import { map, mapRounded } from '@/utils/helper_functions';
+import { map, mapRounded } from '@/utils/utils';
 
 const Contact = () => {
     let containerRef = useRef(null);

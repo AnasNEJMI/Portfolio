@@ -5,7 +5,7 @@ import { useOverlayTitle } from '@/contexts/overlay_title_context';
 import { useRouter } from 'next/router';
 import { useVerticalNavState } from '@/contexts/vertical_nav_state_context';
 import { useFirstLoad } from '@/contexts/first_load_context';
-import { PathNames } from '@/utils/helper_functions';
+import { PathNames } from '@/utils/utils';
 
 const PageTransitionHandler = ({ children }) => {
     const [displayedChildren, setDisplayedChildren] = useState(children);

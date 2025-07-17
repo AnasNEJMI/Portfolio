@@ -5,7 +5,7 @@ import gsap from 'gsap';
 import ProjectCard from '@/components/project-card/project-card';
 import MagneticButton from '../magnetic-button/magnetic-button'
 import { ScrollTrigger } from 'gsap/all';
-import { ProjectsData } from '@/utils/helper_functions';
+import { ProjectsData } from '@/utils/utils';
 
 const HomeProjects = () => {
   const containerRef = useRef(null);

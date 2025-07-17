@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import Contact from "../../../components/contact";
 import PageWrapper from '../../../components/page-wrapper'
 import { Separator } from '@/components/ui/separator';
-import { ProjectsData } from '@/utils/helper_functions';
+import { ProjectsData } from '@/utils/utils';
 import MagneticButton from '@/components/magnetic-button/magnetic-button';
 import GithubLogo from '@/components/logos/github/logo'
 import PhoneDisplay from '@/components/phone-display';
