@@ -10,7 +10,7 @@ import MagneticMenuIcon from '../magnetic-menu-icon';
 import VerticalNav from '../vertical_nav';
 import HorizontalNavMagneticLink from '../horizontal_nav_magnetic_link';
 import gsap from 'gsap';
-import logo from '@/../public/images/logo.svg';
+import logo from '@/../public/images/logo.png';
 import useLocomotiveScroll from '../locomotive_scroll';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -285,7 +285,7 @@ const PageWrapper = ({links, children, ref} : PageWrapperProps) => {
         <VerticalNav/>
         
         <Link scroll= {false} href = "/" className = "h-16 flex items-center justify-center fixed top-0 left-0 mt-nav ml-nav mix-blend-difference z-50">
-          <Image src = {logo} alt = "Portfolio logo" width = {80} height = {37} className="invert h-16"/>
+          <Image src = {logo} alt = "Portfolio logo" width = {80} height = {37} className="invert"/>
         </Link >
 
         <nav className="flex absolute top-0 right-0 z-20 h-16 justify-start md:justify-end p-nav">

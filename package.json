@@ -1,6 +1,6 @@
 {
   "name": "portfolio",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -14,6 +14,7 @@
     "@radix-ui/react-dialog": "^1.1.14",
     "@radix-ui/react-separator": "^1.1.7",
     "@radix-ui/react-slot": "^1.2.3",
+    "@react-email/components": "^0.3.1",
     "@types/locomotive-scroll": "^4.1.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -23,9 +24,11 @@
     "lucide-react": "^0.525.0",
     "next": "^15.3.5",
     "next-sitemap": "^4.2.3",
+    "next-themes": "^0.4.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "resend": "^4.6.0",
+    "sonner": "^2.0.6",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^3.4.3",
     "tailwindcss-animate": "^1.0.7"
@@ -38,7 +41,6 @@
     "autoprefixer": "^10.4.21",
     "eslint": "^8",
     "eslint-config-next": "14.2.6",
-    "gh-pages": "^6.1.1",
     "postcss": "^8.5.6",
     "typescript": "^5"
   }

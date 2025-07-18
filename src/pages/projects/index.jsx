@@ -15,6 +15,7 @@ import { Separator } from "@/components/ui/separator";
 import ProjectCard from "@/components/project-card/project-card";
 import { ProjectsData } from "@/utils/utils";
 import Head from "next/head";
+import logo from "@/../public/images/logo.png"
 
 const fontPrimary = localFont({
   src: '../../assets/fonts/font-primary.ttf',
@@ -282,7 +283,7 @@ export default function Projects() {
         <VerticalNav/>
         
         <Link scroll= {false} href = "/" className = "h-16 flex items-center justify-center fixed top-0 left-0 mt-nav ml-nav mix-blend-difference z-50">
-          <Image src = "/images/logo.svg" alt = "Logo" width = {80} height = {37} className="invert h-full aspect-[1/2]"/>
+          <Image src = {logo} alt = "Portfolio logo" width = {80} height = {37} className="invert"/>
         </Link >
 
         <nav className="flex absolute top-0 right-0 z-20 h-16 justify-start md:justify-end p-nav">

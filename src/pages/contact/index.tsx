@@ -2,11 +2,15 @@ import MagneticButton from '@/components/magnetic-button/magnetic-button'
 import PageWrapper from '@/components/page-wrapper'
 import { Separator } from '@/components/ui/separator'
 import useLocalTime from '@/hooks/use-localtime'
-import React, { FormEvent, useRef } from 'react'
+import { delay } from '@/utils/utils'
+import Error from 'next/error'
+import React, { FormEvent, useRef, useState } from 'react'
+import { toast } from 'sonner'
 
 const ContactPage = () => {
     const containerRef = useRef(null)
     const localTime = useLocalTime();
+    const [isSending, setIsSending] = useState(false);
 
     async function handleSubmit(event : FormEvent){
         event.preventDefault();
@@ -14,17 +18,33 @@ const ContactPage = () => {
         if(target instanceof HTMLFormElement){
             const formData = new FormData(target);
             const data = Object.fromEntries(formData.entries());
+            
+            setIsSending(true);
+
+            try{
+                await delay(2000);
+                const response = await fetch('/api/send', {
+                    method: 'POST',
+                    headers: {
+                    'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
     
-            const response = await fetch('/api/send', {
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
+                if(!response.ok){
+                    const errorData = await response.json();
+                    throw new Error(errorData?.message || "Une erreur inconnue s'est produite.");
+                }
     
-            const result = await response.json();
-            console.log(result);
+                const result = await response.json();
+                toast.success('Votre e-mail a été envoyé avec succès !'); 
+                target.reset();
+            }catch(error){
+                console.log("Error : ", error);
+                toast.error("Envoi d'email a échoué.");
+            }finally{
+                setIsSending(false);
+            }
         }
     }
   return (
@@ -61,7 +81,7 @@ const ContactPage = () => {
                             <h5 className='text-lg  font-semibold text-jet-800'>1</h5>
                             <div className='flex-1 flex flex-col justify-start items-start gap-3'>
                                 <h2 className=' font-medium text-xl'>Par quel nom aimeriez-vous être adressés ?</h2>
-                                <input name='name' type="text" className='w-full text-lg py-3 bg-transparent font-normal text-zinc-300 outline-none' placeholder='John Doe'/>
+                                <input name='name' type="text" className='w-full text-xl py-3 bg-transparent font-semibold text-zinc-900 placeholder:text-zinc-300 outline-none' placeholder='John Doe'/>
                             </div>
                         </div>
                         
@@ -72,7 +92,7 @@ const ContactPage = () => {
                             <h5 className='text-lg  font-semibold text-jet-800'>2</h5>
                             <div className='flex-1 flex flex-col justify-start items-start gap-3'>
                                 <h2 className=' font-medium text-xl '>Sur quelle addresse mail puis-je vous répondre ?</h2>
-                                <input name='email' type="text" className='w-full text-lg py-3 bg-transparent font-normal text-zinc-300 outline-none' placeholder='adresse@email.com'/>
+                                <input name='email' type="text" className='w-full text-xl py-3 bg-transparent font-semibold text-zinc-900 placeholder:text-zinc-300 outline-none' placeholder='adresse@email.com'/>
                             </div>
                         </div>
                         </div>
@@ -82,7 +102,7 @@ const ContactPage = () => {
                             <h5 className='text-lg  font-semibold text-jet-800'>3</h5>
                             <div className='flex-1 flex flex-col justify-start items-start gap-3'>
                                 <h2 className=' font-medium text-xl '>Quel est le motif de votre prise de contact ?</h2>
-                                <input name='subject' type="text" className='w-full text-lg py-3 bg-transparent font-normal text-zinc-300 outline-none' placeholder="Offre d'emploi, Mission, ..."/>
+                                <input name='subject' type="text" className='w-full text-xl py-3 bg-transparent font-semibold text-zinc-900 placeholder:text-zinc-300 outline-none' placeholder="Offre d'emploi, Mission, ..."/>
                             </div>
                         </div>
                         </div>
@@ -91,12 +111,19 @@ const ContactPage = () => {
                             <h5 className='text-lg  font-semibold text-jet-800'>4</h5>
                             <div className='flex-1 flex flex-col justify-start items-start gap-3'>
                                 <h2 className=' font-medium text-xl '>Quel message voudriez-vous me laisser ?</h2>
-                                <textarea name='message' className='w-full text-lg py-3 bg-transparent font-normal text-zinc-300 outline-none overflow-auto resize-none h-auto' rows={5} placeholder={`Bonjour Anas, je vous contacte au sujet de ...`}/>
+                                <textarea name='message' className='w-full text-xl py-3 bg-transparent font-semibold text-zinc-900 placeholder:text-zinc-300 outline-none overflow-auto resize-none h-auto' rows={5} placeholder={`Bonjour Anas, je vous contacte au sujet de ...`}/>
                             </div>
                         </div>
                         <div className='flex w-full justify-end mt-8'>
                             <MagneticButton type='submit' className='w-60'>
-                                Envoyer    
+                                {
+                                    !isSending &&
+                                    <span>Envoyer</span>    
+                                }
+                                {
+                                    isSending &&
+                                    <span className='animate-pulse text-3xl font-bold'>...</span>    
+                                }
                             </MagneticButton>
                         </div>
                     </div>
