@@ -22,7 +22,6 @@ const ContactPage = () => {
             setIsSending(true);
 
             try{
-                await delay(2000);
                 const response = await fetch('/api/send', {
                     method: 'POST',
                     headers: {

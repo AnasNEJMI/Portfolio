@@ -43,7 +43,7 @@ export function EmailTemplate({ name, email, subject,message }: EmailTemplatePro
           <Container className="mx-auto my-[40px] max-w-[465px] rounded border border-[#eaeaea] border-solid p-[20px]">
             <Section className="mt-[32px]">
               <Img
-                src='/images/logo.png'
+                src='https://anasnejmi.com/images/logo.png'
                 width="120"
                 height="60"
                 alt="Portfolio Logo"
