@@ -291,7 +291,7 @@ const Contact = () => {
         <div className='flex items-end justify-start w-full sm:w-min md:w-min flex-col gap-6'>
           <Link href = "/" scroll = {false} className = "w-full sm:max-w-min h-min  flex items-center justify-center text-white bg-black font-primary font-normal px-nav py-4 border-white border text-h6 md:text-h5 rounded-xl cursor-pointer relative">
             <div className='w-full h-full absolute top-0 left-0 translate-x-2 translate-y-2 rounded-xl bg-white -z-10'></div>
-            <span className='text-nowrap'>contact@anasnejmi.com</span>
+            <span className='text-nowrap'>anasnejmi@gmail.com</span>
           </Link>
 
           <Link href = "/" scroll = {false} className = "w-full  sm:max-w-min h-min flex items-center justify-center text-white bg-black font-primary font-normal px-nav py-4 border-white border text-h6 md:text-h5 rounded-xl cursor-pointer relative">

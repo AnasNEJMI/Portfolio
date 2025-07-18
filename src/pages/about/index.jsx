@@ -29,10 +29,6 @@ const fontSecondary = localFont({
   variable : '--font-secondary'
 });
 
-const bioP2 = "Développeur full stack passionné, j\'ai été formé à l\'école d\'ingénieur de Télécom ParisTech, où j\'ai acquis des bases solides en informatique, en algorithmique et en conception de systèmes. Au fil de mon parcours, je me suis spécialisé dans le développement web, en maîtrisant un ensemble de technologies modernes telles que React.js, Next.js, PHP, MySQL, Laravel et Tailwind CSS."
-const bioP3 = "Développeur full stack passionné, j\'ai été formé à l\'école d\'ingénieur de Télécom ParisTech, où j\'ai acquis des bases solides en informatique, en algorithmique et en conception de systèmes. Au fil de mon parcours, je me suis spécialisé dans le développement web, en maîtrisant un ensemble de technologies modernes telles que React.js, Next.js, PHP, MySQL, Laravel et Tailwind CSS."
-
-
 export default function About() {
   const containerRef = React.useRef(null);
   let {exitTimeline } = usePageTransition();
@@ -276,6 +272,7 @@ export default function About() {
           content="/images/anasnejmi-og.webp"
         />
         <link rel="canonical" href="https://www.anasnejmi.com/about"/>
+        <link rel="shortcut icon" href="/static/favicon.ico" />
       </Head>
       <div id = "overlay-container" className='fixed font-primary top-0 left-0 z-[60] right-0 w-full h-screen flex justify-center items-center pointer-events-none will-change-transform'>
         <h2 id = "overlay-title" className = "will-change-transform font-secondary text-h1 text-white">{overlayTitle}</h2>

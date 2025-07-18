@@ -18,9 +18,6 @@ const AboutEducation = () => {
                     start : 'top bottom',
                     end : 'top top',
                     scrub : true,
-                    onUpdate : (self) => {
-                        console.log(self.progress);
-                    }
                 }})
             })
         });

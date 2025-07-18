@@ -270,6 +270,7 @@ export default function Projects() {
           content="/images/anasnejmi-og.webp"
         />
         <link rel="canonical" href="https://www.anasnejmi.com/about"/>
+        <link rel="shortcut icon" href="/static/favicon.ico" />
       </Head>
       <div id = "overlay-container" className='fixed font-primary top-0 left-0 z-[60] right-0 w-full h-screen flex justify-center items-center pointer-events-none will-change-transform'>
         <h2 id = "overlay-title" className = "will-change-transform font-secondary text-h1 text-white">{overlayTitle}</h2>

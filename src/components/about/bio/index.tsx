@@ -20,10 +20,7 @@ const AboutBio = () => {
                     trigger : el,
                     start : 'top bottom',
                     end : 'top top',
-                    scrub : true,
-                    onUpdate : (self) => {
-                        console.log(self.progress);
-                    }
+                    scrub : true
                 }})
             })
         });
