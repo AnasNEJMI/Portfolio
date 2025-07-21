@@ -69,7 +69,24 @@ const ContactPage = () => {
             <div className='w-full max-w-7xl px-nav'>
                 <div className='w-full flex h-full items-center lg:items-end flex-row-reverse justify-end gap-4 lg:justify-between lg:flex-row'>
                     <h1 className='font-secondary font-black text-h1 h-min'><span>Contact</span></h1>
-                    <div className='w-[12%] min-w-16 max-w-40 aspect-square bg-black rounded-full overflow-hidden'></div>
+                    <div className='w-20 md:w-32 lg:w-40 aspect-square rounded-full translate-y-8 md:translate-y-12 lg:translate-y-14'>
+                        <div className=" w-full ">
+                            <div style={{transformStyle : 'preserve-3d', transform : "rotateX(60deg) rotateZ(-45deg)"}} className='w-full aspect-square flex items-center justify-center -translate'>
+                            <div style={{transformStyle : 'preserve-3d', }} className='w-full aspect-square absolute animate-hover-and-spin'>
+                                {
+                                    [...Array(11)].map((item, index) => {
+                                        const deg = 360/10;
+                                        return <div key={index} style={{transform: `rotateX(90deg) rotateY(${deg*index}deg)`}} className='absolute w-full h-full border-2 border-zinc-700 top-1/2 origin-top rounded-full'>
+
+                                        </div>
+                                    })
+                                }
+
+                                
+                            </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <Separator className='mt-4'/>
                 <form onSubmit={handleSubmit} className='flex flex-col-reverse md:flex-row items-start justify-start gap-12 relative mt-16'>

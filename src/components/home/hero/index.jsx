@@ -17,61 +17,6 @@ const HomeHero = () => {
         let mm = gsap.matchMedia();
 
         mm.add("(min-width: 768px)", () => {
-            const onMouseMove = contextSafe((e) => {
-                const { clientX, clientY } = e
-                const x = Math.round(clientX)
-                const y = Math.round(clientY + window.scrollY)
-                
-                gsap.to(".masked-hero", {
-                '--mh-x': `${x}px`,
-                '--mh-y': `${y}px`,
-                duration: 0.3,
-                ease: 'sine.out',})
-            });
-    
-            const onMouseEnter = contextSafe((e) => {
-                gsap.to(".masked-hero", {
-                '--mh-size': '180px',
-                '--mh-size-fade-start': '200px',
-                '--mh-size-fade-end': '210px',
-                duration: 0.3,
-                ease: 'sine.out',})
-            });
-    
-            const onMouseLeave = contextSafe((e) => {
-                gsap.to(".masked-hero", {
-                '--mh-size': '4px',
-                '--mh-size-fade-start': '4px',
-                '--mh-size-fade-end': '4px',
-                duration: 0.3,
-                ease: 'sine.out',})
-            });
-
-            const onMouseEnterContainer = contextSafe((e) => {
-                gsap.to(".masked-hero", {
-                    '--mh-size': '4px',
-                    '--mh-size-fade-start': '4px',
-                    '--mh-size-fade-end': '4px',
-                    duration: 0.3,
-                    ease: 'sine.out',})
-            });
-    
-            const onMouseLeaveContainer = contextSafe((e) => {
-                gsap.to(".masked-hero", {
-                '--mh-size': '0px',
-                '--mh-size-fade-start': '0px',
-                '--mh-size-fade-end': '0px',
-                duration: 0.3,
-                ease: 'sine.out',})
-            });
-    
-            let headingElement = containerRef.current.querySelector(".heading");
-            headingElement.addEventListener('mouseenter', onMouseEnter);
-            headingElement.addEventListener('mouseleave', onMouseLeave);
-
-            containerRef.current.addEventListener('mousemove', throttle(onMouseMove, 16))
-            containerRef.current.addEventListener('mouseenter', onMouseEnterContainer);
-            containerRef.current.addEventListener('mouseleave', onMouseLeaveContainer);
 
             const devTranslateY = gsap.quickSetter(".dev", "yPercent");
             const fullStackTranslateY = gsap.quickSetter(".full-stack", "yPercent");
@@ -108,11 +53,7 @@ const HomeHero = () => {
             });
 
             return () => {
-                containerRef.current.removeEventListener('mousemove', onMouseMove);
-                containerRef.current.removeEventListener('mouseenter', onMouseEnterContainer);
-                containerRef.current.removeEventListener('mouseleave', onMouseEnterContainer);
-                headingElement.removeEventListener('mouseenter', onMouseEnter);
-                headingElement.removeEventListener('mouseleave', onMouseLeave);
+                ScrollTrigger.killAll();
             }
         });
 
@@ -169,7 +110,6 @@ const HomeHero = () => {
 
             <div className= "w-full relative z-30 mt-8">
                 <div className = "flex flex-col items-center text-body md:text-h6 font-bold px-nav relative z-10">
-                {/* <p className = "font-primary font-medium">Je transforme vos <span>idées</span> en sites web</p> */}
                 <p className='text-pretty flex items-center justify-center gap-4'>
                     <span className = "passioned text-black font-primary font-black text-h6 md:text-h5 translate-y-0">Passionné</span>
                     <span className = "authentic text-black font-primary font-black text-h6 md:text-h5 translate-y-0">Authentique</span>
@@ -179,37 +119,9 @@ const HomeHero = () => {
             </div>
         </div>
         <div className = "w-full flex items-center justify-end max-w-7xl p-nav relative mt-[calc(var(--padding-nav)*.8)] lg:mt-[calc(var(--padding-nav)*2)]">
-
             <ParisSVG/>
         </div>
 
-        <div className = "masked-hero pt-[144px] hidden md:flex absolute top-0 left-0 w-full h-full items-center justfy-center flex-col bg-black z-50 pointer-events-none">
-            <h1 className= "heading flex flex-col items-center justify-center leading-tight font-black z-20 select-none text-white pointer-events-none h-full">
-                <span className = "dev font-secondary text-h2">Toujours en recherche</span>
-                <span className = "full-stack font-secondary text-h2 mt-4">de m&apos;améliorer</span>
-            </h1>
-
-            <div style={{clipPath : 'polygon(5% 5%, 95% 5%, 95% 95%, 5% 95%, 5% 5%)'}} className='h-[50%] md:h-[70.7%] aspect-square rotate-45 z-[5] absolute grid grid-cols-10 grid-rows-10 pointer-events-none'>
-                {[...Array(100)].map((cell, index) => (
-                <div key={`cell_${index}`} className='mix-blend-difference flex'>
-                    <span style={{clipPath : 'url(#starClipPath)'}} className='rounded-full h-2 w-2 -translate-x-1 -translate-y-1 bg-white mix-blend-difference'></span>
-                </div>
-                ))}
-            </div>
-            <div style={{clipPath : 'polygon(5% 5%, 95% 5%, 95% 95%, 5% 95%, 5% 5%)'}} className='h-[50%] md:h-[70.7%] opacity-20 aspect-square rotate-45 z-[6] absolute grid grid-cols-10 grid-rows-10 pointer-events-none'>
-                {[...Array(100)].map((cell, index) => (
-                <div key={`cell_${index}`} className='border border-opacity-20'>
-                </div>
-                ))}
-            </div>
-            <svg width={500} height={500} className='w-0 h-0 pointer-events-none'>
-              <defs>
-                <clipPath id = "starClipPath" clipPathUnits="objectBoundingBox" >
-                  <path d='M1 0 Q0.5 0.5 1 1 Q0.5 0.5 0 1 Q0.5 0.5 0 0 Q 0.5 0.5 1 0'></path>
-                </clipPath>
-              </defs>
-            </svg>
-        </div>
     </section>
   )
 }
