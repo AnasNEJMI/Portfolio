@@ -2,7 +2,7 @@ import MagneticButton from '@/components/magnetic-button/magnetic-button'
 import PageWrapper from '@/components/page-wrapper'
 import { Separator } from '@/components/ui/separator'
 import useLocalTime from '@/hooks/use-localtime'
-import { delay } from '@/utils/utils'
+import { delay } from '@/lib/helpers'
 import Error from 'next/error'
 import React, { FormEvent, useRef, useState } from 'react'
 import { toast } from 'sonner'
@@ -54,10 +54,6 @@ const ContactPage = () => {
                 href : '/',
             },
             {
-                label : 'Parcours',
-                href : '/about',
-            },
-            {
                 label : 'Projets',
                 href : '/projects',
             },
@@ -67,7 +63,7 @@ const ContactPage = () => {
     >
         <section className='section flex flex-col items-center bg-white w-full pt-64  md:pt-48 pb-48'>
             <div className='w-full max-w-7xl px-nav'>
-                <div className='w-full flex h-full items-center lg:items-end flex-row-reverse justify-end gap-4 lg:justify-between lg:flex-row'>
+                <div className='w-full flex h-full items-center xl:items-end flex-row-reverse justify-end gap-4 xl:justify-between xl:flex-row'>
                     <h1 className='font-secondary font-black text-h1 h-min'><span>Contact</span></h1>
                     <div className='w-20 md:w-32 lg:w-40 aspect-square rounded-full translate-y-8 md:translate-y-12 lg:translate-y-14'>
                         <div className=" w-full ">

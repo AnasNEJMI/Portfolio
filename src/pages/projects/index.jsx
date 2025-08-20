@@ -13,7 +13,7 @@ import HorizontalNavMagneticLink from "../../components/horizontal_nav_magnetic_
 import Contact from "../../components/contact";
 import { Separator } from "@/components/ui/separator";
 import ProjectCard from "@/components/project-card/project-card";
-import { ProjectsData } from "@/utils/utils";
+import { ProjectsData } from "@/lib/data";
 import Head from "next/head";
 import logo from "@/../public/images/logo.png"
 
@@ -269,7 +269,7 @@ export default function Projects() {
           name="twitter:image"
           content="/images/anasnejmi-og.webp"
         />
-        <link rel="canonical" href="https://www.anasnejmi.com/about"/>
+        {/* <link rel="canonical" href="https://www.anasnejmi.com/about"/> */}
         <link rel="shortcut icon" href="/static/favicon.ico" />
       </Head>
       <div id = "overlay-container" className='fixed font-primary top-0 left-0 z-[60] right-0 w-full h-screen flex justify-center items-center pointer-events-none will-change-transform'>
@@ -290,7 +290,7 @@ export default function Projects() {
         <nav className="flex absolute top-0 right-0 z-20 h-16 justify-start md:justify-end p-nav">
           <ul  className = "hidden h-16 md:flex items-center gap-6 bg-white">
             <HorizontalNavMagneticLink href = "/" text = "Acceuil"/>
-            <HorizontalNavMagneticLink href = "/about" text = "Parcours"/>
+            {/* <HorizontalNavMagneticLink href = "/about" text = "Parcours"/> */}
             <HorizontalNavMagneticLink href = "/contact" text = "Contact"/>
           </ul>
         </nav>

@@ -270,7 +270,7 @@ const PageWrapper = ({links, children, ref} : PageWrapperProps) => {
           name="twitter:image"
           content="/images/anasnejmi-og.webp"
         />
-        <link rel="canonical" href="https://www.anasnejmi.com/about"/>
+        {/* <link rel="canonical" href="https://www.anasnejmi.com/about"/> */}
         <link rel="shortcut icon" href="/static/favicon.ico" />
       </Head>
 

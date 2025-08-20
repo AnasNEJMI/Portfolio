@@ -2,8 +2,8 @@ import React, { useRef } from 'react'
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import Link from 'next/link';
-import { map, mapRounded } from '@/utils/utils';
-import { Copy, MoveDownLeft, MoveDownRight } from 'lucide-react';
+import { map, mapRounded } from '@/lib/helpers';
+import { Copy, MoveDownLeft } from 'lucide-react';
 import MagneticButton from '../magnetic-button/magnetic-button';
 import logo from '@/../public/images/logo.png';
 import Image from 'next/image';
@@ -274,7 +274,7 @@ const Contact = () => {
         }
     }, {scope : containerRef});
   return (
-    <footer ref = {containerRef} className = "section px-nav pb-nav pt-[calc(var(--padding-nav)*1.8)] text-white w-full relative z-30  flex flex-col items-center justify-start bg-black overflow-hidden">
+    <footer ref = {containerRef} className = "section px-nav pb-nav pt-[calc(var(--padding-nav)*3.6)] text-white w-full relative z-30  flex flex-col items-center justify-start bg-black overflow-hidden">
       <svg className='curve w-full aspect-[3/2] absolute top-0 left-0 z-10 origin-top drop-shadow-2xl' viewBox="0 0 100 100" preserveAspectRatio="none">
             <path d = "m0 0h100v100Q50 0 0 100Z" className = "fill-white z-50"></path>
       </svg>

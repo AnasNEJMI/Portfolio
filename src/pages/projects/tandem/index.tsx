@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import Contact from "../../../components/contact";
 import PageWrapper from '../../../components/page-wrapper'
 import { Separator } from '@/components/ui/separator';
-import { ProjectsData } from '@/utils/utils';
+import { ProjectsData } from '@/lib/data';
 import MagneticButton from '@/components/magnetic-button/magnetic-button';
 import GithubLogo from '@/components/logos/github/logo'
 import PhoneDisplay from '@/components/phone-display';
@@ -97,10 +97,6 @@ const TandemPage = () => {
                 href : "/",
             },
             {
-                label : "Parcours",
-                href : "/about",
-            },
-            {
                 label : "Projets",
                 href : "/projects",
             },
@@ -186,10 +182,10 @@ const TandemPage = () => {
                     className='phone-element-1'
                     ref = {phoneDisplayRef1}
                     title = {data.title}
-                    src={data.phoneDisplay1.src}
-                    width={data.phoneDisplay1.width}
-                    height={data.phoneDisplay1.height}
-                    type={data.phoneDisplay1.type}
+                    src={data.phoneDisplays[0].src}
+                    width={data.phoneDisplays[0].width}
+                    height={data.phoneDisplays[0].height}
+                    type={data.phoneDisplays[0].type}
                 />
                 
                 <div className='flex-1 flex flex-col justify-center'>
@@ -242,10 +238,10 @@ const TandemPage = () => {
                     className='phone-element-2'
                     ref={phoneDisplayRef2}
                     title = {data.title}
-                    src={data.phoneDisplay2.src}
-                    width={data.phoneDisplay2.width}
-                    height={data.phoneDisplay2.height}
-                    type={data.phoneDisplay2.type}
+                    src={data.phoneDisplays[1].src}
+                    width={data.phoneDisplays[1].width}
+                    height={data.phoneDisplays[1].height}
+                    type={data.phoneDisplays[1].type}
                     />
             </div>
         </section>

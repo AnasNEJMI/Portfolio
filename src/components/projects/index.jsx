@@ -5,7 +5,7 @@ import gsap from 'gsap';
 import ProjectCard from '@/components/project-card/project-card';
 import MagneticButton from '../magnetic-button/magnetic-button'
 import { ScrollTrigger } from 'gsap/all';
-import { ProjectsData } from '@/utils/utils';
+import { ProjectsData } from '@/lib/data';
 
 const HomeProjects = () => {
   const containerRef = useRef(null);
@@ -63,7 +63,7 @@ const HomeProjects = () => {
             ))
           }
         </div>
-        <div className='flex items-center justify-center'>
+        {/* <div className='flex items-center justify-center'>
           <div className=' mt-16 md:24'>
             <MagneticButton>
               <Link scroll= {false} href={'/projects'}>
@@ -72,7 +72,7 @@ const HomeProjects = () => {
             </MagneticButton>
 
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   )

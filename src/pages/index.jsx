@@ -15,8 +15,8 @@ import HorizontalNavMagneticLink from "@/components/horizontal_nav_magnetic_link
 import localFont from 'next/font/local';
 import HomeAbout from "@/components/home/about";
 import Contact from "@/components/contact";
-import HomeProjects from "@/components/projects/projects";
-import { mapRounded } from "@/utils/utils";
+import HomeProjects from "@/components/projects";
+import { mapRounded } from "@/lib/helpers";
 import Head from "next/head";
 import logo from "@/../public/images/logo.png"
 import HomeShapesTransition from "@/components/home/shapes-transition";
@@ -304,7 +304,7 @@ export default function Home() {
           name="twitter:image"
           content="/images/anasnejmi-og.webp"
         />
-        <link rel="canonical" href="https://www.anasnejmi.com/about"/>
+        {/* <link rel="canonical" href="https://www.anasnejmi.com/about"/> */}
         <link rel="shortcut icon" href="/static/favicon.ico" />
       </Head>
 

@@ -5,7 +5,7 @@ import { useOverlayTitle } from '@/contexts/overlay_title_context';
 import { useRouter } from 'next/router';
 import { useVerticalNavState } from '@/contexts/vertical_nav_state_context';
 import { useFirstLoad } from '@/contexts/first_load_context';
-import { PathNames } from '@/utils/utils';
+import { Routes } from '@/lib/routes';
 import { Toaster } from '../ui/sonner';
 
 const PageTransitionHandler = ({ children }) => {
@@ -18,7 +18,7 @@ const PageTransitionHandler = ({ children }) => {
 
     useGSAP(() => {
       //only play the exit animation if the next page is different from the current one
-      const currentRoute = PathNames[router.pathname];
+      const currentRoute = Routes[router.pathname];
 
       //change the title of the overlay depending on the current route
       setOverlayTitle(currentRoute);

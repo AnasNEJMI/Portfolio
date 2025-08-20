@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/all'
 import Image from 'next/image'
 import React, { useRef } from 'react'
 import imaginationSVG from '@/../public/images/imagination.svg'
+import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 
 const designText = "◆ Polyvalant ⟡◆⟡ Autonome ⟡◆ Rigoureux ⟡◆⟡ Créatif ⟡◆ Curieux ⟡◆⟡ Méthodique  ⟡"
 const ImaginationAnim = () => {
@@ -37,12 +38,12 @@ const ImaginationAnim = () => {
     <div ref={containerRef} className='flex items-start justify-center w-full max-w-xl'>
         <div ref = {imagesRef} style={{transformStyle : 'preserve-3d'}} className='relative w-[75%] aspect-[2/3]'>
             <div ref = {imageContainerRef}  className='relative w-full h-full flex items-center justify-center overflow-hidden'>
-                <Image
-                    className='max-w-lg '
-                    alt={'image'}
-                    fill = {true}
-                    src={imaginationSVG}
-                />
+                <DotLottieReact
+                src="images/avatar-anim-2.lottie"
+                loop
+                autoplay
+                className=''
+            />
             </div>
 
             <div style={{transformStyle : 'preserve-3d', transform : 'translateX(-50%) translateY(-50%) rotateY(25deg) rotateX(45deg)'}} className='w-[135%] aspect-square absolute left-1/2 top-1/2 bg-transparent flex items-center justify-center overflow-hidden'>

@@ -1,34 +1,9 @@
-export function mapRounded(value : number, min1 : number, max1 : number, min2 : number, max2 : number) {
-    return Math.round(min2 + (max2 - min2) * ((value - min1) / (max1 - min1)));
-}
-
-export function map(value : number, min1 : number, max1 : number, min2 : number, max2 : number) {
-    const result = min2 + (max2 - min2) * ((value - min1) / (max1 - min1));
-    // if(result < min2) return min2;
-    // if(result > max2) return max2;
-    return result;
-}
-
-export const delay = (duration : number) => {
-  return new Promise(resolve => setTimeout(resolve, duration));
-}
-
-export const PathNames : Record<string, string> = {
-    "/": "Bienvenue !",
-    "/about": "Mon Parcours",
-    "/projects": "Mes Projets",
-    "/contact": "Contact",
-    "/projects/feetme" : "FeetMe",
-    "/projects/tandem" : "Tandem",
-}
-
 interface ProjectsDataType{
     href : string,
     title : string, 
     description : string,
     banner : {src : string, width : number, height : number,  type : 'image' | 'video'},
-    phoneDisplay1 : {src : string, width : number, height : number, type : 'image' | 'video'},
-    phoneDisplay2 : {src : string, width : number, height : number,  type : 'image' | 'video'},
+    phoneDisplays : {src : string, width : number, height : number, type : 'image' | 'video'}[],
     bigScreenSrc? : string,
     laptopSrc? : string,
     category : string,
@@ -55,18 +30,19 @@ export const ProjectsData : Record<string, ProjectsDataType> = {
                     height : 900,
                     type : 'image'
                     },
-        phoneDisplay1 : {
-                    src : '/images/feetme/feetme-1.webp',
-                    width : 371,
-                    height : 850,
-                    type : 'image'
-                    },
-        phoneDisplay2 : {
-                    src : '/images/feetme/feetme-2.webp',
-                    width : 373,
-                    height : 845,
-                    type : 'image'
-                    },
+        phoneDisplays : [
+            {
+                src : '/images/feetme/feetme-1.webp',
+                width : 371,
+                height : 850,
+                type : 'image'
+            },
+            {
+                src : '/images/feetme/feetme-2.webp',
+                width : 373,
+                height : 845,
+                type : 'image'
+            }],
         startDate : "11/09/2015",
         stack : ['Android', 'Java', 'SQlite', 'WebGL', 'Multi-Threading', 'OKHttp', 'XML'],
         tech : [
@@ -110,18 +86,19 @@ export const ProjectsData : Record<string, ProjectsDataType> = {
                     height : 900,
                     type : 'image'
                     },
-        phoneDisplay1 : {
-                    src : '/videos/tandem/tandem-video-1.mp4',
-                    width : 410,
-                    height : 912,
-                    type : 'video'
-                    },
-        phoneDisplay2 : {
-                    src : '/videos/tandem/tandem-video-2.mp4',
-                    width : 410,
-                    height : 912,
-                    type : 'video'
-                    },
+        phoneDisplays : [
+            {
+                src : '/videos/tandem/tandem-video-1.mp4',
+                width : 410,
+                height : 912,
+                type : 'video'
+            },
+            {
+                src : '/videos/tandem/tandem-video-2.mp4',
+                width : 410,
+                height : 912,
+                type : 'video'
+            }],
         bigScreenSrc :'/images/tandem/tandem-big-screen.webp',
         laptopSrc :'/images/tandem/tandem-laptop.webp',
         duration : "4 Mois",
@@ -161,6 +138,46 @@ export const ProjectsData : Record<string, ProjectsDataType> = {
                         },
 
                     ]
+    },
+    "sidra": {
+        href : 'sidra',
+        title : 'Sidra',
+        description : "J'ai conçu et développé le site web de Sidra, une agence de design et de branding, en mettant l'accent sur une présentation claire et élégante. L'expérience utilisateur est portée par des animations fluides et dynamiques réalisées avec GSAP, qui donnent vie aux contenus tout en conservant une navigation intuitive.",
+        category : 'Site Vitrine',
+        color : '#4f46e5',
+        banner : {
+                    src : '/images/sidra/sidra-banner.png',
+                    width : 1500,
+                    height : 963,
+                    type : 'image'
+                    },
+        phoneDisplays : [
+                    {
+                        src : '/videos/sidra/sidra-phone-1.mp4',
+                        width : 414,
+                        height : 862,
+                        type : 'video'
+                    },
+                    {
+                        src : '/videos/sidra/sidra-phone-3.mp4',
+                        width : 414,
+                        height : 862,
+                        type : 'video'
+                    },
+                    {
+                        src : '/videos/sidra/sidra-phone-2.mp4',
+                        width : 414,
+                        height : 862,
+                        type : 'video'
+                    }],
+        bigScreenSrc :'/images/sidra/sidra-big-screen.png',
+        laptopSrc :'/images/sidra/sidra-laptop.png',
+        duration : "4 Mois",
+        startDate : '21/06/2025',
+        githubRepo : "",
+        stack : ['NextJS', 'GSAP', 'Shadcn UI', 'Typescript', 'TailwindCSS'],
+        tech : [],
+        features : []
     },
 }
 

@@ -1,12 +1,14 @@
 import React, { useRef } from 'react'
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Image from 'next/image';
-import avatar from '@/../public/images/avatar.svg'
 import ParisSVG from '@/components/paris-svg';
 import NextSVG from '../../logos/next/logo';
 import ReactRouterSVG from '../../logos/react-router/logo';
+import TailwindSVG from '../../logos/tailwind/logo';
+import GsapSVG from '../../logos/gsap';
+import ShadcnSVG from '../../logos/shadcn';
+import ScssSVG from '../../logos/scss';
+import FramerSVG from '../../logos/framer';
 import ViteSVG from '../../logos/vite/logo';
 import LaravelSVG from '../../logos/laravel/logo';
 import TypescriptSVG from '../../logos/typescript/logo';
@@ -43,7 +45,7 @@ const languages = [
     },
 ]
 
-const Frameworks = [
+const frameworks = [
     {
         svg : ReactRouterSVG,
         label : 'React Router',
@@ -62,6 +64,29 @@ const Frameworks = [
     },
 ]
 
+const ui = [
+    {
+        svg : TailwindSVG,
+        label : 'TailwindCSS',
+    },
+    {
+        svg : ShadcnSVG,
+        label : 'Shadcn UI',
+    },
+    {
+        svg : ScssSVG,
+        label : 'SCSS',
+    },
+    {
+        svg : GsapSVG,
+        label : 'GSAP',
+    },
+    {
+        svg : FramerSVG,
+        label : 'Framer',
+    },
+]
+
 const HomeHero = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const openStackBtnRef = useRef<HTMLButtonElement>(null);
@@ -69,48 +94,6 @@ const HomeHero = () => {
     const stackRevealState = useRef<'opening' | 'open' | 'closing' | 'closed'>('closed');
 
     useGSAP((context, contextSafe) => {
-        // let mm = gsap.matchMedia();
-
-        // mm.add("(min-width: 768px)", () => {
-
-        //     const devTranslateY = gsap.quickSetter(".dev", "yPercent");
-        //     const fullStackTranslateY = gsap.quickSetter(".full-stack", "yPercent");
-        //     const passionedTranslateY = gsap.quickSetter(".passioned", "yPercent");
-        //     const authenticTranslateY = gsap.quickSetter(".authentic", "yPercent");
-        //     const rigorousTranslateY = gsap.quickSetter(".rigorous", "yPercent");
-        //     const parisSVGTranslateY = gsap.quickSetter(".paris-svg", "yPercent");
-        //     const maskRevealBtnTranslateY = gsap.quickSetter(".mask-reveal-btn", "yPercent");
-    
-    
-        //     devTranslateY(0);
-        //     fullStackTranslateY(0);
-        //     passionedTranslateY(0);
-        //     authenticTranslateY(0);
-        //     rigorousTranslateY(0);
-        //     parisSVGTranslateY(0);
-        //     maskRevealBtnTranslateY(0);
-    
-        //     ScrollTrigger.create({
-        //         trigger: containerRef.current,
-        //         start: "top top",
-        //         end: "bottom top",
-        //         scrub: 0.5,
-        //         ease : "power3.out",
-        //         onUpdate : (self) => {
-        //             devTranslateY(self.progress * 120);
-        //             fullStackTranslateY(self.progress * 120);
-        //             passionedTranslateY(self.progress * 500);
-        //             authenticTranslateY(self.progress * 500);
-        //             rigorousTranslateY (self.progress * 500);
-        //             parisSVGTranslateY (self.progress *200);
-        //             maskRevealBtnTranslateY(self.progress *200)
-        //         }   
-        //     });
-
-        //     return () => {
-        //         ScrollTrigger.killAll();
-        //     }
-        // });
 
         const salutationYSetter = gsap.quickSetter(".salutations", "yPercent");
 
@@ -128,9 +111,6 @@ const HomeHero = () => {
             const centerX = (openStackBtnRef.current.offsetLeft + openStackBtnRef.current.clientWidth/2)*100/window.innerWidth
             const centerY = (openStackBtnRef.current.offsetTop + openStackBtnRef.current.clientHeight/2)*100/window.innerHeight;
 
-            console.log('centerX ', centerX, ' centerY', centerY)
-
-            const stackRevealAnimDur = 1.9; 
             const stackRevealTl = gsap.timeline({paused: true});
             stackRevealTl.addLabel('start', 0);
             stackRevealTl.set('.stack-wrapper', {clipPath : `circle(0% at ${centerX}% ${centerY}%)`}, 'start')
@@ -138,16 +118,24 @@ const HomeHero = () => {
             stackRevealTl.fromTo(openStackBtnRef.current, {scale : 1}, {scale : 0, duration : 0.5, ease : 'back.in'}, 'start');
             stackRevealTl.to('.stack-wrapper ', {clipPath : `circle(150% at ${centerX}% ${centerY}%)`, duration: 1.5, ease : 'expo.out'}, 'start+=0.5')
             stackRevealTl.fromTo('.languages-title', {opacity : 0, y : 20}, {opacity : 1, y : 0, duration : 0.5, ease : 'power3.out'}, 'start+=1.1');
-            stackRevealTl.fromTo('.frameworks-title', {opacity : 0, y : 20}, {opacity : 1, y : 0, duration : 0.5, ease : 'power3.out'}, 'start+=1.1');
+            stackRevealTl.fromTo('.frameworks-title', {opacity : 0, y : 20}, {opacity : 1, y : 0, duration : 0.5, ease : 'power3.out'}, 'start+=1.2');
+            stackRevealTl.fromTo('.ui-title', {opacity : 0, y : 20}, {opacity : 1, y : 0, duration : 0.5, ease : 'power3.out'}, 'start+=1.3');
 
             const languageEls = gsap.utils.toArray('.languages-el');
             languageEls.forEach((el, index) => {
                 stackRevealTl.fromTo(el as gsap.TweenTarget, {opacity : 0, y : 30}, {opacity : 1, y : 0, duration : 0.5, ease : 'power3.out'}, `start+=${1.1+0.05*index}`);
             });
+
             const frameworkEls = gsap.utils.toArray('.frameworks-el');
             frameworkEls.forEach((el, index) => {
-                stackRevealTl.fromTo(el as gsap.TweenTarget, {opacity : 0, y : 30}, {opacity : 1, y : 0, duration : 0.5, ease : 'power3.out'}, `start+=${1.1+0.05*index}`);
+                stackRevealTl.fromTo(el as gsap.TweenTarget, {opacity : 0, y : 30}, {opacity : 1, y : 0, duration : 0.5, ease : 'power3.out'}, `start+=${1.2+0.05*index}`);
             });
+
+            const uiEls = gsap.utils.toArray('.ui-el');
+            uiEls.forEach((el, index) => {
+                stackRevealTl.fromTo(el as gsap.TweenTarget, {opacity : 0, y : 30}, {opacity : 1, y : 0, duration : 0.5, ease : 'power3.out'}, `start+=${1.3+0.05*index}`);
+            });
+
             stackRevealTl.fromTo(closeStackBtnRef.current, {scale : 0}, {scale : 1, duration : 0.5, ease : 'back.out'}, 'start+=1.5');
 
 
@@ -202,7 +190,6 @@ const HomeHero = () => {
         
         
         return () => {
-            // mm.revert();
             salutationsTl.revert();
             openStackBtnRef.current?.removeEventListener('click', context.onOpenStack)
             closeStackBtnRef.current?.removeEventListener('click', context.onCloseStack)
@@ -213,14 +200,14 @@ const HomeHero = () => {
 
   return (
     <section ref={containerRef} className='section relative z-10 h-svh-screen pt-[144px] w-full flex items-center justify-start gap-8 flex-col overflow-hidden px-nav pb-nav bg-white'>
-        <div style = {{clipPath : 'circle(0% at 0 100%)'}}className='stack-wrapper absolute top-0 left-0 w-full h-full bg-zinc-900  z-20 pointer-events-none pt-[120px] md:pt-60 flex items-center justify-start flex-col px-nav gap-16 pb-nav'>
-            <div className='flex w-full flex-col items-start justify-start md:justify-evenly max-w-7xl gap-8 lg:gap-16'>
+        <div style = {{clipPath : 'circle(0% at 0 100%)'}}className='stack-wrapper absolute top-0 left-0 w-full h-full bg-zinc-900  z-20 pointer-events-none pt-[120px] md:pt-48 flex items-center justify-start flex-col px-nav gap-16 pb-nav'>
+            <div className='flex w-full flex-col items-start justify-start md:justify-evenly max-w-7xl gap-12 lg:gap-16'>
                 <div className='flex max-w-7xl w-full gap-4 md:gap-8 md:flex-row flex-col'>
-                    <span className='languages-title text-white font-secondary font-bold text-h5 md:text-h4 lg:text-h3'>Languages</span>
-                    <div className='grid grid-cols-4 xl:grid-cols-5 gap-2 md:gap-4'>
+                    <span className='languages-title text-white font-secondary font-bold text-h5 md:text-h4 lg:text-h3 md:w-48 lg:w-64'>Languages</span>
+                    <div className='grid grid-cols-4 sm:grid-cols-5 gap-2 md:gap-4'>
                     {
                         languages.map((language, index) => (
-                            <div key={index} className='languages-el md:p-8 rounded-xl w-full max-w-36 aspect-square bg-white flex items-center justify-center flex-col gap-2 text-zinc-900 font-primary font-bold text-caption md:text-body'>
+                            <div key={index} className='languages-el md:p-8 rounded-xl w-full max-w-36 aspect-square bg-white flex items-center justify-center flex-col gap-2 text-zinc-900 font-primary font-bold text-tiny xs:text-caption md:text-body'>
                                 <language.svg/>
                                 {language.label}
                             </div>
@@ -230,13 +217,27 @@ const HomeHero = () => {
                     </div>
                 </div>
                 <div className='flex max-w-7xl w-full gap-4 md:gap-8 md:flex-row flex-col'>
-                    <span className='frameworks-title text-white font-secondary font-bold text-h5 md:text-h4 lg:text-h3'>Frameworks</span>
-                    <div className='grid grid-cols-4 xl:grid-cols-5 gap-2 md:gap-4'>
+                    <span className='frameworks-title text-white font-secondary font-bold text-h5 md:text-h4 lg:text-h3 md:w-48 lg:w-64'>Frameworks</span>
+                    <div className='grid grid-cols-4 sm:grid-cols-5 gap-2 md:gap-4'>
                         {
-                            Frameworks.map((franework, index) => (
-                                <div key={index} className='frameworks-el w-full max-w-36 aspect-square md:p-8 rounded-xl bg-white flex items-center justify-center flex-col gap-2 text-zinc-900 font-primary font-bold text-nowrap text-caption md:text-body'>
-                                    <franework.svg/>
-                                    {franework.label}
+                            frameworks.map((framework, index) => (
+                                <div key={index} className='frameworks-el w-full max-w-36 aspect-square md:p-8 rounded-xl bg-white flex items-center justify-center flex-col gap-2 text-zinc-900 font-primary font-bold text-nowrap text-tiny xs:text-caption md:text-body'>
+                                    <framework.svg/>
+                                    {framework.label}
+                                </div>
+
+                            ))
+                        }
+                    </div>
+                </div>
+                <div className='flex max-w-7xl w-full gap-4 md:gap-8 md:flex-row flex-col'>
+                    <span className='ui-title text-white font-secondary font-bold text-h5 md:text-h4 lg:text-h3 md:w-48 lg:w-64'>UI</span>
+                    <div className='grid grid-cols-4 sm:grid-cols-5 gap-2 md:gap-4'>
+                        {
+                            ui.map((ui, index) => (
+                                <div key={index} className='ui-el w-full max-w-36 aspect-square md:p-8 rounded-xl bg-white flex items-center justify-center flex-col gap-2 text-zinc-900 font-primary font-bold text-nowrap text-tiny xs:text-caption md:text-body'>
+                                    <ui.svg/>
+                                    {ui.label}
                                 </div>
 
                             ))
@@ -280,7 +281,7 @@ const HomeHero = () => {
         </div>
         <div className='w-full aspect-[6/4] max-w-[500px] lg:hidden grow flex items-center justify-center'>
              <DotLottieReact
-                src="images/avatar-anim2.lottie"
+                src="images/avatar-anim-1.lottie"
                 loop
                 autoplay
                 className='w-full aspect-[6/4]'
@@ -307,7 +308,7 @@ const HomeHero = () => {
 
             <div className='w-full aspect-[6/4] max-w-[600px] hidden lg:block'>
                 <DotLottieReact
-                    src="images/avatar-anim2.lottie"
+                    src="images/avatar-anim-1.lottie"
                     loop
                     autoplay
                     className='w-full aspect-[6/4]'

@@ -80,6 +80,8 @@ const MagneticMenuIcon = () => {
             containerElement?.addEventListener("mousemove", context.onBtnMove);
             containerElement?.addEventListener("mouseleave", context.onBtnLeave);
 
+            
+
             //   on big screens show the menu only once we leave the top of the page
             ScrollTrigger.create({
                 trigger : document.documentElement,
@@ -94,11 +96,25 @@ const MagneticMenuIcon = () => {
                     scaleYContainerTo(1);
                 }
             });
+
+
+            var lastScrollTop = 0;
+            const onScroll = () => {
+                var st = window.pageYOffset || document.documentElement.scrollTop;
+                if (st > lastScrollTop) {
+                    setIsVerticalNavOpen(false);
+                }
+                lastScrollTop = st <= 0 ? 0 : st;
+            }
+
+            context.add('onScroll', onScroll)
+            window.addEventListener('scroll', context.onScroll);
             
             return () => {
                 ScrollTrigger.getAll().forEach(trigger => trigger.kill());
                 containerElement?.removeEventListener("mousemove", context.onBtnMove);
                 containerElement?.removeEventListener("mouseleave", context.onBtnLeave);
+                window.removeEventListener('scroll', context.onScroll);
             }
         });
         

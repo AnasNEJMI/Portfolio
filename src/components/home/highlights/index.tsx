@@ -1,4 +1,4 @@
-import { highlights } from '@/utils/utils'
+import { highlights } from '@/lib/data'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import React, { useRef } from 'react'

@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import Contact from "../../../components/contact";
 import PageWrapper from '../../../components/page-wrapper'
 import { Separator } from '@/components/ui/separator';
-import { ProjectsData } from '@/utils/utils';
+import { ProjectsData } from '@/lib/data';
 import MagneticButton from '@/components/magnetic-button/magnetic-button';
 import GithubLogo from '@/components/logos/github/logo'
 import PhoneDisplay from '@/components/phone-display';
@@ -43,7 +43,6 @@ const FeetMePage = () => {
         }
         
         const stackElements = gsap.utils.toArray<HTMLDivElement>('.stack-element');
-        console.log(stackElements.length);
         stackElements.forEach((el, i) => {
             gsap.set(el, {y : 100});
             gsap.fromTo(el, {y : 100}, {y : 0, delay : i*0.2, scrollTrigger : {
@@ -89,10 +88,6 @@ const FeetMePage = () => {
             {
                 label : "Acceuil",
                 href : "/",
-            },
-            {
-                label : "Parcours",
-                href : "/about",
             },
             {
                 label : "Projets",
@@ -180,10 +175,10 @@ const FeetMePage = () => {
                     className='phone-element-1 max-w-xs'
                     ref = {phoneDisplayRef1}
                     title = {data.title}
-                    src={data.phoneDisplay1.src}
-                    width={data.phoneDisplay1.width}
-                    height={data.phoneDisplay1.height}
-                    type={data.phoneDisplay1.type}
+                    src={data.phoneDisplays[0].src}
+                    width={data.phoneDisplays[0].width}
+                    height={data.phoneDisplays[0].height}
+                    type={data.phoneDisplays[0].type}
                 />
                 
                 <div className='flex-1 max-w-xl flex flex-col justify-center'>
@@ -236,10 +231,10 @@ const FeetMePage = () => {
                     className='phone-element-2 max-w-xs'
                     ref={phoneDisplayRef2}
                     title = {data.title}
-                    src={data.phoneDisplay2.src}
-                    width={data.phoneDisplay2.width}
-                    height={data.phoneDisplay2.height}
-                    type={data.phoneDisplay2.type}
+                    src={data.phoneDisplays[1].src}
+                    width={data.phoneDisplays[1].width}
+                    height={data.phoneDisplays[1].height}
+                    type={data.phoneDisplays[1].type}
                     />
             </div>
         </section>
