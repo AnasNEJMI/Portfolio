@@ -300,7 +300,7 @@ export default function Projects() {
           <h1 className="font-secondary font-black text-h1 mt-4">Mes Projects</h1>
           <Separator className="mt-4 mb-16"/>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2  gap-4 w-full max-w-7xl px-nav mb-48">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-7xl px-nav mb-48">
           {
             Object.values(ProjectsData).map((project, index) => (
               <ProjectCard
