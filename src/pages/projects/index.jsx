@@ -311,12 +311,20 @@ export default function Projects() {
                 src={project.banner.src}
                 width={project.banner.width}
                 height={project.banner.height}
+                color={project.color}
               />
             ))
           }
         </div>
       </section>
       <Contact/>
+      <svg viewBox="0 0 100 100" width="0" height="0">
+          <defs>
+              <clipPath id="project-card-clip" className='project-card-icon-clip' clipPathUnits="objectBoundingBox">
+                  <path d="M.5 0C1 0 1 0 1 .5 1 1 1 1 .5 1 0 1 0 1 0 .5 0 0 0 0 .5 0Z"></path>
+              </clipPath>
+          </defs>
+      </svg>
     </main>
   );
 }

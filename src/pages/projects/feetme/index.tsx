@@ -25,68 +25,62 @@ const FeetMePage = () => {
     useGSAP(() => {
         const mm = gsap.matchMedia();
 
-        mm.add('(min-width : 768px)', () => {
-            gsap.fromTo('.hero', {y : 0}, {y :  100, scrollTrigger : {
+        gsap.fromTo('.hero', {y : 0}, {y :  100, scrollTrigger : {
+            trigger : '.hero',
+            start : 'top top',
+            end : '+=100%',
+            scrub : true,
+        }})
+
+        if(data.githubRepo){
+            gsap.set('.github-btn', {y : 0});
+            gsap.fromTo('.github-btn', {y : 50}, {y : 10, scrollTrigger : {
                 trigger : '.hero',
                 start : 'top top',
-                end : '+=100%',
-                scrub : true,
-            }})
-
-            if(data.githubRepo){
-                gsap.set('.github-btn', {y : 0});
-                gsap.fromTo('.github-btn', {y : 50}, {y : 10, scrollTrigger : {
-                    trigger : '.hero',
-                    start : 'top top',
-                    end : 'bottom top',
-                    scrub : true,
-                }})
-            }
-            
-            const stackElements = gsap.utils.toArray<HTMLDivElement>('.stack-element');
-            console.log(stackElements.length);
-            stackElements.forEach((el, i) => {
-                gsap.set(el, {y : 100});
-                gsap.fromTo(el, {y : 100}, {y : 0, delay : i*0.2, scrollTrigger : {
-                    trigger : el,
-                    start : 'top bottom',
-                    end : 'center center',
-                    scrub : true,
-                }})
-            })
-            gsap.set('.stack', {y : 50});
-            gsap.fromTo('.phone-element-1', {y : 300}, {y : 0, scrollTrigger : {
-                trigger : '.stack',
-                start : 'top bottom',
                 end : 'bottom top',
                 scrub : true,
             }})
-
-            const featuresElements = gsap.utils.toArray<HTMLDivElement>('.features-element');
-            featuresElements.forEach((el, i) => {
-                gsap.set(el, {y : 100});
-                gsap.fromTo(el, {y : 100}, {y : 0, delay : i*0.2, scrollTrigger : {
-                    trigger : el,
-                    start : 'top bottom',
-                    end : 'center center',
-                    scrub : true,
-                }})
-            })
-            gsap.set('.features', {y : 50});
-            gsap.fromTo('.phone-element-2', {y : 300}, {y : -100, scrollTrigger : {
-                trigger : '.features',
+        }
+        
+        const stackElements = gsap.utils.toArray<HTMLDivElement>('.stack-element');
+        console.log(stackElements.length);
+        stackElements.forEach((el, i) => {
+            gsap.set(el, {y : 100});
+            gsap.fromTo(el, {y : 100}, {y : 0, delay : i*0.2, scrollTrigger : {
+                trigger : el,
                 start : 'top bottom',
-                end : 'bottom top',
+                end : 'center center',
                 scrub : true,
             }})
-
-            return () => {
-                ScrollTrigger.killAll();
-            }
         })
+        gsap.set('.stack', {y : 50});
+        gsap.fromTo('.phone-element-1', {y : 300}, {y : 0, scrollTrigger : {
+            trigger : '.stack',
+            start : 'top bottom',
+            end : 'bottom top',
+            scrub : true,
+        }})
+
+        const featuresElements = gsap.utils.toArray<HTMLDivElement>('.features-element');
+        featuresElements.forEach((el, i) => {
+            gsap.set(el, {y : 100});
+            gsap.fromTo(el, {y : 100}, {y : 0, delay : i*0.2, scrollTrigger : {
+                trigger : el,
+                start : 'top bottom',
+                end : 'center center',
+                scrub : true,
+            }})
+        })
+        gsap.set('.features', {y : 50});
+        gsap.fromTo('.phone-element-2', {y : 300}, {y : -100, scrollTrigger : {
+            trigger : '.features',
+            start : 'top bottom',
+            end : 'bottom top',
+            scrub : true,
+        }})
 
         return () => {
-            mm.revert();
+            ScrollTrigger.killAll();
         }
     }, {scope : containerRef})
   return (
@@ -154,7 +148,7 @@ const FeetMePage = () => {
             </section>
         }
 
-        <section className='relative section w-full aspect-square md:aspect-video flex flex-col items-center bg-white mt-24 mb-24 md:mb-0'>
+        <section style={{backgroundColor : data.color}} className='relative section w-full max-h-screen aspect-square md:aspect-video flex flex-col items-center justify-center mt-24 mb-24 md:mb-0'>
             <Image
             src={data.banner.src}
             alt={`project ${data.title} banner image`}
@@ -181,9 +175,9 @@ const FeetMePage = () => {
         }
 
         <section className='section stack flex flex-col items-center bg-white w-full mt-0 mb-48 lg:my-48'>
-            <div className='w-full max-w-7xl px-nav flex flex-col items-center lg:flex-row gap-28 md:gap-16'>
+            <div className='w-full max-w-7xl px-nav flex flex-col items-center justify-center lg:flex-row gap-28 md:gap-16'>
                 <PhoneDisplay
-                    className='phone-element-1'
+                    className='phone-element-1 max-w-xs'
                     ref = {phoneDisplayRef1}
                     title = {data.title}
                     src={data.phoneDisplay1.src}
@@ -192,14 +186,14 @@ const FeetMePage = () => {
                     type={data.phoneDisplay1.type}
                 />
                 
-                <div className='flex-1 flex flex-col justify-center'>
+                <div className='flex-1 max-w-xl flex flex-col justify-center'>
                     <h2 className='stack-element font-secondary font-light text-h5'>Stack technique</h2>
                     <Separator className='stack-element'/>
                     {
                         data.tech.map((t, index) => (
                             <div key={index}>
                                 <div className='stack-element mt-8 font-primary flex items-center justify-center gap-4'>
-                                    <span className='py-2 px-4 w-28 md:w-32 text-center h-min bg-zinc-900 text-white rounded-full font-bold text-h6'>{Object.keys(t)[0]}</span>
+                                    <span className='py-2 px-4 w-28 md:w-32 text-center h-min bg-zinc-900 text-white rounded-full font-bold text-body'>{Object.keys(t)[0]}</span>
                                     <span className='flex-1 font-medium'>{Object.values(t)[0]}</span>
                                 </div>
                                 <Separator className='stack-element my-4'/>
@@ -216,8 +210,8 @@ const FeetMePage = () => {
             </section>
         }
         <section className='section features flex flex-col items-center bg-white w-full mt-0 mb-48 lg:my-48'>
-            <div className='w-full max-w-7xl px-nav flex flex-col items-center lg:flex-row gap-28 md:gap-16'>
-                <div className='flex-1 flex flex-col justify-center'>
+            <div className='w-full max-w-7xl px-nav flex flex-col-reverse items-center justify-center lg:flex-row gap-28 md:gap-16'>
+                <div className='flex-1 flex flex-col justify-center max-w-xl'>
                     <h2 className='features-element font-secondary font-light text-h5'>Fonctionnalités</h2>
                     <Separator className='features-element'/>
                     {
@@ -239,7 +233,7 @@ const FeetMePage = () => {
                     }
                 </div>
                 <PhoneDisplay
-                    className='phone-element-2'
+                    className='phone-element-2 max-w-xs'
                     ref={phoneDisplayRef2}
                     title = {data.title}
                     src={data.phoneDisplay2.src}

@@ -20,10 +20,9 @@ const AboutComptences = () => {
         
         
         mm.add('(min-width : 768px)', () => {
-            const timeline = gsap.timeline({paused : true, repeat : -1});
             const elements = gsap.utils.toArray<HTMLDivElement>('.comp-element');
             elements.forEach((el, i) => {
-                timeline.fromTo(el, {y : 100}, {y : 0, delay : i*0.15, scrollTrigger : {
+                gsap.fromTo(el, {y : 100}, {y : 0, delay : i*0.15, scrollTrigger : {
                     trigger : el,
                     start : 'top bottom',
                     end : 'top top',
@@ -50,8 +49,8 @@ const AboutComptences = () => {
                     <span className="font-bold text-h5">Languages</span>
                     </div>
                     <div className="py-16 border border-zinc-200 flex items-center justify-center flex-col gap-2">
-                    <PhpSVG/>
-                    PHP
+                        <PhpSVG/>
+                        PHP
                     </div>
                     <div className="py-16 border border-zinc-200 flex items-center justify-center flex-col gap-2">
                     <TypescriptSVG/>

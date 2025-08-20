@@ -3,30 +3,35 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import Link from 'next/link';
 import { map, mapRounded } from '@/utils/utils';
+import { Copy, MoveDownLeft, MoveDownRight } from 'lucide-react';
+import MagneticButton from '../magnetic-button/magnetic-button';
+import logo from '@/../public/images/logo.png';
+import Image from 'next/image';
+import { toast } from 'sonner';
 
 const Contact = () => {
     let containerRef = useRef(null);
     let linkRef = useRef(null);
 
     useGSAP((context, contextSafe) => {
-        gsap.from('.title', {xPercent : 50, scrollTrigger : {
+        gsap.from('.title', {xPercent : -50, scrollTrigger : {
             trigger : containerRef.current,
             start : "top bottom",
-            end : "top top",
+            end : "bottom bottom",
             scrub : true
           }});
 
-        gsap.from('.title-2', {xPercent : 50, scrollTrigger : {
+        gsap.from('.title-2', {xPercent : -50, scrollTrigger : {
           trigger : containerRef.current,
           start : "top bottom",
-          end : "top top",
+          end : "bottom bottom",
           scrub : true
         }});
     
         gsap.fromTo('.clipped-title', {clipPath : 'inset(0 0 0 0)'}, {clipPath : 'inset(0 100% 0 0)', scrollTrigger : {
           trigger : containerRef.current,
           start : "top bottom",
-          end : "top top",
+          end : "bottom bottom",
           scrub : true
         }});
 
@@ -260,7 +265,7 @@ const Contact = () => {
         gsap.to('.curve', {scaleY : 0, scrollTrigger : {
           trigger : containerRef.current,
           start : "top bottom",
-          end : "top top",
+          end : "90% bottom",
           scrub : true
         }});
 
@@ -269,51 +274,98 @@ const Contact = () => {
         }
     }, {scope : containerRef});
   return (
-    <footer ref = {containerRef} className = "section h-screen pb-[calc(var(--padding-nav))] pt-[calc(var(--padding-nav)*4)] pl-nav pr-nav md:pt-[calc(var(--padding-nav)*3)] lg:pt-[calc(var(--padding-nav)*2)] text-white w-full relative z-30  flex flex-col items-center justify-start bg-black overflow-hidden">
+    <footer ref = {containerRef} className = "section px-nav pb-nav pt-[calc(var(--padding-nav)*1.8)] text-white w-full relative z-30  flex flex-col items-center justify-start bg-black overflow-hidden">
       <svg className='curve w-full aspect-[3/2] absolute top-0 left-0 z-10 origin-top drop-shadow-2xl' viewBox="0 0 100 100" preserveAspectRatio="none">
             <path d = "m0 0h100v100Q50 0 0 100Z" className = "fill-white z-50"></path>
       </svg>
-      <div className=' flex flex-col items-end justify-start w-full max-w-5xl'>
-        <h2 className = "title font-secondary font-black text-start text-white text-h1 drop-shadow-md w-min text-nowrap px-5 leading-tight">Mes<span className='clipped-title absolute top-0 left-0 w-full h-full text-black opacity-90 px-5'>Mes</span></h2>
-        <h2 className = "title-2 font-secondary font-black text-start text-white text-h1 drop-shadow-md w-min text-nowrap px-5 leading-tight">Coordonnées<span className='clipped-title absolute top-0 left-0 w-full h-full text-black opacity-90 px-5'>Coordonnéess</span></h2>
-      </div>
-      <div className='w-full max-w-5xl mt-nav flex items-center gap-6 sm:items-end justify-start sm:justify-between flex-col sm:flex-row md:justify-between'>
-        <div className='w-48 h-48 md:w-60 md:h-60 lg:w-80 lg:h-80 relative'> 
-          <div className='outer-circle-1 absolute top-0 left-0 h-full w-full origin-center bg-transparent border-2 border-white rounded-full pointer-events-none opacity-80'/>
-          <div className='outer-circle-2 absolute top-0 left-0 h-full w-full origin-center bg-transparent border-2 border-white rounded-full pointer-events-none opacity-60'/>
-          <div className='outer-circle-3 absolute top-0 left-0 h-full w-full origin-center bg-transparent border-2 border-white rounded-full pointer-events-none opacity-50'/>
-          <div className='outer-circle-4 absolute top-0 left-0 h-full w-full origin-center bg-transparent border-2 border-white rounded-full pointer-events-none opacity-40'/>
-          <Link ref= {linkRef} href = "/contact" scroll = {false} className = "group w-full h-full flex items-center justify-center text-black bg-white font-primary font-bold text-h6 md:text-h5 rounded-full cursor-pointer relative overflow-hidden">
-            <div className='link-ripple w-full h-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-regular rounded-full scale-0 pointer-events-none'></div>
-            <span className='link-title md:group-hover:text-white ease-out transition-colors duration-200'>Me Contacter</span>
-          </Link>
+      <div className='flex items-start justify-between max-w-5xl w-full'>
+        <div className=' flex flex-col items-start justify-start  '>
+          <h2 className = "title font-secondary font-black text-start text-white text-h3 md:text-h2 drop-shadow-md w-min text-nowrap px-5 leading-tight">Me<span className='clipped-title absolute top-0 left-0 w-full h-full text-black opacity-90 px-5'>Me</span></h2>
+          <h2 className = "title-2 font-secondary font-black text-start text-white text-h3 md:text-h2 drop-shadow-md w-min text-nowrap px-5 leading-tight">Joindre<span className='clipped-title absolute top-0 left-0 w-full h-full text-black opacity-90 px-5'>Joindre</span></h2>
         </div>
-        <div className='flex items-end justify-start w-full sm:w-min md:w-min flex-col gap-6'>
-          <Link href = "/" scroll = {false} className = "w-full sm:max-w-min h-min  flex items-center justify-center text-white bg-black font-primary font-normal px-nav py-4 border-white border text-h6 md:text-h5 rounded-xl cursor-pointer relative">
-            <div className='w-full h-full absolute top-0 left-0 translate-x-2 translate-y-2 rounded-xl bg-white -z-10'></div>
-            <span className='text-nowrap'>anasnejmi@gmail.com</span>
-          </Link>
+        <div className='flex-1 flex flex-col gap-4 items-end'>
+          <div className='flex gap-2 items-end'>
+            <span className='font-secondary font-bold text-caption text-zinc-300 uppercase tracking-widest'>Via le site</span>
+            <MoveDownLeft size={16}/>
+          </div>
+          <div className='w-40 h-20 md:w-48 md:h-24 lg:w-60 relative'> 
+            <div className='outer-circle-1 absolute top-0 left-0 h-full w-full origin-center bg-transparent border-2 border-white rounded-full pointer-events-none opacity-80'/>
+            <div className='outer-circle-2 absolute top-0 left-0 h-full w-full origin-center bg-transparent border-2 border-white rounded-full pointer-events-none opacity-60'/>
+            <div className='outer-circle-3 absolute top-0 left-0 h-full w-full origin-center bg-transparent border-2 border-white rounded-full pointer-events-none opacity-50'/>
+            <div className='outer-circle-4 absolute top-0 left-0 h-full w-full origin-center bg-transparent border-2 border-white rounded-full pointer-events-none opacity-40'/>
+            <Link ref= {linkRef} href = "/contact" scroll = {false} className = "group w-full h-full flex items-center justify-center text-black bg-white font-primary font-bold text-h6 md:text-h5 rounded-full cursor-pointer relative overflow-hidden">
+              <div className='link-ripple w-full h-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary-regular rounded-full scale-0 pointer-events-none'></div>
+              <span className='link-title md:group-hover:text-white ease-out transition-colors duration-200'>Allons-y !</span>
+            </Link>
+          </div>
+        </div>
 
-          <Link href = "/" scroll = {false} className = "w-full  sm:max-w-min h-min flex items-center justify-center text-white bg-black font-primary font-normal px-nav py-4 border-white border text-h6 md:text-h5 rounded-xl cursor-pointer relative">
-            <div className='w-full h-full absolute top-0 left-0 translate-x-2 translate-y-2 rounded-xl bg-white -z-10'></div>
-            <span className='text-nowrap'>+33 7 80 12 60 77</span>
-          </Link>
+      </div>
+
+      <div className='w-full max-w-5xl bg-zinc-500 h-px my-16'></div>
+      <div className='flex w-full max-w-5xl flex-col lg:flex-row gap-12'>
+        <div className='flex justify-start flex-1'>
+          <div className='flex flex-col w-44 items-start justify-start'>
+            <div className='flex gap-2 items-end'>
+              <span className='font-secondary font-bold text-caption text-zinc-300 uppercase tracking-widest'>Liens</span>
+              <MoveDownLeft size={16}/>
+            </div>
+            <Link scroll = {false} href={'/projects'} className='font-primary font-semibold text-h5 text-white mt-4'>Projets</Link>
+            <Link scroll = {false} href={'/contact'} className='font-primary font-semibold text-h5 text-white mt-1'>contact</Link>
+          </div>
+          <div className='flex flex-col w-44 items-start justify-start'>
+            <div className='flex gap-2 items-end'>
+              <span className='font-secondary font-bold text-caption text-zinc-300 uppercase tracking-widest'>Réseaux</span>
+              <MoveDownLeft size={16}/>
+            </div>
+            <Link scroll = {false} href={'https://dribbble.com/AansNEJMI'} className='font-primary font-semibold text-h5 text-white mt-4'>Dribble</Link>
+            <Link scroll = {false} href={'https://github.com/AnasNEJMI'} className='font-primary font-semibold text-h5 text-white mt-1'>Github</Link>
+          </div>
+        </div>
+        <div className='flex flex-col gap-8 justify-start flex-1'>
+          <div className='flex flex-col items-start justify-start'>
+            <div className='flex gap-2 items-end'>
+              <span className='font-secondary font-bold text-caption text-zinc-300 uppercase tracking-widest'>E-Mail</span>
+              <MoveDownLeft size={16}/>
+            </div>
+            <div className='flex items-center justify-between gap-4 mt-4'>
+              <Link scroll = {false} href={'mailto:anasnejmi@gmail.com'} className='font-primary font-semibold text-h5 text-white'>anasnejmi@gmail.com</Link>
+              <MagneticButton onClick={() => {
+                  navigator.clipboard.writeText('07 80 12 60 77')
+                  toast('Numéro de télephone copié avec succès')
+                }} className='rounded-full w-10 md:w-10 h-10 md:h-10 md:px-0 px-0 py-0 bg-zinc-900 border border-white'>
+                <Copy size={16}/>
+              </MagneticButton>
+            </div>
+          </div>
+          <div className='flex flex-col items-start justify-start'>
+            <div className='flex gap-2 items-end'>
+              <span className='font-secondary font-bold text-caption text-zinc-300 uppercase tracking-widest'>Tél</span>
+              <MoveDownLeft size={16}/>
+            </div>
+            <div className='flex items-center justify-between gap-4  mt-1'>
+              <Link scroll = {false} href={'tel:07 80 12 60 77'} className='font-primary font-semibold text-h5 text-white'>(+33) 07 80 12 60 77</Link>
+              <MagneticButton onClick={() => {
+                  navigator.clipboard.writeText('07 80 12 60 77')
+                  toast('Numéro de télephone copié avec succès')
+                }} className='rounded-full w-10 md:w-10 h-10 md:h-10 md:px-0 px-0 py-0 bg-zinc-900 border border-white'>
+                <Copy size={16}/>
+              </MagneticButton>
+            </div>
+          </div>
+          
         </div>
       </div>
       
-      <div className = "w-full h-full max-w-5xl mt-nav font-primary flex flex-col justify-end">
+      <div className = "w-full h-full max-w-5xl mt-16 font-primary flex flex-col justify-end">
         <div className='w-full  h-px opacity-70 bg-white '></div>
-        <div className='w-full flex justify-between mt-4 '>
-          <div>
-            <h2 className = "text-body opacity-70">Réseaux</h2>
-            <ul className = "flex justify-start gap-2 md:gap-4">
-              <li><Link href = "https://github.com/AnasNEJMI" className = "text-body md:text-h6 text-white mt-6">Github</Link></li>
-              <li><Link href = "https://dribbble.com/AansNEJMI" className = "text-body md:text-h6 text-white mt-6">Dribbble</Link></li>
-            </ul>
-          </div>
-          <div className='text-h6 text-white flex flex-col items-end'>
-            <span className='text-body opacity-70'>Version</span>
-            <span className='text-body md:text-h6 text-white'>2024/2025</span>
+        <div className='w-full flex items-start justify-between mt-4 '>
+          <Link scroll= {false} href = "/" className = "flex items-start justify-center mix-blend-difference">
+            <Image src = {logo} alt = "Portfolio logo" width = {48} height = {24} className="invert"/>
+          </Link >
+          <div className='text-caption text-white flex flex-col items-end'>
+            <span className='opacity-70'>Version</span>
+            <span className='text-white'>2024/2025</span>
           </div>
         </div>
       </div>

@@ -1,8 +1,6 @@
-"use client";
-
 import { useFirstLoad } from '@/contexts/first_load_context';
 import { usePageTransition } from '@/contexts/transition_context';
-import React, { Ref } from 'react'
+import React, { Ref, useEffect, useLayoutEffect } from 'react'
 import { useOverlayTitle } from '@/contexts/overlay_title_context';
 import { ReactRef, useGSAP } from '@gsap/react';
 import localFont from 'next/font/local';
@@ -216,6 +214,8 @@ const PageWrapper = ({links, children, ref} : PageWrapperProps) => {
       window.removeEventListener("resize",updatePathCurve);
     }
   }, {scope: ref});
+
+  
   return (
     <main
       ref = {ref}

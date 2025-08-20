@@ -335,6 +335,13 @@
   .pr-nav{
     padding-right: var(--padding-nav);
   }
+  .pt-nav{
+    padding-top: var(--padding-nav);
+  }
+
+  .pb-nav{
+    padding-bottom: var(--padding-nav);
+  }
 
   .mt-nav{
     margin-top: var(--padding-nav);
@@ -342,6 +349,13 @@
 
   .ml-nav{
     margin-left: var(--padding-nav);
+  }
+  .mb-nav{
+    margin-bottom: var(--padding-nav);
+  }
+
+  .mr-nav{
+    margin-right: var(--padding-nav);
   }
   
 

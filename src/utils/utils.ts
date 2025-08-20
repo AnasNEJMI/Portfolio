@@ -3,7 +3,10 @@ export function mapRounded(value : number, min1 : number, max1 : number, min2 : 
 }
 
 export function map(value : number, min1 : number, max1 : number, min2 : number, max2 : number) {
-    return min2 + (max2 - min2) * ((value - min1) / (max1 - min1));
+    const result = min2 + (max2 - min2) * ((value - min1) / (max1 - min1));
+    // if(result < min2) return min2;
+    // if(result > max2) return max2;
+    return result;
 }
 
 export const delay = (duration : number) => {
@@ -35,6 +38,7 @@ interface ProjectsDataType{
     stack : string[], 
     tech : {[k : string] : string}[], 
     features : {[k : string] : string[]}[]
+    color : string,
 }
 
 export const ProjectsData : Record<string, ProjectsDataType> = {
@@ -44,10 +48,11 @@ export const ProjectsData : Record<string, ProjectsDataType> = {
         description : "Dans le cadre d'une mission de 6 mois chez FeetMe, j'ai développé une application mobile Android en Java et Kotlin, conçue pour intéragir avec les semelles intelligentes fabriquées par l'entreprise, destinées aux professionnels de la podologie et aux athlètes.",
         category : 'Application Mobile',
         duration:"6 Mois",
+        color : '#dffcf5',
         banner : {
-                    src : '/images/feetme/feetme-banner.webp',
-                    width : 900,
-                    height : 1440,
+                    src : '/images/feetme/feetme-banner.png',
+                    width : 1440,
+                    height : 900,
                     type : 'image'
                     },
         phoneDisplay1 : {
@@ -98,10 +103,11 @@ export const ProjectsData : Record<string, ProjectsDataType> = {
         title : 'Tandem',
         description : "Projet personnel réalisé sur 4 mois, Tandem est une application web conçue pour permettre à des utilisateurs individuels ou des groupes (familles, couples, colocataires, etc.) de mieux gérer leurs finances à travers une interface claire, personnalisable et centrée sur la collaboration.",
         category : 'Application Web',
+        color : '#3ab763',
         banner : {
-                    src : '/images/tandem/tandem-banner.webp',
-                    width : 900,
-                    height : 1440,
+                    src : '/images/tandem/tandem-banner.png',
+                    width : 1440,
+                    height : 900,
                     type : 'image'
                     },
         phoneDisplay1 : {
@@ -156,4 +162,25 @@ export const ProjectsData : Record<string, ProjectsDataType> = {
 
                     ]
     },
+}
+
+export const highlights = {
+    'top' : [
+        '',
+        '',
+        '/videos/highlights/highlight-5.mp4',
+        '/videos/highlights/highlight-6.mp4',
+    ],
+    'center' : [
+        '/videos/highlights/highlight-1.mp4',
+        '/videos/highlights/highlight-2.mp4',
+        '/videos/highlights/highlight-3.mp4',
+        '/videos/highlights/highlight-4.mp4',
+    ],
+    'bottom' : [
+        '/videos/highlights/highlight-7.mp4',
+        '/videos/highlights/highlight-8.mp4',
+        '',
+        '',
+    ]
 }

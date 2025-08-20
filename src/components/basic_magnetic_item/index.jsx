@@ -9,8 +9,8 @@ const Magnetic = ({children}) => {
     let mm = gsap.matchMedia();
 
     mm.add("(min-width: 768px)", (self) => {
-      const strengthX = 0.6;
-      const strengthY = 0.4;
+      const strengthX = 0.3;
+      const strengthY = 0.3;
 
       const scaleXContainerTo = gsap.quickTo(containerRef.current, "scaleX", {duration : 0.25, ease : "power1.out"});
       const scaleYContainerTo = gsap.quickTo(containerRef.current, "scaleY", {duration : 0.25, ease : "power1.out"});

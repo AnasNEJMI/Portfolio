@@ -58,6 +58,7 @@ const HomeProjects = () => {
                 src={project.banner.src}
                 width={project.banner.width}
                 height={project.banner.height}
+                color = {project.color}
               />
             ))
           }

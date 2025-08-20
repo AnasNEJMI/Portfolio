@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils'
 import { memo } from 'react'
 
 interface ParisSVGProps{
@@ -10,7 +11,7 @@ const ParisSVG=  memo(function ParisSVG({className} : ParisSVGProps){
         <span className='font-primary font-bold text-body md:text-h6 text-nowrap animate-left-to-right animate-duration-4000'>Basé à</span>
         <span className='font-primary text-body md:text-h6 animate-left-to-right animate-duration-4000 -animate-delay-1000'>Paris</span>
         </h2>
-        <svg className='h-20 md:h-24 lg:h-28 aspect-square z-0' viewBox='0 0 100 100'>
+        <svg className={cn(' aspect-square z-0', className)} viewBox='0 0 100 100'>
             <g stroke = "rgb(22,22,22)" className='animate-squish-squash animate-duration-2000 origin-bottom'>
                 <g>
                 <path d='M47 10 Q47 4 50 4 Q53 4 53 10 L47 10' fill='transparent'></path>

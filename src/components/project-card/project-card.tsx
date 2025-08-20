@@ -16,8 +16,9 @@ interface ProjectCardProps{
     src : string,
     width : number,
     height : number,
+    color : string
 }
-const ProjectCard = ({className,href, title, description, src, width, height} : ProjectCardProps) => {
+const ProjectCard = ({className,href, title, description, src, width, height, color} : ProjectCardProps) => {
 
   return (
     <Link href={href} scroll ={false}>
@@ -25,10 +26,12 @@ const ProjectCard = ({className,href, title, description, src, width, height} : 
             className='shadow-none border-none rounded-none'
         >
             <CardContent
-                className={cn('relative overflow-hidden w-full aspect-square flex items-center justify-center p-0 before:absolute before:z-20 before:top-0 before:left-0 before:w-full before:aspect-[5/1] before:bg-zinc-100 after:absolute after:z-20 after:bottom-0 after:left-0 after:w-full after:aspect-[5/1] after:bg-zinc-100', className)}
+                style={{clipPath : 'url(#project-card-clip)', backgroundColor : color}}
+                className={cn('relative overflow-hidden w-full aspect-square flex items-center justify-center p-0 group bg-sky-400', className)}
             >
+                
                 <Image
-                    className = {`project-image relative z-10 w-full aspect-[${width}/${height}]`}
+                    className = {`project-image relative z-10 w-full aspect-[${width}/${height}] group-hover:scale-110 origin-center duration-200 ease-out transition-transform`}
                     src={src}
                     width={width}
                     height={height}
@@ -36,9 +39,11 @@ const ProjectCard = ({className,href, title, description, src, width, height} : 
                 >
                 </Image>
             </CardContent>
-            <CardTitle className='font-secondary font-bold text-h4 mt-4'>{title}</CardTitle>
-            <Separator className='bg-zinc-900 my-1'/>
-            <CardDescription className='font-primary font-light text-zinc-900 text-body'>{description}</CardDescription>
+            <div className='px-nav'>
+                <CardTitle className='font-secondary font-bold text-h4 mt-4'>{title}</CardTitle>
+                <Separator className='bg-zinc-900 my-1'/>
+                <CardDescription className='font-primary font-light text-zinc-900 text-body'>{description}</CardDescription>
+            </div>
         </Card>
     </Link>
   )

@@ -19,6 +19,9 @@ import HomeProjects from "@/components/projects/projects";
 import { mapRounded } from "@/utils/utils";
 import Head from "next/head";
 import logo from "@/../public/images/logo.png"
+import HomeShapesTransition from "@/components/home/shapes-transition";
+import HomeQualities from "@/components/home/qualities";
+import HomeHighlights from "@/components/home/highlights";
 
 const fontPrimary = localFont({
   src: '../assets/fonts/font-primary.ttf',
@@ -323,8 +326,8 @@ export default function Home() {
         </Link >
 
         <nav className="flex absolute top-0 right-0 z-20 h-16 justify-start md:justify-end p-nav">
-          <ul  className = "hidden h-16 md:flex items-center gap-6 bg-white">
-            <HorizontalNavMagneticLink href = "/about" text = "Parcours"/>
+          <ul  className = "hidden h-16 md:flex items-center gap-6 bg-white px-nav rounded-full">
+            {/* <HorizontalNavMagneticLink href = "/about" text = "Parcours"/> */}
             <HorizontalNavMagneticLink href = "/projects" text = "Projets"/>
             <HorizontalNavMagneticLink href = "/contact" text = "Contact"/>
           </ul>
@@ -333,9 +336,18 @@ export default function Home() {
       <HomeHero/>
 
       <HomeAbout/>
+      <HomeShapesTransition/>
+      <HomeQualities/>
       <HomeProjects/>
+      <HomeHighlights/>
       <Contact/>
-      
+      <svg viewBox="0 0 100 100" width="0" height="0">
+          <defs>
+              <clipPath id="project-card-clip" className='project-card-icon-clip' clipPathUnits="objectBoundingBox">
+                  <path d="M.5 0C1 0 1 0 1 .5 1 1 1 1 .5 1 0 1 0 1 0 .5 0 0 0 0 .5 0Z"></path>
+              </clipPath>
+          </defs>
+      </svg>
     </main>
   );
 }
