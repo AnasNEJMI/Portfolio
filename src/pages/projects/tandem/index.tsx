@@ -140,7 +140,7 @@ const TandemPage = () => {
             data.githubRepo && 
             <section className='section flex flex-col items-center bg-transparent w-full my-24'>
                 <div className='github-btn w-full max-w-7xl px-nav flex justify-end'>
-                        <MagneticButton className='aspect-square w-96'>
+                        <MagneticButton className='aspect-square w-60'>
                             <Link scroll = {false} href={data.githubRepo} className='w-full flex items-center justify-center gap-4'>
                                     <GithubLogo className='group-hover:fill-black transition-all duration-200 ease-out'/>
                                     <span>Répertoire</span>

@@ -89,7 +89,7 @@ const SidraPage = () => {
         
         <section className='section flex flex-col items-center bg-transparent w-full my-24'>
             <div className='github-btn w-full max-w-7xl px-nav flex justify-end'>
-                    <MagneticButton className='aspect-square w-96'>
+                    <MagneticButton className='aspect-square w-60'>
                         <Link scroll = {false} href={'https://sidra-studio.vercel.app/'} className='w-full flex items-center justify-center gap-4'>
                                 <Globe className='group-hover:stroke-zinc-900 transition-all duration-200 ease-out'/>
                                 <span>Site Internet</span>

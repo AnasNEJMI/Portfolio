@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/all'
 import React, { useRef } from 'react'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 
-const designText = "◆ Polyvalant ⟡◆⟡ Autonome ⟡◆ Rigoureux ⟡◆⟡ Créatif ⟡◆ Curieux ⟡◆⟡ Méthodique  ⟡"
+const designText = "◆ Polyvalent ⟡◆⟡ Autonome ⟡◆ Rigoureux ⟡◆⟡ Créatif ⟡◆ Curieux ⟡◆⟡ Méthodique  ⟡"
 const ImaginationAnim = () => {
     const containerRef = useRef<HTMLDivElement>(null)
     const imagesRef = useRef<HTMLDivElement>(null)
