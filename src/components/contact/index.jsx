@@ -331,8 +331,8 @@ const Contact = () => {
             <div className='flex items-center justify-between gap-4 mt-4'>
               <Link scroll = {false} href={'mailto:anasnejmi@gmail.com'} className='font-primary font-semibold text-h5 text-white'>anasnejmi@gmail.com</Link>
               <MagneticButton onClick={() => {
-                  navigator.clipboard.writeText('07 80 12 60 77')
-                  toast('Adresse e-mail copiée avec succès')
+                  navigator.clipboard.writeText('anasnejmi@gmail.com')
+                  toast('Adresse e-mail copiée avec succès.')
                 }} className='rounded-full w-10 md:w-10 h-10 md:h-10 md:px-0 px-0 py-0 bg-zinc-900 border border-white'>
                 <Copy size={16}/>
               </MagneticButton>
@@ -347,7 +347,7 @@ const Contact = () => {
               <Link scroll = {false} href={'tel:07 80 12 60 77'} className='font-primary font-semibold text-h5 text-white'>(+33) 07 80 12 60 77</Link>
               <MagneticButton onClick={() => {
                   navigator.clipboard.writeText('07 80 12 60 77')
-                  toast('Numéro de télephone copié avec succès')
+                  toast('Numéro de télephone copié avec succès.')
                 }} className='rounded-full w-10 md:w-10 h-10 md:h-10 md:px-0 px-0 py-0 bg-zinc-900 border border-white'>
                 <Copy size={16}/>
               </MagneticButton>

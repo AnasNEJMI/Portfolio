@@ -199,10 +199,10 @@ const HomeHero = () => {
     }, {scope: containerRef});
 
   return (
-    <section ref={containerRef} className='section relative z-10 h-svh-screen pt-[144px] w-full flex items-center justify-start gap-8 flex-col overflow-hidden px-nav pb-nav bg-white'>
+    <section ref={containerRef} className='section relative z-10 min-h-screen pt-[144px] w-full flex items-center justify-start gap-8 flex-col overflow-hidden px-nav pb-nav bg-white'>
         <div style = {{clipPath : 'circle(0% at 0 100%)'}}className='stack-wrapper absolute top-0 left-0 w-full h-full bg-zinc-900  z-20 pointer-events-none pt-[120px] md:pt-48 flex items-center justify-start flex-col px-nav gap-16 pb-nav'>
-            <div className='flex w-full flex-col items-start justify-start md:justify-evenly max-w-7xl gap-12 lg:gap-16'>
-                <div className='flex max-w-7xl w-full gap-4 md:gap-8 md:flex-row flex-col'>
+            <div className='flex w-full flex-col items-start justify-start md:justify-evenly max-w-7xl gap-4 lg:gap-16'>
+                <div className='flex max-w-7xl w-full gap-2 md:gap-8 md:flex-row flex-col'>
                     <span className='languages-title text-white font-secondary font-bold text-h5 md:text-h4 lg:text-h3 md:w-48 lg:w-64'>Languages</span>
                     <div className='grid grid-cols-4 sm:grid-cols-5 gap-2 md:gap-4'>
                     {
@@ -216,7 +216,7 @@ const HomeHero = () => {
                     }
                     </div>
                 </div>
-                <div className='flex max-w-7xl w-full gap-4 md:gap-8 md:flex-row flex-col'>
+                <div className='flex max-w-7xl w-full gap-2 md:gap-8 md:flex-row flex-col'>
                     <span className='frameworks-title text-white font-secondary font-bold text-h5 md:text-h4 lg:text-h3 md:w-48 lg:w-64'>Frameworks</span>
                     <div className='grid grid-cols-4 sm:grid-cols-5 gap-2 md:gap-4'>
                         {
@@ -230,7 +230,7 @@ const HomeHero = () => {
                         }
                     </div>
                 </div>
-                <div className='flex max-w-7xl w-full gap-4 md:gap-8 md:flex-row flex-col'>
+                <div className='flex max-w-7xl w-full gap-2 md:gap-8 md:flex-row flex-col'>
                     <span className='ui-title text-white font-secondary font-bold text-h5 md:text-h4 lg:text-h3 md:w-48 lg:w-64'>UI</span>
                     <div className='grid grid-cols-4 sm:grid-cols-5 gap-2 md:gap-4'>
                         {
@@ -246,7 +246,7 @@ const HomeHero = () => {
                 </div>
             </div>
             <div className='flex items-center justify-end max-w-7xl w-full absolute bottom-0 pr-nav pb-nav'>
-                <Magnetic >
+                <Magnetic>
                     <button ref = {closeStackBtnRef} className='h-24 lg:h-32 aspect-square rounded-full bg-white text-zinc-900 font-bold flex items-center justify-center cursor-pointer'>
                         <X size={48} />
                     </button>
