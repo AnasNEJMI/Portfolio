@@ -77,7 +77,7 @@ export const ProjectsData : Record<string, ProjectsDataType> = {
     "tandem": {
         href : 'tandem',
         title : 'Tandem',
-        description : "Projet personnel réalisé sur 4 mois, Tandem est une application web conçue pour permettre à des utilisateurs individuels ou des groupes (familles, couples, colocataires, etc.) de mieux gérer leurs finances à travers une interface claire, personnalisable et centrée sur la collaboration.",
+        description : "Mission réalisée sur 4 mois, Tandem est une application web conçue pour permettre à des utilisateurs individuels ou des groupes (familles, couples, colocataires, etc.) de mieux gérer leurs finances à travers une interface claire, personnalisable et centrée sur la collaboration.",
         category : 'Application Web',
         color : '#3ab763',
         banner : {
