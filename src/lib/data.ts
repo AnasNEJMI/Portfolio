@@ -77,7 +77,7 @@ export const ProjectsData : Record<string, ProjectsDataType> = {
     "tandem": {
         href : 'tandem',
         title : 'Tandem',
-        description : "Mission réalisée sur 4 mois, Tandem est une application web conçue pour permettre à des utilisateurs individuels ou des groupes (familles, couples, colocataires, etc.) de mieux gérer leurs finances à travers une interface claire, personnalisable et centrée sur la collaboration.",
+        description : "J'ai collaboré avec Tandem dans le développement de leur application web conçue pour permettre à des utilisateurs individuels ou des groupes (familles, couples, colocataires, etc.) de mieux gérer leurs quotidiens (finances, dépenses, tâches...) à travers une interface claire, conçue pour être personnalisable et centrée sur la collaboration.",
         category : 'Application Web',
         color : '#3ab763',
         banner : {
@@ -102,7 +102,7 @@ export const ProjectsData : Record<string, ProjectsDataType> = {
         bigScreenSrc :'/images/tandem/tandem-big-screen.webp',
         laptopSrc :'/images/tandem/tandem-laptop.webp',
         duration : "4 Mois",
-        startDate : '06/01/2025',
+        startDate : '04/10/2024',
         githubRepo : "https://github.com/AnasNEJMI/Tandem",
         stack : ['React', 'Vite', 'InertiaJS', 'Laravel', 'PHP', 'MySQL', 'Shadcn UI', 'TailwindCSS'],
         tech : [
@@ -142,7 +142,7 @@ export const ProjectsData : Record<string, ProjectsDataType> = {
     "sidra": {
         href : 'sidra',
         title : 'Sidra',
-        description : "J'ai conçu et développé le site web de Sidra, une agence de design et de branding, en mettant l'accent sur une présentation claire et élégante. L'expérience utilisateur est portée par des animations fluides et dynamiques réalisées avec GSAP, qui donnent vie aux contenus tout en conservant une navigation intuitive.",
+        description : "J'ai collaboré avec Sidra Studio, une agence de design et de branding, pour développer la fondation de leur site Internet, avec un focus sur la perfomance et SEO, et en mettant l'accent sur une présentation claire et élégante. L'expérience utilisateur est portée par des animations fluides et dynamiques réalisées avec GSAP, qui donnent vie aux contenus tout en conservant une navigation intuitive.",
         category : 'Site Vitrine',
         color : '#4f46e5',
         banner : {
@@ -172,8 +172,8 @@ export const ProjectsData : Record<string, ProjectsDataType> = {
                     }],
         bigScreenSrc :'/images/sidra/sidra-big-screen.png',
         laptopSrc :'/images/sidra/sidra-laptop.png',
-        duration : "4 Mois",
-        startDate : '21/06/2025',
+        duration : "3 Mois",
+        startDate : '10/03/2025',
         githubRepo : "",
         stack : ['NextJS', 'GSAP', 'Shadcn UI', 'Typescript', 'TailwindCSS'],
         tech : [],
