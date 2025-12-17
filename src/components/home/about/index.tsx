@@ -11,8 +11,9 @@ interface CurtainSetter{
   
 // const about = "Fort de ma formation de pointe au sein de l'une des la meilleures écoles d'ingénieurs de France, je combine passion et savoir-faire pour vous offrir des solutions sur mesure, qui respectent vos exigences de qualité et votre vision unique."
 const about = "Formé au sein de l'une des meilleures écoles d'ingénieurs de France, j\'ai acquis une solide expertise technique que je mets au service de projets ambitieux."
-const bio = "Designer & Développeur passionné, j'ai été formé à l'école d'ingénieur de Télécom ParisTech, où je me suis spécialisé dans le développement logiciel, l'algorithmique et la conception de systèmes."
-const bioCtd = "Rigoureux et polyvalant, je mets en oeuvre mon savoir-faire en tant que designer et développeur full-stack pour booster les entreprises comme la votre et pour créer des expériences digitales marquantes."
+const bio = "Formé à l'école d'ingénieurs de Télécom ParisTech et avec plus de 2 ans d'expérience, je suis un développeur front end avec une solide maîtrise en HTML, CSS et TypeScript, ainsi qu'une expertise des frameworks React et Next.js."
+// const bio = "Designer & Développeur passionné, j'ai été formé à l'école d'ingénieur de Télécom ParisTech, où je me suis spécialisé dans le développement logiciel, l'algorithmique et la conception de systèmes."
+const bioCtd = "Autonome, rigoureux et créatif, je suis constamment à la recherche de défis à relever et de nouvelles compétences à acquérir."
 
 
 // const aboutContd = "Ma passion pour le développement et mon exigence de qualité me poussent à proposer des solutions à la fois robustes , modernes et centrées sur l\'utilisateur."
@@ -160,22 +161,22 @@ const HomeAbout = () => {
           
         <div className='flex items-start justify-start flex-col lg:flex-row lg:justify-between gap-24 mt-20 md:mt-32'>
           <div className='flex flex-col gap-24 items-center w-full justify-center grow mb-96 lg:mb-0'>
-            <div className='bio-wrapper w-full flex flex-wrap items-center justify-center md:justify-start max-w-5xl gap-[2px] md:gap-1'>
+            <div className='bio-wrapper w-full flex flex-wrap items-center justify-start max-w-5xl gap-[2px] md:gap-1'>
               {
                 bio.split(' ').map((word, index)=> (
-                  <div key={index} className='relative text-white p-px md:p-1 overflow-hidden rounded-full'>
-                    <div className='bio-curtain absolute top-0 left-0 w-full h-full rounded-full z-20 bg-zinc-800 opacity-0'></div>
-                    <div className='bio-word relative z-10 font-primary font-medium text-h5 md:text-h3 opacity-0'>{word}</div>
+                  <div key={index} className='relative text-white px-px md:px-1 overflow-hidden rounded-full'>
+                    <span className='bio-curtain absolute top-0 left-0 w-full h-full rounded-full z-20 bg-zinc-800 opacity-0 px-2'></span>
+                    <span className='bio-word relative z-10 font-primary font-medium text-h5 md:text-h4 opacity-0'>{word}</span>
                   </div>
                 ))
               }
             </div>
-            <div className='bioCtd-wrapper w-full flex flex-wrap items-center justify-center md:justify-start max-w-5xl  gap-[2px] md:gap-1 '>
+            <div className='bioCtd-wrapper w-full flex flex-wrap items-center justify-start max-w-5xl  gap-[2px] md:gap-1 '>
               {
                 bioCtd.split(' ').map((word, index)=> (
-                  <div key={index} className='relative text-white p-px md:p-1 overflow-hidden rounded-full'>
+                  <div key={index} className='relative text-white px-px md:px-1 overflow-hidden rounded-full'>
                     <div className='bioCtd-curtain absolute top-0 left-0 w-full h-full rounded-full z-20 bg-zinc-800 opacity-0'></div>
-                    <div className='bioCtd-word relative z-10 font-primary font-medium text-h5 md:text-h3 opacity-0'>{word}</div>
+                    <div className='bioCtd-word relative z-10 font-primary font-medium text-h5 md:text-h4 opacity-0'>{word}</div>
                   </div>
                 ))
               }
@@ -183,7 +184,7 @@ const HomeAbout = () => {
 
           </div>
         </div>
-          
+        
       </div>  
     </section>
   )

@@ -42,6 +42,7 @@ const SidraPage = () => {
     }, {scope : containerRef})
   return (
     <PageWrapper
+        isHomePage = {false}
         links={[
             {
                 label : "Acceuil",
@@ -56,7 +57,6 @@ const SidraPage = () => {
                 href : "/contact",
             },
         ]}
-        ref = {containerRef}
     >
         <section className='section hero flex flex-col items-center bg-white w-full pt-64  md:pt-48'>
             <div className='w-full max-w-7xl px-nav'>

@@ -36,6 +36,7 @@ const ProjectCard = ({className,href, title, description, src, width, height, co
                     width={width}
                     height={height}
                     alt={`project ${title} banner`}
+                    priority
                 >
                 </Image>
             </CardContent>

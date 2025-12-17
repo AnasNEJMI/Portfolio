@@ -190,7 +190,7 @@ const HomeHero = () => {
         
         
         return () => {
-            salutationsTl.revert();
+            salutationsTl.kill();
             openStackBtnRef.current?.removeEventListener('click', context.onOpenStack)
             closeStackBtnRef.current?.removeEventListener('click', context.onCloseStack)
             window.removeEventListener('scroll', context.onScroll);
@@ -262,39 +262,32 @@ const HomeHero = () => {
                     <div className='salutations flex absolute bottom-0 left-0 z-0 items-center w-full  md:items-center justify-center flex-col'>
                         {
                             salutations.map((salutation, index) => (
-                            <span key={`salutation-${index}`} className='font-primary font-bold text-body md:text-h5 h-12 flex items-center justify-center'>{salutation}</span>
+                            <span key={`salutation-${index}`} className='font-primary font-bold text-body md:text-h6 h-12 flex items-center justify-center'>{salutation}</span>
                             ))
                         }
                     </div>
                 </div>
             </div>
-            <div className='flex items-center justify-center text-h5 font-primary gap-2 text-zinc-900'>
+            <div className='flex items-center justify-center text-h6 font-primary gap-2 text-zinc-900'>
                 <span>Je suis </span>
-                <h1 className='text-h5 font-bold font-secondary'>Anas NEJMI</h1>
+                <h1 className='text-h6 font-bold font-secondary'>Anas NEJMI</h1>
             </div>
         </div>
         
         
         <div className='flex flex-col'>
-            <h1 className='font-secondary font-medium text-6xl sm:text-7xl md:text-[6rem] lg:text-[10rem] leading-[1] text-center text-zinc-900 drop-shadow-2xl'>Designer &</h1>
-            <h1 className='font-secondary font-medium text-6xl sm:text-7xl md:text-[6rem] lg:text-[10rem] leading-[1] text-center text-zinc-900 drop-shadow-2xl'>Développeur</h1>
+            <h1 className='font-secondary font-medium text-6xl sm:text-7xl md:text-[6rem] lg:text-[8rem] leading-[1] text-center text-zinc-900 drop-shadow-2xl'>Développeur</h1>
+            <h1 className='font-secondary font-medium text-6xl sm:text-7xl md:text-[6rem] lg:text-[8rem] leading-[1] text-center text-zinc-900 drop-shadow-2xl'>Frontend</h1>
         </div>
-        <div className='w-full aspect-[6/4] max-w-[500px] lg:hidden grow flex items-center justify-center'>
+        <div className='w-full aspect-[6/4] max-w-[500px] lg:hidden flex items-center justify-center'>
              <DotLottieReact
                 src="images/avatar-anim-1.lottie"
                 loop
                 autoplay
                 className='w-full aspect-[6/4]'
             />
-            {/* <Image
-                src = {avatar}
-                width={600}
-                height={400}
-                alt='avatar animation'
-                className='w-full aspect-[6/4]'
-                /> */}
         </div>
-        <div className='flex items-end justify-between w-full max-w-7xl font-primary text-body'>
+        <div className='absolute bottom-0 flex items-end justify-between w-full max-w-7xl font-primary text-body pb-6 px-6'>
             <Magnetic>
                 <button ref = {openStackBtnRef} className='h-24 lg:h-32 aspect-square rounded-full bg-zinc-900 text-zinc-900 font-bold flex items-center justify-center cursor-pointer'>
                     <svg viewBox="0 0 500 500"  xmlns="http://www.w3.org/2000/svg" className='w-full h-full rounded-full fill-zinc-900'>
@@ -313,65 +306,13 @@ const HomeHero = () => {
                     autoplay
                     className='w-full aspect-[6/4]'
                 />
-                {/* <Image
-                        src = {avatar}
-                        width={600}
-                        height={400}
-                        alt='avatar animation'
-                        className='w-full aspect-[6/4]'
-                    /> */}
             </div>
 
             <div className = "origin-bottom-right">
                 <ParisSVG className='h-24 lg:h-32'/>
             </div>
-        
         </div>
     </section>
-    // <section ref = {containerRef} className='section relative z-10 h-svh-screen pt-[144px] w-full flex items-center justify-between flex-col overflow-hidden'>
-    //     <div className='absolute top-0 left-0 h-screen w-full flex items-center justify-center'>
-    //         <div style={{clipPath : 'polygon(5% 5%, 95% 5%, 95% 95%, 5% 95%, 5% 5%)'}} className='h-[50%] md:h-[70.7%] opacity-20 aspect-square rotate-45 z-[6]  grid grid-cols-10 grid-rows-10 pointer-events-none md:translate-y-0 translate-y-1/4'>
-    //             {[...Array(100)].map((_, index) => (
-    //             <div key={`cell_${index}`} className='border border-black border-opacity-20'>
-    //             </div>
-    //             ))}
-    //         </div>
-    //     </div>
-    //     <div className = "flex flex-col items-center w-full max-w-7xl lg:items-start pl-0 lg:pl-24 pt-[calc(var(--padding-nav))] relative z-30">
-            // <div className='origin-bottom relative overflow-hidden h-full px-4 md:px-0 text-h6 font-medium'>
-            //     <p className='opacity-0 pointer-events-none h-10 w-28'>こんにちは</p>
-            //     <div className='salutations flex absolute bottom-0 left-0 z-0 items-center md:items-start justify-start flex-col  px-4 md:px-0'>
-            //         {
-            //             salutations.map((salutation, index) => (
-            //             <p key={`salutation-${index}`} className='h-10 font-primary font-normal w-28 text-center md:text-start'>{salutation}</p>
-            //             ))
-            //         }
-            //     </div>
-            // </div>
-    //         <p className = "font-primary"><span className = "font-primary font-normal text-h6">Je m&apos;appelle</span> <span className = "ml-2 font-primary font-medium text-h6 px-4 py-1 rounded-md border border-zinc-800 border-opacity-50 bg-white relative">Anas<span className ="absolute -z-10 rounded-md top-0 left-0 -translate-x-1 translate-y-1 w-full h-full bg-black"></span></span></p>
-    //     </div>
-
-    //     <div className='lg:pt-20'>
-    //         <h1 className= "heading flex flex-col items-center justify-center leading-tight font-black z-20 select-none">
-    //             <span className = "dev font-secondary text-h1">Développeur</span>
-    //             <span className = "full-stack font-secondary  text-h1">Full-Stack</span>
-    //         </h1>
-
-    //         <div className= "w-full relative z-30 mt-8">
-    //             <div className = "flex flex-col items-center text-body md:text-h6 font-bold px-nav relative z-10">
-    //             <p className='text-pretty flex items-center justify-center gap-4'>
-    //                 <span className = "passioned text-black font-primary font-black text-h6 md:text-h5 translate-y-0">Passionné</span>
-    //                 <span className = "authentic text-black font-primary font-black text-h6 md:text-h5 translate-y-0">Authentique</span>
-    //                 <span className = "rigorous text-black font-primary font-black text-h6 md:text-h5 translate-y-0">Rigoureux</span>
-    //             </p>
-    //             </div>
-    //         </div>
-    //     </div>
-    //     <div className = "w-full flex items-center justify-end max-w-7xl p-nav relative mt-[calc(var(--padding-nav)*.8)] lg:mt-[calc(var(--padding-nav)*2)]">
-    //         <ParisSVG/>
-    //     </div>
-
-    // </section>
   )
 }
 

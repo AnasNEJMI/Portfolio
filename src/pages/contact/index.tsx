@@ -2,13 +2,11 @@ import MagneticButton from '@/components/magnetic-button/magnetic-button'
 import PageWrapper from '@/components/page-wrapper'
 import { Separator } from '@/components/ui/separator'
 import useLocalTime from '@/hooks/use-localtime'
-import { delay } from '@/lib/helpers'
 import Error from 'next/error'
 import React, { FormEvent, useRef, useState } from 'react'
 import { toast } from 'sonner'
 
 const ContactPage = () => {
-    const containerRef = useRef(null)
     const localTime = useLocalTime();
     const [isSending, setIsSending] = useState(false);
 
@@ -48,6 +46,7 @@ const ContactPage = () => {
     }
   return (
     <PageWrapper
+        isHomePage = {false}
         links={[
             {
                 label : 'Acceuil',
@@ -58,8 +57,6 @@ const ContactPage = () => {
                 href : '/projects',
             },
         ]}
-        
-        ref = {containerRef}
     >
         <section className='section flex flex-col items-center bg-white w-full pt-64  md:pt-48 pb-48'>
             <div className='w-full max-w-7xl px-nav'>

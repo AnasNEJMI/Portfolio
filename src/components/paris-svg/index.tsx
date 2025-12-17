@@ -7,9 +7,9 @@ interface ParisSVGProps{
 const ParisSVG=  memo(function ParisSVG({className} : ParisSVGProps){
   return (
     <div className='paris-svg relative translate-y-0'>
-        <h2 className='absolute flex items-start justify-start flex-col h-full w-full mix-blend-difference text-jet-200 -left-[25%] top-[0%] md:-left-[25%] md:top-0 lg:-left-[20%] lg:top-[3%]'>
-        <span className='font-primary font-bold text-body md:text-h6 text-nowrap animate-left-to-right animate-duration-4000'>Basé à</span>
-        <span className='font-primary text-body md:text-h6 animate-left-to-right animate-duration-4000 -animate-delay-1000'>Paris</span>
+        <h2 className='flex items-center justify-start flex-col h-full w-full mix-blend-difference text-jet-200 mt-4'>
+          <span className='font-primary text-body md:text-h6 text-nowrap'>Basé en</span>
+          <span className='font-primary  font-bold text-body md:text-h6'>Ile de France</span>
         </h2>
         <svg className={cn(' aspect-square z-0', className)} viewBox='0 0 100 100'>
             <g stroke = "rgb(22,22,22)" className='animate-squish-squash animate-duration-2000 origin-bottom'>
