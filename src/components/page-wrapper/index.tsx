@@ -33,6 +33,8 @@ const fontSecondary = localFont({
   variable : '--font-secondary'
 });
 
+gsap.registerPlugin(useGSAP);
+
 const PageWrapper = ({links, children, isHomePage} : PageWrapperProps) => {
  let {scrollContainerRef} = useLocomotiveScroll();
   return (

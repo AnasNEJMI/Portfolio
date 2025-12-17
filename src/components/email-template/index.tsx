@@ -1,20 +1,12 @@
-import Image from 'next/image';
 import * as React from 'react';
-import logo from '@/../public/images/logo.svg'
-import { Separator } from '../ui/separator';
 import {Body,
-        Button,
-        Column,
         Container,
         Head,
         Heading,
         Hr,
         Html,
         Img,
-        Link,
-        Preview,
         pixelBasedPreset,
-        Row,
         Section,
         Tailwind,
         Text,} from "@react-email/components";
@@ -25,10 +17,6 @@ interface EmailTemplateProps {
   subject: string;
   message: string;
 }
-
-const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : '';
 
 export function EmailTemplate({ name, email, subject,message }: EmailTemplateProps) {
   return (

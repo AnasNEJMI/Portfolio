@@ -1,273 +1,20 @@
 import React, { useRef } from 'react'
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
 import ParisSVG from '@/components/paris-svg';
-import NextSVG from '../../logos/next/logo';
-import ReactRouterSVG from '../../logos/react-router/logo';
-import TailwindSVG from '../../logos/tailwind/logo';
-import GsapSVG from '../../logos/gsap';
-import ShadcnSVG from '../../logos/shadcn';
-import ScssSVG from '../../logos/scss';
-import FramerSVG from '../../logos/framer';
-import ViteSVG from '../../logos/vite/logo';
-import LaravelSVG from '../../logos/laravel/logo';
-import TypescriptSVG from '../../logos/typescript/logo';
-import PhpSVG from '../../logos/php/logo';
-import MySQLLogo from '../../logos/mysql/logo';
-import JavaLogo from '../../logos/java/logo';
-import CSharpLogo from '../../logos/c-sharp/logo';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import Magnetic from '@/components/basic_magnetic_item';
-import {X} from 'lucide-react';
+import Salutations from '../salutations';
+import Stack from '../stack';
+import HeroLottieAnimation from '../hero-animation';
 
-const salutations = ['Bonjour', 'こんにちは', 'नमस्कार',  '你好', 'أهلاً','Olá', 'Guten Tag','Hola', 'Hello',  "Bonjour"];
 
-const languages = [
-    {
-        svg : PhpSVG,
-        label : 'PHP',
-    },
-    {
-        svg : TypescriptSVG,
-        label : 'Typescript',
-    },
-    {
-        svg : MySQLLogo,
-        label : 'MySQL',
-    },
-    {
-        svg : JavaLogo,
-        label : 'Java',
-    },
-    {
-        svg : CSharpLogo,
-        label : 'C#',
-    },
-]
 
-const frameworks = [
-    {
-        svg : ReactRouterSVG,
-        label : 'React Router',
-    },
-    {
-        svg : NextSVG,
-        label : 'NextJS',
-    },
-    {
-        svg : ViteSVG,
-        label : 'Vite',
-    },
-    {
-        svg : LaravelSVG,
-        label : 'Laravel',
-    },
-]
-
-const ui = [
-    {
-        svg : TailwindSVG,
-        label : 'TailwindCSS',
-    },
-    {
-        svg : ShadcnSVG,
-        label : 'Shadcn UI',
-    },
-    {
-        svg : ScssSVG,
-        label : 'SCSS',
-    },
-    {
-        svg : GsapSVG,
-        label : 'GSAP',
-    },
-    {
-        svg : FramerSVG,
-        label : 'Framer',
-    },
-]
 
 const HomeHero = () => {
     const containerRef = useRef<HTMLDivElement>(null);
-    const openStackBtnRef = useRef<HTMLButtonElement>(null);
-    const closeStackBtnRef = useRef<HTMLButtonElement>(null);
-    const stackRevealState = useRef<'opening' | 'open' | 'closing' | 'closed'>('closed');
-
-    useGSAP((context, contextSafe) => {
-
-        const salutationYSetter = gsap.quickSetter(".salutations", "yPercent");
-
-        let salutationsTl = gsap.timeline({repeat: Infinity, delay : 4, repeatDelay : 1.5});
-
-        for (let i = 1; i < salutations.length ; i++) {
-            if(i < salutations.length - 1){
-                salutationsTl.to(".salutations", {yPercent : i*100/(salutations.length), duration : .5, ease : "power3.out"}, (i === 1  )? "" : "<+=1.5");
-            }else{
-                salutationsTl.to(".salutations", {yPercent : i*100/(salutations.length), duration : .5, ease : "power3.out", onComplete : () => {salutationYSetter(0)}}, "<+=1.5");
-            }
-        }
-
-        if(openStackBtnRef.current !== null && closeStackBtnRef.current !== null){
-            const centerX = (openStackBtnRef.current.offsetLeft + openStackBtnRef.current.clientWidth/2)*100/window.innerWidth
-            const centerY = (openStackBtnRef.current.offsetTop + openStackBtnRef.current.clientHeight/2)*100/window.innerHeight;
-
-            const stackRevealTl = gsap.timeline({paused: true});
-            stackRevealTl.addLabel('start', 0);
-            stackRevealTl.set('.stack-wrapper', {clipPath : `circle(0% at ${centerX}% ${centerY}%)`}, 'start')
-            stackRevealTl.set('.stack-wrapper', {pointerEvents : 'auto'}, 'start')
-            stackRevealTl.fromTo(openStackBtnRef.current, {scale : 1}, {scale : 0, duration : 0.5, ease : 'back.in'}, 'start');
-            stackRevealTl.to('.stack-wrapper ', {clipPath : `circle(150% at ${centerX}% ${centerY}%)`, duration: 1.5, ease : 'expo.out'}, 'start+=0.5')
-            stackRevealTl.fromTo('.languages-title', {opacity : 0, y : 20}, {opacity : 1, y : 0, duration : 0.5, ease : 'power3.out'}, 'start+=1.1');
-            stackRevealTl.fromTo('.frameworks-title', {opacity : 0, y : 20}, {opacity : 1, y : 0, duration : 0.5, ease : 'power3.out'}, 'start+=1.2');
-            stackRevealTl.fromTo('.ui-title', {opacity : 0, y : 20}, {opacity : 1, y : 0, duration : 0.5, ease : 'power3.out'}, 'start+=1.3');
-
-            const languageEls = gsap.utils.toArray('.languages-el');
-            languageEls.forEach((el, index) => {
-                stackRevealTl.fromTo(el as gsap.TweenTarget, {opacity : 0, y : 30}, {opacity : 1, y : 0, duration : 0.5, ease : 'power3.out'}, `start+=${1.1+0.05*index}`);
-            });
-
-            const frameworkEls = gsap.utils.toArray('.frameworks-el');
-            frameworkEls.forEach((el, index) => {
-                stackRevealTl.fromTo(el as gsap.TweenTarget, {opacity : 0, y : 30}, {opacity : 1, y : 0, duration : 0.5, ease : 'power3.out'}, `start+=${1.2+0.05*index}`);
-            });
-
-            const uiEls = gsap.utils.toArray('.ui-el');
-            uiEls.forEach((el, index) => {
-                stackRevealTl.fromTo(el as gsap.TweenTarget, {opacity : 0, y : 30}, {opacity : 1, y : 0, duration : 0.5, ease : 'power3.out'}, `start+=${1.3+0.05*index}`);
-            });
-
-            stackRevealTl.fromTo(closeStackBtnRef.current, {scale : 0}, {scale : 1, duration : 0.5, ease : 'back.out'}, 'start+=1.5');
-
-
-            const onOpenStack = (event : MouseEvent) => {
-                if(stackRevealState.current === 'opening' || stackRevealState.current === 'open') return;
-    
-                stackRevealState.current = 'opening';
-                console.log('opening');
-                stackRevealTl.play().then(() => {
-                    stackRevealState.current = 'open';
-                    console.log('open');
-                    
-                })
-            }
-            const onCloseStack = (event : MouseEvent) => {
-                if(stackRevealState.current === 'closing' || stackRevealState.current === 'closed') return;
-    
-                stackRevealState.current = 'closing';
-                stackRevealTl.pause();
-                stackRevealTl.reverse().then(() => {
-                    stackRevealState.current = 'closed';
-                    
-                })
-            }
-
-            context.add('onOpenStack', onOpenStack);
-            context.add('onCloseStack', onCloseStack);
-            
-            openStackBtnRef.current.addEventListener('click', context.onOpenStack)
-            closeStackBtnRef.current.addEventListener('click', context.onCloseStack)
-            
-            var lastScrollTop = 0;
-            const onScroll = () => {
-                var st = window.pageYOffset || document.documentElement.scrollTop;
-                if (st > lastScrollTop) {
-                    if(stackRevealState.current === 'opening' || 'open'){
-                        stackRevealTl.pause();
-                        stackRevealState.current = 'closing';
-                        stackRevealTl.reverse().then(() => {
-                            stackRevealState.current = 'closed';
-                        });
-                    }
-                }
-                lastScrollTop = st <= 0 ? 0 : st;
-            }
-
-            context.add('onScroll', onScroll)
-            window.addEventListener('scroll', context.onScroll);
-        }
-
-
-        
-        
-        return () => {
-            salutationsTl.kill();
-            openStackBtnRef.current?.removeEventListener('click', context.onOpenStack)
-            closeStackBtnRef.current?.removeEventListener('click', context.onCloseStack)
-            window.removeEventListener('scroll', context.onScroll);
-        }
-
-    }, {scope: containerRef});
 
   return (
     <section ref={containerRef} className='section relative z-10 min-h-screen pt-[144px] w-full flex items-center justify-start gap-8 flex-col overflow-hidden px-nav pb-nav bg-white'>
-        <div style = {{clipPath : 'circle(0% at 0 100%)'}}className='stack-wrapper absolute top-0 left-0 w-full h-full bg-zinc-900  z-20 pointer-events-none pt-[120px] md:pt-48 flex items-center justify-start flex-col px-nav gap-16 pb-nav'>
-            <div className='flex w-full flex-col items-start justify-start md:justify-evenly max-w-7xl gap-4 lg:gap-16'>
-                <div className='flex max-w-7xl w-full gap-2 md:gap-8 md:flex-row flex-col'>
-                    <span className='languages-title text-white font-secondary font-bold text-h5 md:text-h4 lg:text-h3 md:w-48 lg:w-64'>Languages</span>
-                    <div className='grid grid-cols-4 sm:grid-cols-5 gap-2 md:gap-4'>
-                    {
-                        languages.map((language, index) => (
-                            <div key={index} className='languages-el md:p-8 rounded-xl w-full max-w-36 aspect-square bg-white flex items-center justify-center flex-col gap-2 text-zinc-900 font-primary font-bold text-tiny xs:text-caption md:text-body'>
-                                <language.svg/>
-                                {language.label}
-                            </div>
-
-                        ))
-                    }
-                    </div>
-                </div>
-                <div className='flex max-w-7xl w-full gap-2 md:gap-8 md:flex-row flex-col'>
-                    <span className='frameworks-title text-white font-secondary font-bold text-h5 md:text-h4 lg:text-h3 md:w-48 lg:w-64'>Frameworks</span>
-                    <div className='grid grid-cols-4 sm:grid-cols-5 gap-2 md:gap-4'>
-                        {
-                            frameworks.map((framework, index) => (
-                                <div key={index} className='frameworks-el w-full max-w-36 aspect-square md:p-8 rounded-xl bg-white flex items-center justify-center flex-col gap-2 text-zinc-900 font-primary font-bold text-nowrap text-tiny xs:text-caption md:text-body'>
-                                    <framework.svg/>
-                                    {framework.label}
-                                </div>
-
-                            ))
-                        }
-                    </div>
-                </div>
-                <div className='flex max-w-7xl w-full gap-2 md:gap-8 md:flex-row flex-col'>
-                    <span className='ui-title text-white font-secondary font-bold text-h5 md:text-h4 lg:text-h3 md:w-48 lg:w-64'>UI</span>
-                    <div className='grid grid-cols-4 sm:grid-cols-5 gap-2 md:gap-4'>
-                        {
-                            ui.map((ui, index) => (
-                                <div key={index} className='ui-el w-full max-w-36 aspect-square md:p-8 rounded-xl bg-white flex items-center justify-center flex-col gap-2 text-zinc-900 font-primary font-bold text-nowrap text-tiny xs:text-caption md:text-body'>
-                                    <ui.svg/>
-                                    {ui.label}
-                                </div>
-
-                            ))
-                        }
-                    </div>
-                </div>
-            </div>
-            <div className='flex items-center justify-end max-w-7xl w-full absolute bottom-0 pr-nav pb-nav'>
-                <Magnetic>
-                    <button ref = {closeStackBtnRef} className='h-24 lg:h-32 aspect-square rounded-full bg-white text-zinc-900 font-bold flex items-center justify-center cursor-pointer'>
-                        <X size={48} />
-                    </button>
-
-                </Magnetic>
-            </div>
-        </div>
+        <Stack/>
         <div className='flex items-center justify-center gap-4'>
-            <div className='relative'>
-                <div className='absolute w-full h-full rounded-xl top-0 left-0 -translate-x-2 translate-y-2 bg-zinc-200 border border-zinc-300 -z-10'></div>
-                <div className='origin-bottom h-12 relative overflow-hidden px-4 bg-black text-white rounded-xl'>
-                    <span className='opacity-0 pointer-events-none font-primary font-bold text-body md:text-h5 h-12 flex items-center justify-center'>こんにちは</span>
-                    <div className='salutations flex absolute bottom-0 left-0 z-0 items-center w-full  md:items-center justify-center flex-col'>
-                        {
-                            salutations.map((salutation, index) => (
-                            <span key={`salutation-${index}`} className='font-primary font-bold text-body md:text-h6 h-12 flex items-center justify-center'>{salutation}</span>
-                            ))
-                        }
-                    </div>
-                </div>
-            </div>
+            <Salutations/>
             <div className='flex items-center justify-center text-h6 font-primary gap-2 text-zinc-900'>
                 <span>Je suis </span>
                 <h1 className='text-h6 font-bold font-secondary'>Anas NEJMI</h1>
@@ -279,35 +26,10 @@ const HomeHero = () => {
             <h1 className='font-secondary font-medium text-6xl sm:text-7xl md:text-[6rem] lg:text-[8rem] leading-[1] text-center text-zinc-900 drop-shadow-2xl'>Développeur</h1>
             <h1 className='font-secondary font-medium text-6xl sm:text-7xl md:text-[6rem] lg:text-[8rem] leading-[1] text-center text-zinc-900 drop-shadow-2xl'>Frontend</h1>
         </div>
-        <div className='w-full aspect-[6/4] max-w-[500px] lg:hidden flex items-center justify-center'>
-             <DotLottieReact
-                src="images/avatar-anim-1.lottie"
-                loop
-                autoplay
-                className='w-full aspect-[6/4]'
-            />
+        <div className='w-full aspect-[6/4] max-w-[600px] relative md:absolute md:bottom-0 md:left-1/2 md:-translate-x-1/2 md:pb-nav'>
+            <HeroLottieAnimation/>
         </div>
-        <div className='absolute bottom-0 flex items-end justify-between w-full max-w-7xl font-primary text-body pb-6 px-6'>
-            <Magnetic>
-                <button ref = {openStackBtnRef} className='h-24 lg:h-32 aspect-square rounded-full bg-zinc-900 text-zinc-900 font-bold flex items-center justify-center cursor-pointer'>
-                    <svg viewBox="0 0 500 500"  xmlns="http://www.w3.org/2000/svg" className='w-full h-full rounded-full fill-zinc-900'>
-                        <path d="M 400 250 A 150 150 0 0 1 250 400 A 150 150 0 0 1 100 250 A 150 150 0 0 1 250 100 A 150 150 0 0 1 400 250 Z" id="circle-text-path"></path>
-                        <text style={{animationDuration : '10s'}} className='animate-spin origin-center'><textPath fontSize={55} xlinkHref="#circle-text-path" className='font-bold font-primary text-[4.1rem] fill-white'>Ma Stack . Ma Stack . Ma Stack .</textPath></text>
-                        <ellipse cx="250" cy="250" rx="50" ry="50" fill='white'></ellipse>
-                        <path d="M 250 278.28 L 268.85 259.43 M 250 278.28 L 231.15 259.43 M 250 278.28 L 250 221.72" id="circle-arrow"></path>
-                    </svg>
-                </button>
-            </Magnetic>
-
-            <div className='w-full aspect-[6/4] max-w-[600px] hidden lg:block'>
-                <DotLottieReact
-                    src="images/avatar-anim-1.lottie"
-                    loop
-                    autoplay
-                    className='w-full aspect-[6/4]'
-                />
-            </div>
-
+        <div className='absolute bottom-0 flex items-center justify-end w-full max-w-7xl font-primary text-body pb-6 px-6'>
             <div className = "origin-bottom-right">
                 <ParisSVG className='h-24 lg:h-32'/>
             </div>
