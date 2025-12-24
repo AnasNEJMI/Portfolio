@@ -23,11 +23,11 @@ const ProjectCard = ({className,href, title, description, src, width, height, co
   return (
     <Link href={href} scroll ={false}>
         <Card 
-            className='shadow-none border-none rounded-none'
+            className='shadow-none border-none rounded-none bg-transparent'
         >
             <CardContent
                 style={{clipPath : 'url(#project-card-clip)', backgroundColor : color}}
-                className={cn('relative overflow-hidden w-full aspect-square flex items-center justify-center p-0 group bg-sky-400', className)}
+                className={cn('relative overflow-hidden w-full aspect-square flex items-center justify-center p-0 group ', className)}
             >
                 
                 <Image

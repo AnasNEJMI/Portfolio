@@ -62,7 +62,7 @@ const Magnetic = ({children}) => {
   }, {scope : containerRef});
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} className='relative group'>
       {children}
     </div>
   )

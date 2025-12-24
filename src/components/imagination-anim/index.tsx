@@ -12,7 +12,7 @@ const ImaginationAnim = () => {
     const rotatingTextRef = useRef<SVGSVGElement>(null)
     const rotationDir = useRef(-1)
 
-     useGSAP((context, contextSafe) => {
+     useGSAP(() => {
         const rotationScroll = ScrollTrigger.create({
             trigger : containerRef.current,
             start : 'top bottom',

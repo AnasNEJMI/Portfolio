@@ -6,6 +6,8 @@ import HomeProjects from "@/components/projects";
 import HomeQualities from "@/components/home/qualities";
 import HomeHighlights from "@/components/home/highlights";
 import PageWrapper from "@/components/page-wrapper";
+import Profile from "@/components/home/profile";
+import Formation from "@/components/home/formation";
 
 export default function Home() {
   return ( 
@@ -25,10 +27,7 @@ export default function Home() {
       <HomeHero/>
 
       <HomeAbout/>
-      {/* <HomeShapesTransition/> */}
-      <HomeQualities/>
       <HomeProjects/>
-      <HomeHighlights/>
       <Contact/>
       <svg viewBox="0 0 100 100" width="0" height="0">
           <defs>

@@ -13,7 +13,7 @@ const Contact = () => {
     let containerRef = useRef(null);
     let linkRef = useRef(null);
 
-    useGSAP((context, contextSafe) => {
+    useGSAP((_, contextSafe) => {
         gsap.from('.title', {xPercent : -50, scrollTrigger : {
             trigger : containerRef.current,
             start : "top bottom",
@@ -262,21 +262,21 @@ const Contact = () => {
           }
         });
 
-        gsap.to('.curve', {scaleY : 0, scrollTrigger : {
-          trigger : containerRef.current,
-          start : "top bottom",
-          end : "90% bottom",
-          scrub : true
-        }});
+        // gsap.to('.curve', {scaleY : 0, scrollTrigger : {
+        //   trigger : containerRef.current,
+        //   start : "top bottom",
+        //   end : "90% bottom",
+        //   scrub : true
+        // }});
 
         return () => {
           mm.revert();
         }
     }, {scope : containerRef});
   return (
-    <footer ref = {containerRef} className = "section px-nav pb-nav pt-[calc(var(--padding-nav)*3.6)] text-white w-full relative z-30  flex flex-col items-center justify-start bg-black overflow-hidden">
-      <svg className='curve w-full aspect-[3/2] absolute top-0 left-0 z-10 origin-top drop-shadow-2xl' viewBox="0 0 100 100" preserveAspectRatio="none">
-            <path d = "m0 0h100v100Q50 0 0 100Z" className = "fill-white z-50"></path>
+    <footer ref = {containerRef} className = "section px-nav pb-nav pt-40 text-zinc-100 bg-zinc-900 w-full relative z-30  flex flex-col items-center justify-start overflow-hidden">
+      <svg className='curve w-full aspect-[3/2] scale-y-0 absolute top-0 left-0 z-10 origin-top drop-shadow-2xl' viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path d = "m0 0h100v100Q50 0 0 100Z" className = "fill-zinc-100 z-50"></path>
       </svg>
       <div className='flex items-start justify-between max-w-5xl w-full'>
         <div className=' flex flex-col items-start justify-start  '>

@@ -1,0 +1,229 @@
+import React, { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap';
+import ProjectCard from '@/components/project-card/project-card';
+import { ScrollTrigger } from 'gsap/all';
+import { ProjectsData } from '@/lib/data';
+import BrandLinkButton from '../brand-button';
+gsap.registerPlugin(ScrollTrigger);
+
+const title = "Une formation d'ingénieur au cœur du numérique"
+
+const HomeProjects = () => {
+  const containerRef = useRef(null);
+  const cardsRef = useRef(null);
+
+    useGSAP(() => {
+      const q = gsap.utils.selector(containerRef);
+      const title = q('.title');
+      const clippedTitle = q('.clipped-title');
+      const formationTitle = q('.formation-title');
+      const tlWrapper = q('.timeline-wrapper');
+      const tlLine = q('.timeline-line');
+      const telecom = q('.telecom');
+      const cpge = q('.cpge');
+      const bac = q('.bac');
+      const projectImg = q('.project-image');
+
+      const telecomTranslateX = gsap.quickTo(telecom, 'x', {duration : 1, ease : "power3.out"})
+      const telecomOpacity = gsap.quickTo(telecom, 'opacity', {duration : 1, ease : "power3.out"})
+      const cpgeTranslateX = gsap.quickTo(cpge, 'x', {duration : 1, ease : "power3.out"})
+      const cpgeOpacity = gsap.quickTo(cpge, 'opacity', {duration : 1, ease : "power3.out"})
+      const bacTranslateX = gsap.quickTo(bac, 'x', {duration : 1, ease : "power3.out"})
+      const bacOpacity = gsap.quickTo(bac, 'opacity', {duration : 1, ease : "power3.out"})
+      const lineOpacity = gsap.quickTo(tlLine, 'opacity', {duration : 1, ease : "power3.out"})
+
+      const scroll = ScrollTrigger.create({
+        trigger : formationTitle,
+        start : 'bottom center',
+        onEnter : () => {
+          gsap.to(containerRef.current, {background : '#18181b', duration : 0.5, ease : 'power3.out'})
+          gsap.to(containerRef.current, {color : '#ffffff', duration : 0.5, ease : 'power3.out'})
+        },
+        onLeaveBack : () => {
+          gsap.to(containerRef.current, {background : '#f4f4f5', duration : 0.5, ease : 'power3.out'})
+          gsap.to(containerRef.current, {color : '#18181b', duration : 0.5, ease : 'power3.out'})
+        },
+      })
+
+      const scrollTelecom = ScrollTrigger.create({
+        trigger : telecom,
+        start : 'bottom bottom',
+        onEnter : () => {
+          telecomOpacity(1);
+          telecomTranslateX(1);
+        },
+        onLeaveBack : () => {
+          telecomOpacity(0);
+          telecomTranslateX(-40);  
+        },
+      })
+
+      const scrollCpge = ScrollTrigger.create({
+        trigger : cpge,
+        start : 'bottom bottom',
+        onEnter : () => {
+          cpgeOpacity(1);
+          cpgeTranslateX(1);
+        },
+        onLeaveBack : () => {
+          cpgeOpacity(0);
+          cpgeTranslateX(40);  
+        },
+      })
+      const scrollhideLine = ScrollTrigger.create({
+        trigger : bac,
+        end : "top top",
+        onEnterBack : () => {
+          lineOpacity(1)
+        },
+        onLeave : () => {
+          lineOpacity(0)  
+        },
+      })
+
+      const scrollBac = ScrollTrigger.create({
+        trigger : bac,
+        start : 'bottom bottom',
+        onEnter : () => {
+          bacOpacity(1);
+          bacTranslateX(1);
+        },
+        onLeaveBack : () => {
+          bacOpacity(0);
+          bacTranslateX(-40);  
+        },
+      })
+
+      gsap.to(tlLine, {height : '100%', scrollTrigger : {
+        trigger : tlWrapper, 
+        start : 'top center',
+        end : "bottom center",
+        scrub : 3
+      }})
+
+      gsap.from(title, {xPercent: 20, scrollTrigger : {
+        trigger : title,
+        start : "top bottom",
+        end : "bottom center",
+        scrub : true
+      }});
+
+      gsap.to(clippedTitle, {clipPath : 'inset(0 0 0 100%)', scrollTrigger : {
+        trigger : title,
+        start : "top bottom",
+        end : "bottom center",
+        scrub : true
+      }});
+
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 768px)", () => {
+          gsap.fromTo(projectImg, {yPercent : 3}, {yPercent : -3, scrollTrigger : {
+            trigger : cardsRef.current,
+            start : 'top bottom',
+            end : 'bottom top',
+            scrub : true,
+          }})
+      });
+
+      return () => {
+        mm.revert();
+        scroll.kill();
+        scrollTelecom.kill();
+        scrollCpge.kill();
+        scrollBac.kill();
+        scrollhideLine.kill();
+      }
+
+    }, {scope : containerRef});
+  return (
+    <section ref ={containerRef} className='section py-32 px-nav min-h-screen w-full flex flex-col items-center justify-start relative z-10 bg-zinc-100'>
+      <div className='max-w-7xl w-full'>
+        <h2 className = "title relative font-secondary font-black text-end text-black text-h4 md:text-h3 w-min text-nowrap">Mes dernières contributions<span style={{clipPath : 'inset(0 0 0 0)'}} className='clipped-title absolute top-0 left-0 w-full h-full text-white opacity-75'>Mes dernières contributions</span></h2>
+      </div>
+      <div className='max-w-7xl w-full mt-20 md:mt-32 pb-32'>
+        <div ref={cardsRef} className='grid grid-cols-1 md:grid-cols-2 w-full gap-8'>
+          {
+            Object.values(ProjectsData).map((project, index) => (
+              <ProjectCard
+                key={index}
+                href={`/projects/${project.href}`}
+                title={project.title}
+                description={project.stack.join(', ')}
+                src={project.banner.src}
+                width={project.banner.width}
+                height={project.banner.height}
+                color = {project.color}
+                
+              />
+            ))
+          }
+        </div>
+        <div className='flex items-center justify-center mt-20 md:mt-32'>
+            <BrandLinkButton
+              href='/projects'
+              title='En Savoir Plus'
+            />
+        </div>
+      </div>
+      <section className='w-full flex justify-center py-32 md:py-48'>
+          <div className='w-full max-w-7xl font-primary flex flex-col items-center'>
+            <p className='formation-title text-h4 font-medium max-w-xl text-balance text-center'>{title}</p>
+            <div className='timeline-wrapper relative w-full h-full flex flex-col gap-[40vh] py-32 max-w-5xl overflow-hidden'>
+              <div style={{boxShadow : "rgb(74, 222, 128) 0px 0px 15px"}} className='timeline-line absolute top-0 left-1/2 -translate-x-1/2 h-0 w-px bg-green-400'></div>
+              <div className='telecom opacity-0 -translate-x-10 flex md:gap-12 items-start justify-center'>
+                <div className='flex-1 flex flex-col gap-4'>
+                  <div className='flex justify-start gap-8 md:justify-between md:gap-0 items-center'>
+                    <span className='font-secondary font-medium text-h4'>Cycle Ingénieur</span>
+                    <span className='font-primary font-light text-h4'>2012-2016</span>
+                  </div>
+                  <div className=''>
+                    <span className='font-primary font-medium text-h5 opacity-75'>Télecom Paristech, Paris</span>
+                  </div>
+                  <div className='h-px w-full bg-zinc-200'></div>
+                  <p className='font-primary text-h6 leading-7 text-balance'>Formation d&apos;excellence dans le développement logiciel, l&apos;algorithmique et la fouilles des données</p>
+                </div>
+                <div className='hidden md:block w-2 h-2 bg-green-300 rounded-full mt-8'></div>
+                <div className='md:flex-1'></div>
+              </div>
+              <div className='cpge opacity-0 translate-x-10 flex md:gap-12 items-start justify-center'>
+                <div className='md:flex-1'></div>
+                <div className='hidden md:block w-2 h-2 bg-green-300 rounded-full mt-8'></div>
+                <div className='flex-1 flex flex-col gap-4'>
+                  <div className='flex justify-end gap-8 md:justify-between md:gap-0 items-center'>
+                    <span className='font-secondary font-medium text-h4'>CPGE</span>
+                    <span className='font-primary font-light text-h4'>2010-2012</span>
+                  </div>
+                  <div className='w-full flex justify-end md:justify-start'>
+                    <span className='font-primary font-medium text-h5 opacity-75'>Lycée Moulay Youssef, Maroc</span>
+                  </div>
+                  <div className='h-px w-full bg-zinc-200 flex flex-col'></div>
+                  <p className='font-primary text-h6 leading-7 text-end md:text-start'>Filière MPSI/MP*</p>
+                  <p className='font-primary text-h6 leading-7 text-end md:text-start'>Specialités : mathématiques, physique/chimie, informatique</p>
+                </div>
+              </div>
+              <div className='bac opacity-0 -translate-x-10 flex md:gap-12 items-start justify-center'>
+                <div className='flex-1 flex flex-col gap-4'>
+                  <div className='flex justify-start gap-8 md:justify-between md:gap-0 items-center'>
+                    <span className='font-secondary font-medium text-h4'>Baccalauréat S</span>
+                    <span className='font-primary font-light text-h4'>2010</span>
+                  </div>
+                  <div className=''>
+                    <span className='font-primary font-medium text-h5 opacity-75'>Lycée Med V, Maroc</span>
+                  </div>
+                  <div className='h-px w-full bg-zinc-200'></div>
+                  <p className='font-primary text-h6 leading-7'>Option mathématiques et science d&apos;ingénieurs.</p>
+                  <p className='font-primary text-h6 leading-7 text-balance'>Obtenu avec une mention <span className='font-bold underline'>Très Bien</span></p>
+                </div>
+                <div className='hidden md:block w-2 h-2 bg-green-300 rounded-full mt-8'></div>
+                <div className='md:flex-1'></div>
+              </div>
+            </div>
+          </div>
+      </section>
+    </section>
+  )
+}
+
+export default HomeProjects

@@ -1,4 +1,4 @@
-import LogoAnimation from '@/components/home/overlay/logo_animation'
+import LogoAnimation from '@/components/home/overlay/logo-animation'
 import { cn } from '@/lib/utils'
 import { useGSAP } from '@gsap/react';
 import React from 'react'

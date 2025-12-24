@@ -32,7 +32,7 @@
     "**/*.jsx",
     "**/*.jsx",
     "src/contexts/transition_context/index.tsx",
-    "src/components/page_transition_handler/index.jsx", "src/components/page-wrapper/index.tsx", "src/components/page-wrapper/index.tsx", "src/contexts/overlay_title_context/index.tsx", "src/components/locomotive_scroll/index.tsx", "src/contexts/first_load_context/index.tsx", "src/contexts/vertical_nav_state_context/index.tsx", "next-sitemap.config.;js", ],
+    "src/components/page_transition_handler/index.jsx", "src/components/page-wrapper/index.tsx", "src/components/page-wrapper/index.tsx", "src/contexts/overlay_title_context/index.tsx", "src/components/locomotive_scroll/index.tsx", "src/contexts/first_load_context/index.tsx", "src/contexts/vertical_nav_state_context/index.tsx", "next-sitemap.config.;js", "src/components/home/formation", ],
   "exclude": [
     "node_modules"
   ]

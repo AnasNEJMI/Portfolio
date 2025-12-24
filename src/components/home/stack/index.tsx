@@ -89,25 +89,33 @@ const Stack = () => {
     const openStackTl = useRef(gsap.timeline({paused : true}));
 
     const {contextSafe} = useGSAP(() => {
-        const openBtn = document.getElementById("stack-open-btn");
-        const closeBtn = document.getElementById("stack-close-btn");
-        
+        const q = gsap.utils.selector(containerRef);
+        const openBtn = q('.stack-open-btn')[0];
+        const closeBtn = q('.stack-close-btn');
+        const stackWrapper = q('.stack-wrapper');
+        const openStackBtnWrapper = q('.open-stack-btn-wrapper');
+        const languagesTitle = q('.languages-title');
+        const frameworksTitle = q('.frameworks-title');
+        const uiTitle = q('.ui-title');
+        // const openBtn = document.getElementById("stack-open-btn");
+        // const closeBtn = document.getElementById("stack-close-btn");
         if(!openBtn || !closeBtn) return;
-
         const boundingBox = openBtn.getBoundingClientRect();
+
+        console.log(boundingBox)
+
         const openBtnCenterX = (boundingBox.left + boundingBox.width/2)*100/window.innerWidth;
         const openBtnCenterY = (boundingBox.top + boundingBox.height/2)*100/window.innerHeight;
 
-        console.log('centerX : ', openBtnCenterX, ' centerY : ', openBtnCenterY);
         openStackTl.current
-            .set('.stack-wrapper', {clipPath : `circle(0% at ${openBtnCenterX}% ${openBtnCenterY}%)`}, 0)
-            .set('.stack-wrapper', {pointerEvents : 'auto'}, 0)
-            .set('.open-stack-btn-wrapper', {pointerEvents : 'none'}, 0)
+            .set(stackWrapper, {clipPath : `circle(0% at ${openBtnCenterX}% ${openBtnCenterY}%)`}, 0)
+            .set(stackWrapper, {pointerEvents : 'auto'}, 0)
+            .set(openStackBtnWrapper, {pointerEvents : 'none'}, 0)
             .fromTo(openBtn, {scale : 1}, {scale : 0, duration : 0.5, ease : 'back.in'}, 0)
-            .to('.stack-wrapper ', {clipPath : `circle(150% at ${openBtnCenterX}% ${openBtnCenterY}%)`, duration: 1.5, ease : 'expo.out'}, 0.5)
-            .fromTo('.languages-title', {opacity : 0, y : 20}, {opacity : 1, y : 0, duration : 0.5, ease : 'power3.out'}, 1.1)
-            .fromTo('.frameworks-title', {opacity : 0, y : 20}, {opacity : 1, y : 0, duration : 0.5, ease : 'power3.out'}, 1.2)
-            .fromTo('.ui-title', {opacity : 0, y : 20}, {opacity : 1, y : 0, duration : 0.5, ease : 'power3.out'}, 1.3)
+            .to(stackWrapper, {clipPath : `circle(150% at ${openBtnCenterX}% ${openBtnCenterY}%)`, duration: 1.5, ease : 'expo.out'}, 0.5)
+            .fromTo(languagesTitle, {opacity : 0, y : 20}, {opacity : 1, y : 0, duration : 0.5, ease : 'power3.out'}, 1.1)
+            .fromTo(frameworksTitle, {opacity : 0, y : 20}, {opacity : 1, y : 0, duration : 0.5, ease : 'power3.out'}, 1.2)
+            .fromTo(uiTitle, {opacity : 0, y : 20}, {opacity : 1, y : 0, duration : 0.5, ease : 'power3.out'}, 1.3)
             .fromTo(closeBtn, {scale : 0}, {scale : 1, duration : 0.5, ease : 'back.out'}, 1.5)
 
         const languageEls = gsap.utils.toArray('.languages-el');
@@ -133,7 +141,6 @@ const Stack = () => {
         stackRevealState.current = 'opening';
         openStackTl.current.play().then(() => {
             stackRevealState.current = 'open';
-            console.log('open');
         })
     });
 
@@ -147,7 +154,7 @@ const Stack = () => {
         })
     });
   return (
-        <div ref={containerRef} className='absolute z-10 top-0 left-0 w-full h-screen'>
+        <div ref={containerRef} className='absolute z-10 top-0 left-0 w-full h-dvh'>
             <div style = {{clipPath : 'circle(0% at 0 100%)'}} className='stack-wrapper pointer-events-none absolute top-0 left-0 w-full h-full bg-zinc-900 z-20 pt-[120px] md:pt-48 flex items-center justify-start flex-col px-nav gap-16 pb-nav'>
                 <div className='flex w-full flex-col items-start justify-start md:justify-evenly max-w-7xl gap-4 lg:gap-16'>
                     <div className='flex max-w-7xl w-full gap-2 md:gap-8 md:flex-row flex-col'>
@@ -195,16 +202,15 @@ const Stack = () => {
                 </div>
                 <div className='flex items-center justify-end max-w-7xl w-full absolute bottom-0 pr-nav pb-nav'>
                     <Magnetic>
-                        <button id = 'stack-close-btn' onClick={() => onCloseStackClickHandler()} className='h-24 lg:h-32 aspect-square rounded-full bg-white text-zinc-900 font-bold flex items-center justify-center cursor-pointer'>
+                        <button id = '' onClick={() => onCloseStackClickHandler()} className='stack-close-btn h-24 lg:h-32 aspect-square rounded-full bg-white text-zinc-900 font-bold flex items-center justify-center cursor-pointer'>
                             <X size={48} /> 
                         </button>
-
                     </Magnetic>
                 </div>
             </div>
             <div className='open-stack-btn-wrapper absolute z-30 bottom-0 pl-nav pb-nav w-full max-w-7xl left-1/2 -translate-x-1/2 flex justify-start'>
                 <Magnetic>
-                    <button id = 'stack-open-btn' onClick={() => onOpenStackClickHandler()} className='h-24 lg:h-32 aspect-square rounded-full bg-zinc-900 text-zinc-900 font-bold flex items-center justify-center cursor-pointer'>
+                    <button onClick={() => onOpenStackClickHandler()} className='stack-open-btn h-24 lg:h-32 aspect-square rounded-full bg-zinc-900 text-zinc-900 font-bold flex items-center justify-center cursor-pointer'>
                         <svg viewBox="0 0 500 500"  xmlns="http://www.w3.org/2000/svg" className='w-full h-full rounded-full fill-zinc-900'>
                             <path d="M 400 250 A 150 150 0 0 1 250 400 A 150 150 0 0 1 100 250 A 150 150 0 0 1 250 100 A 150 150 0 0 1 400 250 Z" id="circle-text-path"></path>
                             <text style={{animationDuration : '10s'}} className='animate-spin origin-center'><textPath fontSize={55} xlinkHref="#circle-text-path" className='font-bold font-primary text-[4.1rem] fill-white'>Ma Stack . Ma Stack . Ma Stack .</textPath></text>

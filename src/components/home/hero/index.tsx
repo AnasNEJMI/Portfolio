@@ -4,20 +4,17 @@ import Salutations from '../salutations';
 import Stack from '../stack';
 import HeroLottieAnimation from '../hero-animation';
 
-
-
-
 const HomeHero = () => {
     const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section ref={containerRef} className='section relative z-10 min-h-screen pt-[144px] w-full flex items-center justify-start gap-8 flex-col overflow-hidden px-nav pb-nav bg-white'>
-        <Stack/>
+    <section ref={containerRef} className='section relative z-10 h-dvh pt-[144px] w-full flex items-center justify-start gap-8 flex-col overflow-hidden px-nav pb-nav bg-white'>
+        {/* <Stack/> */}
         <div className='flex items-center justify-center gap-4'>
             <Salutations/>
             <div className='flex items-center justify-center text-h6 font-primary gap-2 text-zinc-900'>
                 <span>Je suis </span>
-                <h1 className='text-h6 font-bold font-secondary'>Anas NEJMI</h1>
+                <h1 className='text-h6 font-bold font-primary'>Anas NEJMI</h1>
             </div>
         </div>
         
