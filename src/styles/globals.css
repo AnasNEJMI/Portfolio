@@ -31,10 +31,6 @@
   --body-font-size: 1rem;
   --caption-font-size: 0.833rem;
   --tiny-font-size: 0.694rem;
-  /* --caption-font-size: clamp(0.75rem, 10vw, 0.833rem);
-  --tiny-font-size: clamp(0.563rem, 10vw, 0.694rem); */
-
-  /* padding */
   --padding-nav : clamp(1.5em, 4vw, 2.5em);
 }
 
@@ -341,35 +337,6 @@
     height: 100svh;
   }
 
-  .masked-hero{
-    --mh-x: 50%;
-    --mh-y:50%;
-    --mh-size: 4px;
-    --mh-size-fade-start : 4px;
-    --mh-size-fade-end : 4px;
-    --mask: radial-gradient(circle at var(--mh-x) var(--mh-y), rgba(0,0,0,1) 0%, rgba(0,0,0,1) var(--mh-size, 150px), rgba(0,0,0,0.1) var(--mh-size-fade-start), rgba(0,0,0,0) var(--mh-size-fade-end), rgba(0,0,0,0) 100%);
-    background: #00000050, url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    box-shadow : 'inset 0px 0px 10px 100px black';
-    -webkit-mask-image: var(--mask);
-	  mask-image: var(--mask);
-    /* box-shadow : 'inset 0px 0px 10px 100px black'; */
-    /* background : radial-gradient(circle at 50% 50%, black 0%, black 29%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0) 58%, rgba(0, 0, 0, 1) 65%), url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); */
-  }
-
-  .masked-hero-grainy-circle{
-    --x: 50%;
-    --y: 50%;
-    --size: 50%;
-    width: 400px;
-    height: 400px;
-    top:-200px;
-    left:-200px;
-    transform: translate(525px, 352px);
-    background : radial-gradient(circle at 50% 50%, black 0%, black 29%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0) 58%, rgba(0, 0, 0, .5) 65%), url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    /* box-shadow : 'inset 0px 0px 10px 100px black'; */
-    mix-blend-mode:luminosity;
-    opacity: 0.5;
-  }
 
 
   .animate-delay-500{
@@ -508,69 +475,6 @@
     }
   }
 }
-
-
-
-
-
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
-  }
-  .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-  }
-}
-
-
-
 
 
 @layer base {

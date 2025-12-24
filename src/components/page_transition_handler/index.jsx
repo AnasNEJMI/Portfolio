@@ -19,7 +19,6 @@ const PageTransitionHandler = ({ children }) => {
     useGSAP(() => {
       //only play the exit animation if the next page is different from the current one
       const currentRoute = Routes[router.pathname];
-      console.log('current route ', currentRoute);
       //change the title of the overlay depending on the current route
       setOverlayTitle(currentRoute);
 

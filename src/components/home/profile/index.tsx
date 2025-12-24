@@ -89,6 +89,7 @@ const Profile = () => {
                     src={profilePic}
                     alt='profile-pic'
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
             </div>
             <div className='font-primary w-full flex flex-col lg:flex-row items-start justify-center gap-8 lg:gap-12 pt-20'>

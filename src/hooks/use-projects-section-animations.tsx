@@ -94,3 +94,5 @@ const useProjectsSectionAnimations = ({containerRef} : useProjectsSectionAnimati
 }
 
 export default useProjectsSectionAnimations
+
+//create a website for
