@@ -26,6 +26,21 @@ const knowHow = [
     },
 ]
 
+const stack = [
+    {
+        title : 'Développement',
+        list : ['React', 'Next.js', 'Node.js'],
+    },
+    {
+        title : 'UI',
+        list : ['Tailwind CSS', 'Radix UI', 'Shadcn UI'],
+    },
+    {
+        title : 'Design',
+        list : ['Figma', 'Adobe Illustrator'],
+    }
+]
+
 const Profile = () => {
     const containerRef = useRef<HTMLDivElement>(null)
     useGSAP(() => {
@@ -33,16 +48,7 @@ const Profile = () => {
         const wrapper = q('.wrapper');
         const imageWrapper = q('.image-wrapper');
         
-        const path = q('#profile-text2')[0];
-        if (!(path instanceof SVGPathElement)) return;
-        const pathLength = path.getTotalLength();
-
-        console.log('Path length : ',pathLength)
-        
         const rotatingTextPath = q('.rotating-text-path')[0];
-        if (!(rotatingTextPath instanceof SVGTextPathElement)) return;
-        const rotatingTextPathLength = rotatingTextPath.getComputedTextLength();
-        console.log('Rotation Text Path length : ',rotatingTextPathLength)
 
         gsap.to(wrapper, {width : '100%', y : 0, borderRadius : 0, scrollTrigger : {
             trigger : wrapper,
@@ -112,11 +118,21 @@ const Profile = () => {
                 <div className='w-full flex-1 flex flex-col gap-4'>
                     <div className='h-px w-full bg-zinc-200'></div>
                     <span className='w-full font-medium uppercase text-zinc-600'>
-                        Formation
+                        Envorinnement Technique
                     </span>
-                    <span className='w-full font-bold text-h2 text-zinc-900'>
-                        Bac +4
-                    </span>
+                    <div className='flex flex-col gap-6 w-full'>
+                        {stack.map((el, index) => (
+                            <div key={index} className='w-full flex items-center flex-wrap gap-2'>
+                                <span className='text-body font-bold mr-2 text-nowrap'>{el.title} : </span>
+                                {
+                                    el.list.map((tech, i) => (
+                                        <span key={i} className='px-2 py-1 text-body rounded-full border border-zinc-300'>{tech}</span>
+                                    ))
+                                }
+                            </div>
+                        ))
+                        }
+                    </div>
                 </div>
             </div>
         </section>

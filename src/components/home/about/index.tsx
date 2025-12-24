@@ -1,8 +1,6 @@
 import React, { useRef } from 'react'
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';  
-import Magnetic from '@/components/basic_magnetic_item';
-import Link from 'next/link';
 import BrandLinkButton from '@/components/brand-button';
 import Profile from '../profile';
 
@@ -21,8 +19,8 @@ const HomeAbout = () => {
     const bioTl = gsap.timeline({
       scrollTrigger : {
         trigger : bioWrapper,
-        start: "bottom bottom",
-        end: "bottom center",
+        start: "top 85%",
+        end: "top 15%",
         scrub: true,
       }
     })

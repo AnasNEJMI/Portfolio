@@ -42,43 +42,10 @@
   .text-balance {
     text-wrap: balance;
   }
-
-  /* .text-tiny{
-    font-size: var(--tiny-font-size);
-  }
-
-  .text-caption{
-    font-size: var(--caption-font-size);
-  }
-
-  .text-body{
-    font-size: var(--body-font-size);
-  }
-
-  .text-h6{
-    font-size: var(--h6-font-size);
-  }
-
-  .text-h5{
-    font-size: var(--h5-font-size);
-  }
-
-  .text-h4{
-    font-size: var(--h4-font-size);
-  }
-
-  .text-h3{
-    font-size: var(--h3-font-size);
-  }
-
-  .text-h2{
-    font-size: var(--h2-font-size);
-  }
   
-  .text-h1{
-    font-size: var(--h1-font-size);
-  } */
-
+  .timeline-line-glow{
+    box-shadow: rgb(74, 222, 128) 0px 0px 15px;
+  }
   /* background colors */
   .bg-primary-regular{
     background-color: var(--primary-color-regular);
