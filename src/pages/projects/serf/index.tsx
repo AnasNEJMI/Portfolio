@@ -15,8 +15,8 @@ import PhoneDisplays from '@/components/phone-displays';
 import Contact from '@/components/contact';
 import { Globe } from 'lucide-react';
 
-const SidraPage = () => {
-    const data = ProjectsData['sidra'];
+const SerfPage = () => {
+    const data = ProjectsData['serf'];
     const containerRef = useRef(null)
     const laptopDisplayRef = useRef(null);
     const BigScreenDisplayRef = useRef(null);
@@ -140,4 +140,4 @@ const SidraPage = () => {
   )
 }
 
-export default SidraPage
+export default SerfPage

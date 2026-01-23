@@ -60,14 +60,14 @@ const Contact = () => {
             <Link scroll = {false} href={'/projects'} className='font-primary font-semibold text-h5 text-white mt-4'>Projets</Link>
             <Link scroll = {false} href={'/contact'} className='font-primary font-semibold text-h5 text-white mt-1'>contact</Link>
           </div>
-          <div className='flex flex-col w-44 items-start justify-start'>
+          {/* <div className='flex flex-col w-44 items-start justify-start'>
             <div className='flex gap-2 items-end'>
               <span className='font-secondary font-bold text-caption text-zinc-300 uppercase tracking-widest'>Réseaux</span>
               <MoveDownLeft size={16}/>
             </div>
             <Link scroll = {false} href={'https://dribbble.com/AansNEJMI'} className='font-primary font-semibold text-h5 text-white mt-4'>Dribble</Link>
             <Link scroll = {false} href={'https://github.com/AnasNEJMI'} className='font-primary font-semibold text-h5 text-white mt-1'>Github</Link>
-          </div>
+          </div> */}
         </div>
         <div className='flex flex-col gap-8 justify-start flex-1'>
           <div className='flex flex-col items-start justify-start'>

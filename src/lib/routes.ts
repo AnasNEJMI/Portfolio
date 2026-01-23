@@ -4,5 +4,6 @@ export const Routes : Record<string, string> = {
     "/contact": "Contact",
     "/projects/feetme" : "FeetMe",
     "/projects/tandem" : "Tandem",
-    "/projects/sidra" : "Sidra",
+    "/projects/sidra" : "Sidra Studio",
+    "/projects/serf" : "Agence Serf",
 }

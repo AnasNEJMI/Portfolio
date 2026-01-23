@@ -102,7 +102,7 @@ export const ProjectsData : Record<string, ProjectsDataType> = {
         bigScreenSrc :'/images/tandem/tandem-big-screen.webp',
         laptopSrc :'/images/tandem/tandem-laptop.webp',
         duration : "4 Mois",
-        startDate : '04/10/2024',
+        startDate : '2025',
         githubRepo : "https://github.com/AnasNEJMI/Tandem",
         stack : ['React', 'Vite', 'InertiaJS', 'Laravel', 'PHP', 'MySQL', 'Shadcn UI', 'TailwindCSS'],
         tech : [
@@ -141,10 +141,10 @@ export const ProjectsData : Record<string, ProjectsDataType> = {
     },
     "sidra": {
         href : 'sidra',
-        title : 'Sidra',
+        title : 'Sidra Studio',
         description : "J'ai collaboré avec Sidra Studio, une agence de design et de branding, pour développer la fondation de leur site Internet, avec un focus sur la perfomance et SEO, et en mettant l'accent sur une présentation claire et élégante. L'expérience utilisateur est portée par des animations fluides et dynamiques réalisées avec GSAP, qui donnent vie aux contenus tout en conservant une navigation intuitive.",
         category : 'Site Vitrine',
-        color : '#4f46e5',
+        color : '#ff3831',
         banner : {
                     src : '/images/sidra/sidra-banner.png',
                     width : 1500,
@@ -173,7 +173,29 @@ export const ProjectsData : Record<string, ProjectsDataType> = {
         bigScreenSrc :'/images/sidra/sidra-big-screen.png',
         laptopSrc :'/images/sidra/sidra-laptop.png',
         duration : "3 Mois",
-        startDate : '10/03/2025',
+        startDate : '2025',
+        githubRepo : "",
+        stack : ['React', 'GSAP', 'Shadcn UI', 'Typescript', 'TailwindCSS'],
+        tech : [],
+        features : []
+    },
+    "serf": {
+        href : 'serf',
+        title : 'Agence SERF',
+        description : "J'ai collaboré avec Agence SERF, une agence de marketing, pour développer la fondation de leur site Internet, avec un focus sur la simplicité et la perfomance, et en mettant l'accent sur une présentation claire et élégante. L'expérience utilisateur est portée par des animations fluides et dynamiques réalisées avec GSAP, qui donnent vie aux contenus tout en conservant une navigation intuitive.",
+        category : 'Site Vitrine',
+        color : '#4f46e5',
+        banner : {
+                    src : '/images/serf/serf-banner.png',
+                    width : 1500,
+                    height : 963,
+                    type : 'image'
+                    },
+        phoneDisplays : [],
+        bigScreenSrc :'/images/serf/serf-big-screen.png',
+        laptopSrc :'/images/serf/serf-laptop.png',
+        duration : "3 Mois",
+        startDate : '2024',
         githubRepo : "",
         stack : ['NextJS', 'GSAP', 'Shadcn UI', 'Typescript', 'TailwindCSS'],
         tech : [],
